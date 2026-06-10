@@ -3,159 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeQuest Arcade | Mega Curriculum Matrix</title>
+    <title>DSA Matrix Learning Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
         body {
-            font-family: 'Rajdhani', sans-serif;
-            background: radial-gradient(circle at 50% 50%, #0b0f19 0%, #020408 100%);
-            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f172a;
         }
-        .arcade-font { font-family: 'Orbitron', sans-serif; }
-        .matrix-container { perspective: 1000px; }
-        .arcade-card {
-            transform-style: preserve-3d;
-            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
         }
-        .arcade-card:hover { transform: translateY(-6px) rotateX(2deg); }
-
-        .glow-web { box-shadow: 0 0 20px rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.25); }
-        .glow-web:hover { box-shadow: 0 0 35px rgba(56, 189, 248, 0.35); border-color: #38bdf8; }
-        .glow-python { box-shadow: 0 0 20px rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.25); }
-        .glow-python:hover { box-shadow: 0 0 35px rgba(16, 185, 129, 0.35); border-color: #10b981; }
-        .glow-java { box-shadow: 0 0 20px rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.25); }
-        .glow-java:hover { box-shadow: 0 0 35px rgba(168, 85, 247, 0.35); border-color: #a855f7; }
-        .glow-dsa { box-shadow: 0 0 20px rgba(244, 63, 94, 0.12); border-color: rgba(244, 63, 94, 0.25); }
-        .glow-dsa:hover { box-shadow: 0 0 35px rgba(244, 63, 94, 0.35); border-color: #f43f5e; }
-        .glow-systems { box-shadow: 0 0 20px rgba(234, 179, 8, 0.12); border-color: rgba(234, 179, 8, 0.25); }
-        .glow-systems:hover { box-shadow: 0 0 35px rgba(234, 179, 8, 0.35); border-color: #eab308; }
-
-        .scanlines {
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.005), rgba(0, 0, 255, 0.01));
-            background-size: 100% 4px, 6px 100%;
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
         }
-        .puzzle-block { cursor: grab; transition: all 0.15s ease; }
-        .puzzle-block:active { cursor: grabbing; }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
     </style>
 </head>
-<body class="text-gray-200 min-h-screen flex flex-col scanlines selection:bg-purple-500 selection:text-black">
+<body class="text-slate-100 min-h-screen flex flex-col">
 
-    <header class="w-full bg-slate-950/80 border-b-2 border-purple-500/20 backdrop-blur-md px-8 py-4 sticky top-0 z-50 flex flex-col sm:flex-row justify-between items-center gap-4">
+    <header class="w-full bg-slate-900 border-b border-slate-800 px-6 py-4 sticky top-0 z-50 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-3">
-            <button onclick="exitGameToDashboard()" class="relative group">
-                <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-50 group-hover:opacity-100 transition-opacity"></div>
-                <div class="relative bg-black border border-purple-500 px-3 py-1 rounded text-purple-400 arcade-font text-lg font-black tracking-widest">
-                    🕹️ CODEQUEST
-                </div>
+            <button onclick="showDashboard()" class="text-xl font-bold heading-font tracking-tight text-indigo-400 flex items-center gap-2">
+                <i class="fas fa-graduation-cap"></i> EDUQUEST MATRIX
             </button>
         </div>
-        <div class="flex items-center gap-6 font-mono text-xs sm:text-sm">
-            <div class="bg-gray-900/90 border border-gray-800 px-4 py-1.5 rounded-md flex items-center gap-2">
-                <i class="fas fa-star text-yellow-400 animate-pulse"></i>
-                <span class="text-gray-400 uppercase tracking-wider text-[11px]">XP ACCUMULATION:</span>
-                <span id="global-xp" class="text-white arcade-font font-bold text-emerald-400">00,000</span>
+        <div class="flex items-center gap-4 text-sm">
+            <div class="bg-slate-800 border border-slate-700 px-4 py-1.5 rounded-lg flex items-center gap-2">
+                <i class="fas fa-award text-amber-400"></i>
+                <span class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Score Tracker:</span>
+                <span id="global-score" class="font-bold text-emerald-400">0 Points</span>
             </div>
         </div>
     </header>
 
-    <main id="dashboard-view" class="flex-grow max-w-7xl w-full mx-auto p-6 space-y-8">
-        <div class="bg-gradient-to-b from-purple-950/20 to-slate-950/50 border border-purple-500/10 rounded-2xl p-6 text-center max-w-3xl mx-auto space-y-2">
-            <h1 class="arcade-font text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-purple-500 uppercase tracking-wider">Quest Map Gateway</h1>
-            <p class="text-gray-400 text-sm">Select an active training sector to begin your puzzle challenges.</p>
+    <main id="dashboard-view" class="flex-grow max-w-6xl w-full mx-auto p-6 space-y-8">
+        <div class="text-center max-w-2xl mx-auto space-y-2 pt-4">
+            <h1 class="heading-font text-3xl font-bold text-white tracking-tight">Select Training Track</h1>
+            <p class="text-slate-400 text-sm">Choose a structured subject path below to access detailed chapter notes and interactive testing modules.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 matrix-container">
-            <div class="arcade-card glow-web bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
-                <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-sky-500/10 p-2.5 rounded-xl border border-sky-500/30 text-sky-400"><i class="fas fa-globe text-xl"></i></div><span class="text-[9px] font-mono font-bold text-sky-400 uppercase bg-sky-950/50 px-2 py-0.5 rounded">60 Levels</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Web Development</h2><p class="text-xs text-gray-400 mt-1">Journey across HTML structural logic, styling sheets, interactive DOM scripting, and full-stack API servers.</p></div>
-                </div>
-                <button onclick="enterRealm('web')" class="w-full mt-4 py-2 bg-sky-600 hover:bg-sky-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Start Web Quest</button>
-            </div>
-
-            <div class="arcade-card glow-python bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
-                <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/30 text-emerald-400"><i class="fab fa-python text-xl"></i></div><span class="text-[9px] font-mono font-bold text-emerald-400 uppercase bg-emerald-950/50 px-2 py-0.5 rounded">60 Levels</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Python Basics</h2><p class="text-xs text-gray-400 mt-1">Master conditional loop control frameworks, parameters, data collections, automation bots, and object-oriented scripts.</p></div>
-                </div>
-                <button onclick="enterRealm('python')" class="w-full mt-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Start Python Quest</button>
-            </div>
-
-            <div class="arcade-card glow-java bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
-                <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-purple-500/10 p-2.5 rounded-xl border border-purple-500/30 text-purple-400"><i class="fas fa-chart-bar text-xl"></i></div><span class="text-[9px] font-mono font-bold text-purple-400 uppercase bg-purple-950/50 px-2 py-0.5 rounded">50 Levels</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Data Science</h2><p class="text-xs text-gray-400 mt-1">Deep dive into investigative statistics, numerical arrays, cleaning workflows, chart visuals, and machine learning models.</p></div>
-                </div>
-                <button onclick="enterRealm('data')" class="w-full mt-4 py-2 bg-purple-600 hover:bg-purple-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Start Data Quest</button>
-            </div>
-
-            <div class="arcade-card glow-dsa bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
-                <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-rose-500/10 p-2.5 rounded-xl border border-rose-500/30 text-rose-400"><i class="fas fa-sitemap text-xl"></i></div><span class="text-[9px] font-mono font-bold text-rose-400 uppercase bg-rose-950/50 px-2 py-0.5 rounded">50 Levels</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Data Structures & Algos</h2><p class="text-xs text-gray-400 mt-1">Conquer linear arrays, sorting frameworks, binary trees, dynamic memory nodes, and algorithms.</p></div>
-                </div>
-                <button onclick="enterRealm('dsa')" class="w-full mt-4 py-2 bg-rose-600 hover:bg-rose-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Launch DSA Quest</button>
-            </div>
-
-            <div class="arcade-card glow-systems bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
-                <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/30 text-amber-400"><i class="fas fa-microchip text-xl"></i></div><span class="text-[9px] font-mono font-bold text-amber-400 uppercase bg-amber-950/50 px-2 py-0.5 rounded">Low-Level</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Systems Architecture</h2><p class="text-xs text-gray-400 mt-1">Crack bitwise logic patterns, hardware address spaces, CPU registers, and kernel process models.</p></div>
-                </div>
-                <button onclick="enterRealm('systems')" class="w-full mt-4 py-2 bg-amber-600 hover:bg-amber-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Master Systems</button>
-            </div>
-        </div>
-    </main>
-
-    <main id="level-menu-view" class="flex-grow max-w-4xl w-full mx-auto p-6 hidden space-y-6">
-        <div class="flex justify-between items-center bg-slate-950 border border-gray-800 p-4 rounded-xl">
-            <h2 id="menu-realm-title" class="arcade-font text-sm font-bold text-white uppercase tracking-wide">Campaign Roadmap</h2>
-            <button onclick="exitToDashboard()" class="text-xs font-mono text-gray-400 hover:text-white bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-lg">🔙 Main Menu</button>
-        </div>
-        <div id="levels-list-container" class="space-y-3 overflow-y-auto max-h-[70vh] pr-2"></div>
-    </main>
-
-    <main id="arena-view" class="flex-grow max-w-7xl w-full mx-auto p-6 hidden">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-            
-            <div class="lg:col-span-5 bg-slate-950 border border-purple-500/20 rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-xl">
+        <div class="max-w-md mx-auto pt-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-indigo-500/40 transition-all duration-300 shadow-xl group">
                 <div class="space-y-4">
-                    <div class="flex items-center gap-2 border-b border-gray-800 pb-3">
-                        <span class="p-1.5 bg-purple-950 border border-purple-800 text-purple-400 rounded-lg text-xs"><i class="fas fa-book-open"></i></span>
-                        <h3 class="arcade-font text-xs font-bold uppercase text-white tracking-wider">Theory & Guidelines</h3>
-                    </div>
-                    <div id="tutorial-content-zone" class="space-y-4 text-xs md:text-sm text-gray-300 leading-relaxed font-sans max-h-[55vh] overflow-y-auto"></div>
-                </div>
-                <div class="bg-gray-900/50 border border-gray-800/60 p-3 rounded-xl text-center text-xs font-mono text-purple-400">
-                    💡 Sort the tokens into correct sequential order to parse execution steps smoothly.
-                </div>
-            </div>
-
-            <div class="lg:col-span-7 bg-slate-950 border border-gray-800 rounded-2xl p-6 flex flex-col justify-between space-y-6">
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center border-b border-gray-800 pb-3">
-                        <div>
-                            <h3 id="arena-puzzle-title" class="text-sm font-bold text-white font-mono">Sandbox Execution Blocks</h3>
-                            <p class="text-[11px] text-gray-500 font-mono mt-0.5">Use buttons to shift tokens into correct top-to-bottom functional sequence:</p>
+                    <div class="flex justify-between items-start">
+                        <div class="bg-indigo-500/10 p-3 rounded-xl border border-indigo-500/20 text-indigo-400">
+                            <i class="fas fa-sitemap text-2xl"></i>
                         </div>
-                        <button onclick="exitToLevelsMenu()" class="text-xs font-mono text-rose-400 bg-gray-900 border border-gray-800 px-3 py-1 rounded-md">Abort</button>
+                        <span class="text-xs font-semibold text-indigo-400 bg-indigo-950/60 border border-indigo-900 px-2.5 py-1 rounded-full">Core Fundamentals</span>
                     </div>
-                    <div id="blocks-workspace" class="space-y-2 p-4 bg-gray-950 border border-gray-900 rounded-xl min-h-[220px] flex flex-col justify-center"></div>
+                    <div>
+                        <h2 class="heading-font text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">Data Structures & Algorithms</h2>
+                        <p class="text-sm text-slate-400 mt-2 leading-relaxed">Master the bedrock foundation of Computer Science. Learn how information is stored efficiently, how problems are cracked step-by-step, and how to analyze code performance via Time Complexity metrics.</p>
+                    </div>
+                </div>
+                <button onclick="loadSubject('dsa')" class="w-full mt-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-slate-950 font-bold text-sm rounded-xl transition-all tracking-wide shadow-lg shadow-indigo-900/20">Open DSA Course</button>
+            </div>
+        </div>
+    </main>
+
+    <main id="syllabus-view" class="flex-grow max-w-4xl w-full mx-auto p-6 hidden space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-md">
+            <div>
+                <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Course Syllabus</span>
+                <h2 id="syllabus-title" class="heading-font text-xl font-bold text-white">Course Map</h2>
+            </div>
+            <button onclick="showDashboard()" class="text-xs font-medium text-slate-400 hover:text-white bg-slate-800 border border-slate-700 px-4 py-2 rounded-lg transition-colors">
+                <i class="fas fa-arrow-left mr-1.5"></i> Back to Tracks
+            </button>
+        </div>
+        <div id="chapters-container" class="space-y-4 custom-scrollbar overflow-y-auto max-h-[72vh] pr-2"></div>
+    </main>
+
+    <main id="lesson-view" class="flex-grow max-w-6xl w-full mx-auto p-6 hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            
+            <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-xl">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-indigo-950/60 border border-indigo-900 text-indigo-400 rounded-lg text-sm"><i class="fas fa-book-open"></i></span>
+                            <div>
+                                <span id="notes-world-tag" class="text-[10px] uppercase font-bold text-indigo-400 tracking-wider block">CURRENT TRACK</span>
+                                <h3 id="notes-chapter-title" class="heading-font text-base font-bold text-white">Chapter Lesson Notes</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="notes-body-content" class="space-y-4 text-sm text-slate-300 leading-relaxed max-h-[58vh] overflow-y-auto pr-3 custom-scrollbar">
+                        </div>
+                </div>
+                <div class="bg-slate-950 border border-slate-800/60 p-3.5 rounded-xl text-xs text-slate-400 flex items-center gap-2.5">
+                    <i class="fas fa-info-circle text-indigo-400 text-sm"></i>
+                    <span>Read through the core concepts thoroughly before initiating the knowledge review check on the right.</span>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-xl">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+                        <div>
+                            <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider block">Assessment Portal</span>
+                            <h3 class="heading-font text-base font-bold text-white">Interactive Concept Quiz</h3>
+                        </div>
+                        <button onclick="showSyllabus()" class="text-xs font-medium text-rose-400 bg-rose-950/40 border border-rose-900/60 px-3 py-1.5 rounded-lg transition-colors">Exit Lesson</button>
+                    </div>
+                    
+                    <div id="quiz-stack" class="space-y-6 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                        </div>
                 </div>
 
-                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-gray-900">
-                    <div class="flex items-start gap-2 max-w-md">
-                        <i class="fas fa-terminal text-gray-600 mt-1 text-xs"></i>
-                        <p id="compiler-status-box" class="text-xs font-mono text-gray-500 leading-relaxed">Awaiting program processing rules validation requests...</p>
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-slate-800">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-poll-h text-slate-600 text-sm"></i>
+                        <p id="quiz-feedback-box" class="text-xs font-medium text-slate-500">Answer all questions above to submit metrics...</p>
                     </div>
-                    <button onclick="verifyPuzzleSolution()" class="w-full sm:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-400 text-gray-950 font-black arcade-font text-xs uppercase tracking-widest rounded-xl transition-all shadow-md">
-                        Compile Code <i class="fas fa-arrow-right text-[10px] ml-1"></i>
+                    <button id="quiz-action-btn" onclick="evaluateEntireQuiz()" class="w-full sm:w-auto px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-md">
+                        Submit Chapter Answers
                     </button>
                 </div>
             </div>
@@ -164,445 +137,356 @@
     </main>
 
     <script>
-        let playerXP = 0;
-        let currentSelectedRealm = "";
-        let currentSelectedLevelIndex = 0;
-        let runningActiveBlocks = [];
+        let currentScore = 0;
+        let selectedSubjectKey = "";
+        let selectedChapterIndex = 0;
+        let userSelections = {}; // Maps question index -> selected text choice
 
-        // BASE LANGUAGE SYNTAX SAMPLES FOR REALMS (JAVA FALLBACK)
-        const fallbackLanguagesMap = [
-            { world: "Module 1: Syntax Logic", lvlTitle: "Initial Configurations", detail: "Setting global system definitions.", code: ["let active = true;", "initializeWorkspace();", "runSystemCheck();"] }
-        ];
+        const dsaMatrixData = [
+            {
+                lvl: "Chapter 1",
+                world: "DSA Foundations",
+                chapterName: "Introduction to Data Structures & Algorithms",
+                notes: `
+                    <h4 class="text-white font-bold text-base border-b border-slate-800 pb-1">1. Introduction</h4>
+                    <p>Whenever we use a mobile app, search on Google, watch videos on YouTube, order food online, or send a message on WhatsApp, Data Structures and Algorithms work behind the scenes. These technologies help computers store information, find information quickly, and solve problems efficiently. Data Structures and Algorithms, often called <strong>DSA</strong>, are considered the foundation of Computer Science. Before learning advanced programming, web development, artificial intelligence, or software engineering, it is important to understand DSA because it teaches us how to think logically and solve problems effectively.</p>
+                    
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">2. What is Data?</h4>
+                    <p>Data is any piece of information that can be stored and processed by a computer.</p>
+                    <p class="font-semibold text-indigo-400">Examples of data:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-slate-300">
+                        <li>Your name, age, or marks</li>
+                        <li>A photograph, video, message, or song</li>
+                    </ul>
+                    <p class="bg-slate-950 p-3 rounded border border-slate-800 font-mono text-xs text-emerald-400">Name = "John"<br>Age = 15<br>Marks = 95</p>
+                    <blockquote class="border-l-4 border-amber-500 bg-slate-950 p-2.5 text-xs text-amber-400">⭐ <strong>Key Point:</strong> Data is simply information. Computers work with it every second.</blockquote>
 
-        // 🌐 FULL 60-LEVEL WEB DEVELOPMENT QUEST ROADMAP
-        const webMapOutline = [
-            { world: "World 1: Internet Explorer", lvlTitle: "Level 1: What is the Internet?", kidTitle: "🌐 Global Wire Connect", detail: "Discover how computers chat across the globe.", code: ["const link = connectToGlobalNetwork();", "link.sendDataPacket('Hello World');"] },
-            { world: "World 1: Internet Explorer", lvlTitle: "Level 2: What is a Website?", kidTitle: "📄 Digital Paper Sheets", detail: "Learn how documents live on servers.", code: ["const mySite = createHostContainer();", "mySite.attachDocument('index.html');"] },
-            { world: "World 1: Internet Explorer", lvlTitle: "Level 3: How Websites Work", kidTitle: "📡 The Request Messenger", detail: "Trace client requests out to remote servers.", code: ["sendHttpRequest('GET', url);", "receiveResponsePayload();"] },
-            { world: "World 1: Internet Explorer", lvlTitle: "Level 4: Meet the Browser", kidTitle: "🕵️ The Code Translator", detail: "How software translates raw code into graphics.", code: ["const rawHtml = downloadContent();", "renderPixelsToScreen(rawHtml);"] },
-            { world: "World 1: Internet Explorer", lvlTitle: "Level 5: Build Your First Web Page", kidTitle: "🚀 Launch Pad Alpha", detail: "Initialize a basic functional system shell.", code: ["<!DOCTYPE html>", "<html>", "</html>"] },
-            { world: "World 2: HTML Heroes", lvlTitle: "Level 6: What is HTML?", kidTitle: "🧱 Building Blocks", detail: "Master the base layout frame tags.", code: ["<html>", "  <body>", "  </body>", "</html>"] },
-            { world: "World 2: HTML Heroes", lvlTitle: "Level 7: Headings & Paragraphs", kidTitle: "🔤 Text Titles & Stories", detail: "Format typography structures neatly.", code: ["<h1>Main Headline</h1>", "<p>Paragraph narrative context goes here.</p>"] },
-            { world: "World 2: HTML Heroes", lvlTitle: "Level 8: Images", kidTitle: "🖼️ Photo Portals", detail: "Embed assets through source tracking tags.", code: ["<img src='hero.png' alt='Hero Graphic'>"] },
-            { world: "World 2: HTML Heroes", lvlTitle: "Level 9: Links", kidTitle: "🗺️ Teleportation Gateways", detail: "Create reference links to change address targets.", code: ["<a href='https://codequest.com'>Click Here</a>"] },
-            { world: "World 2: HTML Heroes", lvlTitle: "Level 10: Create a Simple Page", kidTitle: "🏠 My First Digital House", detail: "Combine essential text elements structurally.", code: ["<h1>Welcome</h1>", "<p>Hello world!</p>", "<img src='logo.png'>"] },
-            { world: "World 3: Building Blocks", lvlTitle: "Level 11: Lists", kidTitle: "📋 Item Organizers", detail: "Sort points using bulleted lists.", code: ["<ul>", "  <li>First Item</li>", "</ul>"] },
-            { world: "World 3: Building Blocks", lvlTitle: "Level 12: Tables", kidTitle: "📊 Grid Data Sheets", detail: "Organize row data collections neatly.", code: ["<tr>", "  <td>Row Data Parameter</td>", "</tr>"] },
-            { world: "World 3: Building Blocks", lvlTitle: "Level 13: Forms", kidTitle: "📬 Question Box Collectors", detail: "Collect parameter packages securely.", code: ["<form action='/submit' method='POST'>", "</form>"] },
-            { world: "World 3: Building Blocks", lvlTitle: "Level 14: Input Fields", kidTitle: "✏️ Text Typing Slots", detail: "Capture standard keyboard text variables directly.", code: ["<label>Name:</label>", "<input type='text' placeholder='Enter Name'>"] },
-            { world: "World 3: Building Blocks", lvlTitle: "Level 15: Create a Registration Form", kidTitle: "📝 Club Sign-up Sheet", detail: "Combine inputs with a functional button trigger.", code: ["<input type='email'>", "<input type='password'>", "<button type='submit'>Join</button>"] },
-            { world: "World 4: CSS Magic", lvlTitle: "Level 16: What is CSS?", kidTitle: "🎨 Magic Paint", detail: "Inject style adjustments into existing tags.", code: ["p {", "  color: darkblue;", "}"] },
-            { world: "World 4: CSS Magic", lvlTitle: "Level 17: Colors", kidTitle: "🌈 Neon Glow Brushes", detail: "Set hex codes and text values.", code: ["h1 {", "  color: #ff007f;", "}"] },
-            { world: "World 4: CSS Magic", lvlTitle: "Level 18: Fonts", kidTitle: "✍️ Letter Stylers", detail: "Load explicit customized typographies.", code: ["body {", "  font-family: 'Orbitron', sans-serif;", "}"] },
-            { world: "World 4: CSS Magic", lvlTitle: "Level 19: Backgrounds", kidTitle: "🌌 Wallpaper Engine", detail: "Style backgrounds with solid fields or image assets.", code: ["main {", "  background-color: #0b0f19;", "}"] },
-            { world: "World 4: CSS Magic", lvlTitle: "Level 20: Style Your First Website", kidTitle: "🏰 Castle Makeover", detail: "Link structured design rules to HTML targets.", code: ["h1 { color: cyan; }", "p { font-size: 14px; }"] },
-            { world: "World 5: Layout Master", lvlTitle: "Level 21: Box Model", kidTitle: "📦 Layered Shields", detail: "Understand structural element sizing rules.", code: ["div {", "  box-sizing: border-box;", "}"] },
-            { world: "World 5: Layout Master", lvlTitle: "Level 22: Margin & Padding", kidTitle: "↔️ Personal Space Bubbles", detail: "Control alignment buffers safely.", code: ["padding: 20px;", "margin: 15px;"] },
-            { world: "World 5: Layout Master", lvlTitle: "Level 23: Flexbox Basics", kidTitle: "🗃️ Smart Arranger", detail: "Align assets fluidly inside container spaces.", code: ["display: flex;", "justify-content: space-between;"] },
-            { world: "World 5: Layout Master", lvlTitle: "Level 24: CSS Grid Basics", kidTitle: "🏁 Comic Strip Layouts", detail: "Map complex row/column templates.", code: ["display: grid;", "grid-template-columns: repeat(3, 1fr);"] },
-            { world: "World 5: Layout Master", lvlTitle: "Level 25: Build a Landing Page", kidTitle: "🏪 Storefront Architect", detail: "Arrange navigation and content elements beautifully.", code: ["header { display: flex; }", "section { display: grid; }"] },
-            { world: "World 6: Responsive Hero", lvlTitle: "Level 26: What is Responsive Design?", kidTitle: "🦎 Shape-Shifting Layouts", detail: "Build view layouts that adapt to any screen size automatically.", code: ["meta.viewport = 'width=device-width, initial-scale=1.0';"] },
-            { world: "World 6: Responsive Hero", lvlTitle: "Level 27: Mobile vs Desktop", kidTitle: "📱 Pocket Sized vs 🖥️ Big Screen", detail: "Design column hierarchies for smaller viewports.", code: ["flex-direction: column;", "/* Switch to row for wide viewports */"] },
-            { world: "World 6: Responsive Hero", lvlTitle: "Level 28: Media Queries", kidTitle: "📏 Screen Size Checkers", detail: "Trigger style overrides at precise width thresholds.", code: ["@media (max-width: 768px) {", "  body { font-size: 12px; }", "}"] },
-            { world: "World 6: Responsive Hero", lvlTitle: "Level 29: Flexible Layouts", kidTitle: "🎈 Rubber Band Containers", detail: "Use relative viewport metrics safely.", code: ["width: 100%;", "max-width: 1200px;"] },
-            { world: "World 6: Responsive Hero", lvlTitle: "Level 30: Mobile-Friendly Website", kidTitle: "🎒 App-in-a-Pocket Upgrade", detail: "Implement cross-device media overrides smoothly.", code: ["@media (min-width: 1024px) {", "  .sidebar { display: block; }", "}"] },
-            { world: "World 7: JavaScript Adventures", lvlTitle: "Level 31: What is JavaScript?", kidTitle: "⚡ Website Powers", detail: "Bring static markup blocks to life with logic code.", code: ["console.log('Script core activated');"] },
-            { world: "World 7: JavaScript Adventures", lvlTitle: "Level 32: Variables", kidTitle: "🧳 Memory Backpacks", detail: "Store application parameter keys.", code: ["let currentScore = 0;", "const maxLimit = 100;"] },
-            { world: "World 7: JavaScript Adventures", lvlTitle: "Level 33: Functions", kidTitle: "⚙️ Spell Recipes", detail: "Wrap reusable statements inside execution triggers.", code: ["function castSpell() {", "  triggerAnimation();", "}"] },
-            { world: "World 7: JavaScript Adventures", lvlTitle: "Level 34: Events", kidTitle: "🔔 Trapwire Detectors", detail: "Listen for user clicks or input alterations.", code: ["button.addEventListener('click', () => {", "  activateSystem();", "});"] },
-            { world: "World 7: JavaScript Adventures", lvlTitle: "Level 35: Interactive Button Project", kidTitle: "🔘 Hyper-Button Trigger", detail: "Update variables live via mouse clicks.", code: ["let count = 0;", "btn.onclick = () => { count++; text.innerText = count; }"] },
-            { world: "World 8: DOM Wizard", lvlTitle: "Level 36: What is DOM?", kidTitle: "🪄 Website Controller", detail: "Inspect the live rendering tree mapping structures.", code: ["const pageTree = window.document;"] },
-            { world: "World 8: DOM Wizard", lvlTitle: "Level 37: Select Elements", kidTitle: "🎯 Code Laser Targeters", detail: "Query HTML tags using IDs or classes.", code: ["const mainTitle = document.querySelector('#title');"] },
-            { world: "World 8: DOM Wizard", lvlTitle: "Level 38: Change Text", kidTitle: "✍️ Subtitle Rewriters", detail: "Overwrite node values instantly.", code: ["mainTitle.textContent = 'Updated Message!';"] },
-            { world: "World 8: DOM Wizard", lvlTitle: "Level 39: Change Styles", kidTitle: "🎨 Live Color Changers", detail: "Alter inline stylesheet declarations using scripts.", code: ["element.style.backgroundColor = 'purple';"] },
-            { world: "World 8: DOM Wizard", lvlTitle: "Level 40: Build a Theme Switcher", kidTitle: "🌗 Dark-Mode Eclipse Lever", detail: "Toggle layout style utility classes dynamically.", code: ["document.body.classList.toggle('dark-theme');"] },
-            { world: "World 9: Mini Apps", lvlTitle: "Level 41: Counter App", kidTitle: "🔢 Number Upper-Downer", detail: "Track calculations accurately in memory updates.", code: ["score += 1;", "display.innerText = score;"] },
-            { world: "World 9: Mini Apps", lvlTitle: "Level 42: Calculator App", kidTitle: "🧮 Math Machine", detail: "Parse arithmetic inputs flawlessly.", code: ["let result = eval(inputExpression);", "showOutput(result);"] },
-            { world: "World 9: Mini Apps", lvlTitle: "Level 43: Quiz App", kidTitle: "🧠 Brain Teaser Engine", detail: "Validate answers against key properties.", code: ["if (userChoice === correctAns) {", "  incrementPoints();", "}"] },
-            { world: "World 9: Mini Apps", lvlTitle: "Level 44: To-Do App", kidTitle: "📋 Chore Quest Logger", detail: "Push and delete array task entries safely.", code: ["tasksList.push(newChore);", "refreshRenderedList();"] },
-            { world: "World 9: Mini Apps", lvlTitle: "Level 45: Weather App", kidTitle: "🌦️ Cloud Fortune Teller", detail: "Process mock status structures safely.", code: ["let weather = fetchForecast();", "updateWeatherIcons(weather.status);"] },
-            { world: "World 10: React Explorer", lvlTitle: "Level 46: What is React?", kidTitle: "🧩 Component Factory", detail: "Build views modularly using functional components.", code: ["import React from 'react';"] },
-            { world: "World 10: React Explorer", lvlTitle: "Level 47: Components", kidTitle: "🧱 Lego Blueprint Blocks", detail: "Write reusable JSX templates.", code: ["function ProfileCard() {", "  return <div>User Card</div>;", "}"] },
-            { world: "World 10: React Explorer", lvlTitle: "Level 48: Props", kidTitle: "🎁 Data Gift Boxes", detail: "Pass custom arguments down to child nodes smoothly.", code: ["<ProfileCard name='Alex' level='45' />"] },
-            { world: "World 10: React Explorer", lvlTitle: "Level 49: State", kidTitle: "🔮 Mood Rings", detail: "Trigger automatic re-renders when data updates.", code: ["const [xp, setXp] = useState(0);"] },
-            { world: "World 10: React Explorer", lvlTitle: "Level 50: Build a React Website", kidTitle: "🏢 Mega Lego Skyscraper", detail: "Assemble unified modular component assemblies cleanly.", code: ["return (", "  <Navbar />, <Dashboard />, <Footer />", ");"] },
-            { world: "World 11: Backend Kingdom", lvlTitle: "Level 51: What is a Server?", kidTitle: "🤖 Vault Keeper Robots", detail: "Process long-range background execution queries.", code: ["const server = listenOnNetworkPort(8080);"] },
-            { world: "World 11: Backend Kingdom", lvlTitle: "Level 52: Node.js Basics", kidTitle: "🚀 Rocket Engine Core", detail: "Run JavaScript code outside of the browser directly on hardware engines.", code: ["process.on('exit', () => {});"] },
-            { world: "World 11: Backend Kingdom", lvlTitle: "Level 53: Express.js", kidTitle: "🛣️ Traffic Director Map", detail: "Configure precise server request routing paths.", code: ["const app = express();", "app.get('/dashboard', handleReq);"] },
-            { world: "World 11: Backend Kingdom", lvlTitle: "Level 54: APIs", kidTitle: "📡 Message Messenger", detail: "Expose endpoint pipelines that communicate with JSON payloads.", code: ["res.status(200).json({ data: 'success' });"] },
-            { world: "World 11: Backend Kingdom", lvlTitle: "Level 55: Build Your First API", kidTitle: "✉️ Robot Post Office", detail: "Handle complex parameters securely inside incoming query vectors.", code: ["app.post('/api/save', (req, res) => {", "  savePayload(req.body);", "});"] },
-            { world: "World 12: Full Stack Master", lvlTitle: "Level 56: Databases", kidTitle: "🏦 Data Vault", detail: "Save player progress permanently inside file systems.", code: ["connectToDataVault();"] },
-            { world: "World 12: Full Stack Master", lvlTitle: "Level 57: MongoDB", kidTitle: "🗄️ Magic File Cabinets", detail: "Store data arrays flexibly inside document collections.", code: ["const UserSchema = new mongoose.Schema({});"] },
-            { world: "World 12: Full Stack Master", lvlTitle: "Level 58: Authentication", kidTitle: "🔐 Secret Password Gate", detail: "Secure accounts using modern token authorization systems.", code: ["const encryptedToken = generateJwt(userId);"] },
-            { world: "World 12: Full Stack Master", lvlTitle: "Level 59: Deploy Your Website", kidTitle: "🚀 Launch to the World", detail: "Push your full-stack source architecture to hosting nodes live.", code: ["deployToProductionCloud();"] },
-            { world: "World 12: Full Stack Master", lvlTitle: "Level 60: Become a Full Stack Web Master", kidTitle: "👑 Ascended Architecture Legend", detail: "Audit system code to confirm top performance metrics.", code: ["verifySystemIntegrity();", "console.log('Campaign Completed Successfully!');"] },
-            { world: "👑 Beginner Boss Projects", lvlTitle: "Project: Personal Profile Website", kidTitle: "👤 My Digital ID Card", detail: "Build a sleek personal profile grid.", code: ["<section id='about-me'>", "  <h2>My Skills</h2>", "</section>"] },
-            { world: "👑 Beginner Boss Projects", lvlTitle: "Project: Favorite Cartoon Website", kidTitle: "📺 Cartoon Fan Base", detail: "Display cartoon graphics using flexible multi-column grids.", code: ["<div class='flex-gallery'>", "  <img src='cartoon.jpg'>", "</div>"] },
-            { world: "👑 Beginner Boss Projects", lvlTitle: "Project: Birthday Invitation Page", kidTitle: "🎂 Birthday Party Portal", detail: "Create an interactive event sign-up card form.", code: ["<form>", "  <button>RSVP HERE</button>", "</form>"] },
-            { world: "👑 Intermediate Boss Projects", lvlTitle: "Project: Calculator", kidTitle: "🔢 Desktop Calculation Rig", detail: "Wire computational logic to event grid click listeners.", code: ["buttons.forEach(b => b.onclick = runMath);"] },
-            { world: "👑 Intermediate Boss Projects", lvlTitle: "Project: Quiz Game", kidTitle: "🏆 Trivia Arena Matrix", detail: "Manage score increments using complex state hooks.", code: ["if(checked === true) updateScoreMetric();"] },
-            { world: "👑 Intermediate Boss Projects", lvlTitle: "Project: To-Do List", kidTitle: "📝 Mission Chore Tracker", detail: "Save list strings live inside local browser memory spaces.", code: ["localStorage.setItem('todos', JSON.stringify(arr));"] },
-            { world: "👑 Intermediate Boss Projects", lvlTitle: "Project: Notes App", kidTitle: "📓 Secret Notebook Vault", detail: "Instantly create and delete persistent text boxes dynamically.", code: ["const note = document.createElement('textarea');"] },
-            { world: "👑 Advanced Boss Projects", lvlTitle: "Project: Portfolio Website", kidTitle: "💼 Professional Showcase Core", detail: "Build a sleek portfolio featuring cool intersection animations.", code: ["const watcher = new IntersectionObserver(animate);"] },
-            { world: "👑 Advanced Boss Projects", lvlTitle: "Project: Blog Website", kidTitle: "📰 Live News Press Station", detail: "Fetch structured content objects from API databases.", code: ["fetch('/api/posts').then(res => res.json());"] },
-            { world: "👑 Advanced Boss Projects", lvlTitle: "Project: Chat Application", kidTitle: "💬 Instant Transmitter Hub", detail: "Stream active chat data feeds across system pipelines live.", code: ["socket.emit('message', dataPackage);"] },
-            { world: "👑 Advanced Boss Projects", lvlTitle: "Project: E-commerce Store", kidTitle: "🛒 Supermarket Checkout Lane", detail: "Track checkout balances dynamically as items are added to the cart array.", code: ["cart.reduce((total, item) => total + item.price, 0);"] },
-            { world: "👑 Advanced Boss Projects", lvlTitle: "Project: AI Chat Website", kidTitle: "🤖 Neural Network Companion", detail: "Route user message strings into live AI endpoint completion matrices.", code: ["const aiRes = await queryAiBrain(userInput);"] },
-            { world: "🎯 Final Legendary Projects", lvlTitle: "Legendary: Netflix Clone", kidTitle: "🎬 Movie Streaming Command Center", detail: "Build a movie catalog layout complete with video play features.", code: ["<video controls autoplay src='stream.mp4'>"] },
-            { world: "🎯 Final Legendary Projects", lvlTitle: "Legendary: YouTube Clone", kidTitle: "📺 Broadcast Yourself Matrix", detail: "Process and stream video uploads through scalable file pipelines.", code: ["uploadVideoBlobStream(chunkData);"] },
-            { world: "🎯 Final Legendary Projects", lvlTitle: "Legendary: Instagram Clone", kidTitle: "📸 Image Portal Network", detail: "Handle photo posts alongside live user comment feeds.", code: ["postFeed.append(createImageCard(photoUrl));"] },
-            { world: "🎯 Final Legendary Projects", lvlTitle: "Legendary: Amazon Clone", kidTitle: "📦 Global Logistics Marketplace", detail: "Manage shopping cart pipelines with integrated mock transaction gateways.", code: ["processMockGatewayPayment(cartTotal);"] },
-            { world: "🎯 Final Legendary Projects", lvlTitle: "Legendary: AI Assistant", kidTitle: "🧠 Autonomous Brain Assistant", detail: "Build a fully automated scheduling companion helper tool.", code: ["executeAutonomousAgentChain(queryContext);"] },
-            { world: "🎯 Final Legendary Projects", lvlTitle: "Legendary: Learning Platform (CodeQuest)", kidTitle: "🕹️ CodeQuest Arcade Engine", detail: "Synthesize full-stack database architectures with modular assignment systems.", code: ["initializeMatrixCurriculumEngine();"] },
-            { world: "🎯 Final Legendary Projects", lvlTitle: "Legendary: Full Stack SaaS Application", kidTitle: "🚀 Commercial Cloud Software Enterprise", detail: "Incorporate billing models into deep business workflow systems.", code: ["initializeSaaSBusinessSuitePipeline();"] }
-        ];
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">3. What is a Data Structure?</h4>
+                    <p>A Data Structure is a way of organizing and storing data inside a computer so that it can be used efficiently.</p>
+                    <p>Imagine your school bag. If all books, notebooks, pens, and pencils are thrown randomly, finding something becomes difficult. If everything is arranged properly (books in one section, pens in a separate pocket), finding items becomes much easier. A Data Structure works in the same way. It organizes information so that the computer can quickly <strong>Store, Access, Update, and Delete</strong> data.</p>
+                    <blockquote class="border-l-4 border-indigo-500 bg-slate-950 p-2.5 text-xs text-indigo-300"><strong>Real-Life Example:</strong> Think of a library. If thousands of books are arranged randomly, finding one takes hours. Organized by category and shelf, it takes seconds.</blockquote>
 
-        // 🐍 FULL 60-LEVEL PYTHON ADVENTURE MAP
-        const pythonMapOutline = [
-            { world: "World 1: Meet Python", lvlTitle: "Level 1: What is Python?", kidTitle: "🐍 Meet Your Digital Companion", detail: "Discover your friendly snake language guide.", code: ["# Python code initialization", "print('Hello Coder')"] },
-            { world: "World 1: Meet Python", lvlTitle: "Level 2: Installing Python", kidTitle: "🛠️ Summoning the Magic Software", detail: "Prepare your local computer system engine properties.", code: ["# Verify environmental install path", "import sys", "print(sys.version)"] },
-            { world: "World 1: Meet Python", lvlTitle: "Level 3: Your First Program", kidTitle: "⚡ Spark of Creation", detail: "Execute a standalone statement block module context.", code: ["# Core workflow setup", "print('Engine Online')"] },
-            { world: "World 1: Meet Python", lvlTitle: "Level 4: Printing Messages", kidTitle: "🗣️ Giving Your Computer a Voice", detail: "Use printing tools to output textual streams cleanly.", code: ["print('Displaying transmission payload...')"] },
-            { world: "World 1: Meet Python", lvlTitle: "Level 5: Hello World Challenge", kidTitle: "🏁 First Milestone Arena", detail: "Perform the ancient greeting protocol perfectly.", code: ["print('Hello, World!')"] },
-            { world: "World 2: Data Boxes", lvlTitle: "Level 6: Variables", kidTitle: "📦 Magic Boxes", detail: "Store baseline tokens cleanly in labeled variables.", code: ["player_name = 'Alex'", "player_xp = 500"] },
-            { world: "World 2: Data Boxes", lvlTitle: "Level 7: Numbers", kidTitle: "🔢 Counting Gems", detail: "Manipulate integer fields alongside fractional weights.", code: ["gold_coins = 42", "health_multiplier = 1.5"] },
-            { world: "World 2: Data Boxes", lvlTitle: "Level 8: Text (Strings)", kidTitle: "📜 Spell Strings", detail: "Wrap alphabetic words within standard character quotes safely.", code: ["secret_password = 'NeonSky77'", "print(secret_password)"] },
-            { world: "World 2: Data Boxes", lvlTitle: "Level 9: User Input", kidTitle: "👂 Listening Ear Triggers", detail: "Capture interactive user text fields mid-script.", code: ["user_response = input('Enter coordinate: ')"] },
-            { world: "World 2: Data Boxes", lvlTitle: "Level 10: Mini Calculator", kidTitle: "🧮 Tiny Adder Machine", detail: "Convert captured text inputs directly into operational numbers.", code: ["num1 = int(input('A: '))", "num2 = int(input('B: '))", "print(num1 + num2)"] },
-            { world: "World 3: Python Math Wizard", lvlTitle: "Level 11: Addition", kidTitle: "➕ Power Merging Spells", detail: "Sum numerical fields together smoothly.", code: ["total_score = current + bonus"] },
-            { world: "World 3: Python Math Wizard", lvlTitle: "Level 12: Subtraction", kidTitle: "➖ Health Drain Curses", detail: "Reduce total values accurately dynamically.", code: ["remaining_lives = max_lives - 1"] },
-            { world: "World 3: Python Math Wizard", lvlTitle: "Level 13: Multiplication", kidTitle: "✖️ Mega Multiplier Engine", detail: "Scale mathematical matrix calculations out instantly.", code: ["damage_output = raw_power * critical_rate"] },
-            { world: "World 3: Python Math Wizard", lvlTitle: "Level 14: Division", kidTitle: "➗ Fair Share Slicers", detail: "Split quantitative data arrays evenly via basic quotient division operations.", code: ["loot_per_player = total_gold / team_count"] },
-            { world: "World 3: Python Math Wizard", lvlTitle: "Level 15: Build a Calculator App", kidTitle: "🧮 Math Wizard Station", detail: "Construct a math interface tool parsing numerical commands.", code: ["op = input('Select operator: ')", "if op == '+': print(a + b)"] },
-            { world: "World 4: Smart Decisions", lvlTitle: "Level 16: True & False", kidTitle: "☯️ Secret Light Switches", detail: "Evaluate true and false condition tracks directly.", code: ["is_gate_open = True", "has_key = False"] },
-            { world: "World 4: Smart Decisions", lvlTitle: "Level 17: If Statements", kidTitle: "🚦 Single Path Gateways", detail: "Branch program logic streams conditionally.", code: ["if score >= 100:", "    print('Level Up!')"] },
-            { world: "World 4: Smart Decisions", lvlTitle: "Level 18: Else Statements", kidTitle: "🔄 The Alternative Fork", detail: "Redirect execution logic down alternative pathways.", code: ["if has_access:", "    boot()", "else:", "    reject()"] },
-            { world: "World 4: Smart Decisions", lvlTitle: "Level 19: Comparison Operators", kidTitle: "⚖️ Balance Scales", detail: "Compare value parameters via mathematical boundary operators.", code: ["while current_energy > structural_limit:"] },
-            { world: "World 4: Smart Decisions", lvlTitle: "Level 20: Number Guessing Game", kidTitle: "🎲 Crystal Ball Predictor", detail: "Synthesize checks to determine an absolute target variable alignment.", code: ["if guess == target:", "    print('Correct!')", "else: print('Miss')"] },
-            { world: "World 5: Loop Kingdom", lvlTitle: "Level 21: For Loops", kidTitle: "🔁 The Automated March", detail: "Traverse explicit iteration spaces seamlessly.", code: ["for i in range(5):", "    print('Step:', i)"] },
-            { world: "World 5: Loop Kingdom", lvlTitle: "Level 22: While Loops", kidTitle: "🔄 Whirlpool Loops", detail: "Keep actions cycling indefinitely as long as constraints evaluate affirmatively.", code: ["while portal_active == True:", "    pulse_core()"] },
-            { world: "World 5: Loop Kingdom", lvlTitle: "Level 23: Nested Loops", kidTitle: "🌀 Loop Inside a Loop", detail: "Layer multi-dimensional grid traversals effectively.", code: ["for row in range(3):", "    for col in range(3):", "        plot(row, col)"] },
-            { world: "World 5: Loop Kingdom", lvlTitle: "Level 24: Loop Challenges", kidTitle: "🏃 Marathon Runner Code", detail: "Incorporate inline logic controllers seamlessly inside operational loops.", code: ["for item in cargo:", "    if item == 'Toxic': break"] },
-            { world: "World 5: Loop Kingdom", lvlTitle: "Level 25: Countdown Timer", kidTitle: "💣 Rocket Launch Timer", detail: "Generate descending temporal execution ticks accurately.", code: ["import time", "while ticks > 0:", "    time.sleep(1); ticks -= 1"] },
-            { world: "World 6: Function Factory", lvlTitle: "Level 26: Functions", kidTitle: "🏭 Function Factory", detail: "Wrap logical operational procedures inside named blueprints safely.", code: ["def trigger_laser():", "    activate_power_node()"] },
-            { world: "World 6: Function Factory", lvlTitle: "Level 27: Parameters", kidTitle: "📥 Blueprint Fuel Slots", detail: "Feed live inputs directly into functions variables definitions cleanly.", code: ["def power_up(crystal_type, amount):", "    boost_shield(crystal_type, amount)"] },
-            { world: "World 6: Function Factory", lvlTitle: "Level 28: Return Values", kidTitle: "📤 Factory Output Belts", detail: "Extract finalized output payloads safely back out of execution zones.", code: ["def compute_essence(raw):", "    return raw * 0.85"] },
-            { world: "World 6: Function Factory", lvlTitle: "Level 29: Scope", kidTitle: "🛡️ Visual Boundary Fields", detail: "Manage safety boundaries around internal and global variable names.", code: ["global global_matrix_key", "global_matrix_key = 999"] },
-            { world: "World 6: Function Factory", lvlTitle: "Level 30: Function Challenge", kidTitle: "👑 Custom Robot Factory Builder", detail: "Combine multi-parameter logic pipelines into a cohesive block assembly script.", code: ["def assemble_bot(chassis, gear):", "    return {'frame': chassis, 'drive': gear}"] },
-            { world: "World 7: Collections", lvlTitle: "Level 31: Lists", kidTitle: "🎒 Treasure Bag", detail: "Sort sequences of variables within array frames.", code: ["inventory_items = ['Sword', 'Shield', 'Potion']"] },
-            { world: "World 7: Collections", lvlTitle: "Level 32: Tuples", kidTitle: "🔒 Unchangeable Stone Tablets", detail: "Store permanent immutable constant sequence groupings securely.", code: ["map_coordinates = (45.321, -12.984)"] },
-            { world: "World 7: Collections", lvlTitle: "Level 33: Dictionaries", kidTitle: "📖 Magic Dictionary", detail: "Map structural value fields instantly via key definitions.", code: ["player_profile = {'id': 102, 'rank': 'Elite'}"] },
-            { world: "World 7: Collections", lvlTitle: "Level 34: Sets", kidTitle: "🚫 Unique Ingredient Jars", detail: "Filter duplications automatically with strict uniqueness constraints.", code: ["unique_badges = {'Gold', 'Silver', 'Bronze'}"] },
-            { world: "World 7: Collections", lvlTitle: "Level 35: Contact Book Project", kidTitle: "📞 Address Command Module", detail: "Manage user identity indices safely inside a data dictionary tracking array.", code: ["book[name] = phone_num", "print('Contact saved.')"] },
-            { world: "World 8: File Explorer", lvlTitle: "Level 36: Read Files", kidTitle: "📖 Opening the Secret Vault", detail: "Open internal system log files safely.", code: ["with open('save.txt', 'r') as file:", "    data = file.read()"] },
-            { world: "World 8: File Explorer", lvlTitle: "Level 37: Write Files", kidTitle: "✍️ Writing History Scrolls", detail: "Commit text strings directly onto local storage drives.", code: ["with open('log.txt', 'w') as log:", "    log.write('Session Closed')"] },
-            { world: "World 8: File Explorer", lvlTitle: "Level 38: CSV Files", kidTitle: "📊 Spreadsheet Data Matrix", detail: "Process structured analytical sheets smoothly code-side.", code: ["import csv", "reader = csv.reader(file)"] },
-            { world: "World 8: File Explorer", lvlTitle: "Level 39: JSON Files", kidTitle: "🗄️ JavaScript Translation Vaults", detail: "Encode variable maps securely inside portable configuration blocks.", code: ["import json", "config = json.load(json_data_stream)"] },
-            { world: "World 8: File Explorer", lvlTitle: "Level 40: Notes App Project", kidTitle: "📓 Persistent Notebook Hub", detail: "Construct dynamic workflows to read, modify, and update disk registries on command.", code: ["save_notes_to_disk(current_notebook_array)"] },
-            { world: "World 9: OOP Heroes", lvlTitle: "Level 41: Classes", kidTitle: "🏗️ Toy Cast Blueprints", detail: "Model objects using explicit object configuration templates.", code: ["class BattleMech:", "    pass"] },
-            { world: "World 9: OOP Heroes", lvlTitle: "Level 42: Objects", kidTitle: "🤖 Bringing Blueprints to Life", detail: "Instantiate concrete running objects out of existing model configurations.", code: ["alpha_mech = BattleMech()", "beta_mech = BattleMech()"] },
-            { world: "World 9: OOP Heroes", lvlTitle: "Level 43: Constructors", kidTitle: "🔋 Core Powering Inits", detail: "Inject starting state definitions using custom instantiation blocks.", code: ["def __init__(self, energy_rating):", "    self.energy = energy_rating"] },
-            { world: "World 9: OOP Heroes", lvlTitle: "Level 44: Inheritance", kidTitle: "🧬 Copying Superpowers", detail: "Derive functional behaviors safely downward into sub-classes.", code: ["class FlyingMech(BattleMech):", "    def activate_thrusters(self): pass"] },
-            { world: "World 9: OOP Heroes", lvlTitle: "Level 45: Student Management System", kidTitle: "🏫 Academy Roster Core", detail: "Synthesize rich class object systems tracking complex nested data records seamlessly.", code: ["system = AcademyRoster()", "system.register_student(Student('Kai'))"] },
-            { world: "World 10: Python Master", lvlTitle: "Level 46: Modules", kidTitle: "🧩 Code Puzzle Pieces", detail: "Divide execution files across cleanly importable logic segments.", code: ["import core_math_utilities"] },
-            { world: "World 10: Python Master", lvlTitle: "Level 47: Libraries", kidTitle: "📚 The Grand Code Library", detail: "Incorporate powerful third-party frameworks to boost app capabilities.", code: ["import requests", "import os"] },
-            { world: "World 10: Python Master", lvlTitle: "Level 48: Error Handling", kidTitle: "🛡️ Code Deflector Shields", detail: "Trap crash vectors safely using exception isolation blocks.", code: ["try:", "    compute_fraction()", "except ZeroDivisionError: print('Fault caught')"] },
-            { world: "World 10: Python Master", lvlTitle: "Level 49: Virtual Environments", kidTitle: "🧪 Isolated Science Labs", detail: "Maintain development dependency versions cleanly without global interference.", code: ["# Terminal Environment Command Execution", "python -m venv development_sandbox_env"] },
-            { world: "World 10: Python Master", lvlTitle: "Level 50: Python Master Challenge", kidTitle: "👑 Grand Architect Milestone", detail: "Validate internal processing loops using safe fallback validation matrices.", code: ["audit_packages(); print('Verification Pass')"] },
-            { world: "World 11: Automation", lvlTitle: "Level 51: Automating Tasks", kidTitle: "🤖 Robot Butler Basics", detail: "Trigger system scripts using background chronometers seamlessly.", code: ["import schedule", "schedule.every().day.do(job)"] },
-            { world: "World 11: Automation", lvlTitle: "Level 52: Email Automation", kidTitle: "✉️ Magic Carrier Pigeons", detail: "Construct and dispatch electronic messages safely code-side.", code: ["import smtplib", "server = smtplib.SMTP('smtp.gmail.com', 587)"] },
-            { world: "World 11: Automation", lvlTitle: "Level 53: Web Scraping Basics", kidTitle: "🕵️ Data Scavenger Hunts", detail: "Parse down remote server raw elements cleanly using beautiful trackers.", code: ["from bs4 import BeautifulSoup", "soup = BeautifulSoup(html.text, 'html.parser')"] },
-            { world: "World 11: Automation", lvlTitle: "Level 54: API Requests", kidTitle: "📡 Portal Transmissions", detail: "Fetch live operational text data frames from structural network relays.", code: ["response = requests.get('https://api.quest.com/v1')"] },
-            { world: "World 11: Automation", lvlTitle: "Level 55: Automation Bot", kidTitle: "🚀 Autonomous Skynet Core", detail: "Combine scheduled scraping loops with automatic communication dispatches cleanly.", code: ["while True: raw = scrape(); if raw: dispatch(raw); sleep(3600)"] },
-            { world: "World 12: Real Projects", lvlTitle: "Level 56: Calculator", kidTitle: "🧮 Computation Matrix Engine", detail: "Build a modular evaluation rig processing manual string input formulas.", code: ["def run_calc(): evaluate_formula_string()"] },
-            { world: "World 12: Real Projects", lvlTitle: "Level 57: Quiz Game", kidTitle: "🧠 Brain Grid Overlord", detail: "Run multi-stage validation checks monitoring player ranking structures dynamically.", code: ["if check_answer(player_input): score += 10"] },
-            { world: "World 12: Real Projects", lvlTitle: "Level 58: Password Generator", kidTitle: "🔐 Cryptographic Key Smith", detail: "Synthesize high-entropy strings securely using native random seed profiles.", code: ["import random; pass_key = ''.join(random.choices(pool, k=16))"] },
-            { world: "World 12: Real Projects", lvlTitle: "Level 59: Expense Tracker", kidTitle: "🏦 Financial Data Auditor", detail: "Manage operational ledgers parsing transactional value streams onto text storage frames.", code: ["ledger.append({'desc': label, 'cost': value})"] },
-            { world: "World 12: Real Projects", lvlTitle: "Level 60: Python Grand Master", kidTitle: "👑 Ascended Python Deity Status", detail: "Audit execution parameters to verify ultimate algorithmic peak compliance metrics.", code: ["run_comprehensive_audit_protocol()", "print('Python Campaign Mastered Successfully!')"] },
-            { world: "🏆 Legendary Projects", lvlTitle: "Legendary: Snake Game", kidTitle: "🐍 Classic Retro Arcade Engine", detail: "Construct frame loops coordinating coordinate shifts alongside edge death loops.", code: ["while snake_alive: update_positions(); render_canvas_frame()"] },
-            { world: "🏆 Legendary Projects", lvlTitle: "Legendary: Chatbot", kidTitle: "💬 Synthetic Conversation Core", detail: "Build response dictionary mappings processing string phrase vectors cleanly.", code: ["def process_chat(msg): return language_dictionary_map.get(msg)"] }
-        ];
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">4. What is an Algorithm?</h4>
+                    <p>An Algorithm is a step-by-step procedure used to solve a problem. Think of it as a recipe (e.g., Boiling water &rarr; adding tea powder &rarr; sugar &rarr; milk &rarr; serving).</p>
+                    <p class="font-semibold text-indigo-400">Example Problem: Add Two Numbers</p>
+                    <ol class="list-decimal pl-5 space-y-1 text-slate-300 font-mono text-xs">
+                        <li>Read first number.</li>
+                        <li>Read second number.</li>
+                        <li>Add both numbers.</li>
+                        <li>Display result.</li>
+                    </ol>
 
-        // 📊 FULL 50-LEVEL DATA SCIENCE ROADMAP
-        const dataScienceMapOutline = [
-            { world: "World 1: Data Detective", lvlTitle: "Level 1: What is Data?", kidTitle: "🔍 Clues & Footprints", detail: "Discover raw operational data collections.", code: ["raw_clues_collected = ['Rainy', 14, True]"] },
-            { world: "World 1: Data Detective", lvlTitle: "Level 2: Why Data Matters", kidTitle: "💡 X-Ray Vision Glasses", detail: "Uncover hidden system optimization insights.", code: ["analyze_trends(historical_logs)"] },
-            { world: "World 1: Data Detective", lvlTitle: "Level 3: Types of Data", kidTitle: "📦 Sorting the Clue Boxes", detail: "Differentiate between descriptive strings and numerical tracking counters.", code: ["categorical_labels = ['Red', 'Blue']", "numerical_values = [12.5, 9.0]"] },
-            { world: "World 1: Data Detective", lvlTitle: "Level 4: Real-Life Data Examples", kidTitle: "🌍 Global Detective Tracking Maps", detail: "Map raw tracking feeds back to everyday processes.", code: ["traffic_sensors = import_live_feed()"] },
-            { world: "World 1: Data Detective", lvlTitle: "Level 5: Data Detective Challenge", kidTitle: "🏁 First Mystery Solved", detail: "Audit incoming unstructured metadata logs systematically.", code: ["if verify_integrity(dataset): print('Clean Log File Grid')"] },
-            { world: "World 2: Python for Data", lvlTitle: "Level 6: Python Review", kidTitle: "🐍 Detective Weapon Tuning", detail: "Re-verify lists processing mechanisms code-side.", code: ["data_points = [10, 20, 30, 40]"] },
-            { world: "World 2: Python for Data", lvlTitle: "Level 7: Lists & Tables", kidTitle: "📋 The Clue Grid Matrix", detail: "Nest multiple data array sequences into functional standard grid systems.", code: ["data_matrix = [[1, 2], [3, 4], [5, 6]]"] },
-            { world: "World 2: Python for Data", lvlTitle: "Level 8: Reading Data", kidTitle: "📥 Opening Secret Vault Files", detail: "Import stream fragments safely into internal systems.", code: ["opened_stream = load_system_registry('metrics.dat')"] },
-            { world: "World 2: Python for Data", lvlTitle: "Level 9: Working with CSV", kidTitle: "🗃️ Grid Scroll Decoding", detail: "Parse spreadsheet files using structured iterative row reader blocks.", code: ["import csv", "rows = csv.DictReader(open('records.csv'))"] },
-            { world: "World 2: Python for Data", lvlTitle: "Level 10: Data Exploration", kidTitle: "🕵️ Initial Clue Inspection", detail: "Profile dataset structures using metrics boundary markers.", code: ["print('Total rows detected:', len(rows))"] },
-            { world: "World 3: NumPy Power", lvlTitle: "Level 11: What is NumPy?", kidTitle: "🚀 Mega Array Turbo Engines", detail: "Accelerate tracking checks using vectorized matrix operations.", code: ["import numpy as np"] },
-            { world: "World 3: NumPy Power", lvlTitle: "Level 12: Arrays", kidTitle: "🔢 High Speed Data Grid Blocks", detail: "Instantiate highly optimized matrix storage frames.", code: ["vector_grid = np.array([1.5, 2.7, 3.9])"] },
-            { world: "World 3: NumPy Power", lvlTitle: "Level 13: Array Operations", kidTitle: "⚡ Laser Grid Modifiers", detail: "Modify millions of grid spaces instantly via atomic scaling operations.", code: ["scaled_vector = vector_grid * 2.5"] },
-            { world: "World 3: NumPy Power", lvlTitle: "Level 14: Statistics Basics", kidTitle: "📊 Central Core Calculators", detail: "Extract baseline profile stats from complex numeric blocks.", code: ["average_value = np.mean(vector_grid)"] },
-            { world: "World 3: NumPy Power", lvlTitle: "Level 15: NumPy Challenge", kidTitle: "🏁 Vector Turbo Arena Matrix", detail: "Perform dot-product transformations cleanly across layered target systems.", code: ["result = np.dot(vector_a, vector_b)"] },
-            { world: "World 4: Pandas Explorer", lvlTitle: "Level 16: DataFrames", kidTitle: "💎 The Crystal Database Grid", detail: "Wrap file registries within high-performance analysis grids.", code: ["import pandas as pd", "df = pd.DataFrame(raw_payload)"] },
-            { world: "World 4: Pandas Explorer", lvlTitle: "Level 17: Rows & Columns", kidTitle: "🗺️ Coordinate Map Axis Controls", detail: "Query target column records directly using explicit attribute handles.", code: ["ages = df['Age']", "subset = df.iloc[0:10]"] },
-            { world: "World 4: Pandas Explorer", lvlTitle: "Level 18: Filtering Data", kidTitle: "🧹 The Magical Sieve Portal", detail: "Isolate precise target entities via multi-conditional logical queries.", code: ["filtered_df = df[df['XP'] > 5000]"] },
-            { world: "World 4: Pandas Explorer", lvlTitle: "Level 19: Cleaning Data", kidTitle: "✨ Slime Removers", detail: "Purge corrupt anomalies from raw database files smoothly.", code: ["df_clean = df.dropna()"] },
-            { world: "World 4: Pandas Explorer", lvlTitle: "Level 20: Pandas Master Challenge", kidTitle: "🏁 Data Explorer Crown", detail: "Execute aggregation queries grouping parameters by structural classifications cleanly.", code: ["summary = df.groupby('Category').mean()"] },
-            { world: "World 5: Data Visualization", lvlTitle: "Level 21: Charts", kidTitle: "🎨 Magic Paint Canvas", detail: "Initialize visualization windows drawing digital charts code-side.", code: ["import matplotlib.pyplot as plt"] },
-            { world: "World 5: Data Visualization", lvlTitle: "Level 22: Bar Graphs", kidTitle: "📊 Tower Height Contests", detail: "Render vertical comparison columns cleanly.", code: ["plt.bar(categories, heights)", "plt.show()"] },
-            { world: "World 5: Data Visualization", lvlTitle: "Level 23: Pie Charts", kidTitle: "🍕 Pizza Slice Analyser", detail: "Plot percentage allocation metrics around a circular canvas tracking framework.", code: ["plt.pie(allocations, labels=tags)"] },
-            { world: "World 5: Data Visualization", lvlTitle: "Level 24: Line Graphs", kidTitle: "📈 Mountain Track Coasters", detail: "Trace progression paths accurately over explicit coordinate systems.", code: ["plt.plot(timeline, performance_vectors)"] },
-            { world: "World 5: Data Visualization", lvlTitle: "Level 25: Visual Dashboard", kidTitle: "🎮 Master Command Control Deck", detail: "Combine multiple analytical subplots onto an integrated diagnostic display panel.", code: ["fig, ax = plt.subplots(2, 2)", "render_all_plots()"] },
-            { world: "World 6: Data Cleaning Hero", lvlTitle: "Level 26: Missing Data", kidTitle: "🧩 Finding Missing Puzzle Pieces", detail: "Detect and flag incomplete record entries systematically across files.", code: ["missing_mask = df.isnull().sum()"] },
-            { world: "World 6: Data Cleaning Hero", lvlTitle: "Level 27: Duplicate Data", kidTitle: "👥 Banishing Clone Armies", detail: "Purge repeated tracking entries to preserve data integrity metrics.", code: ["df = df.drop_duplicates()"] },
-            { world: "World 6: Data Cleaning Hero", lvlTitle: "Level 28: Fixing Errors", kidTitle: "🔧 Type Fixer Spells", detail: "Enforce precise datatypes across mismatched values.", code: ["df['Score'] = df['Score'].astype(int)"] },
-            { world: "World 6: Data Cleaning Hero", lvlTitle: "Level 29: Data Transformation", kidTitle: "🧪 Alchemist Transmutation", detail: "Map structural alterations across rows dynamically via operational arrays.", code: ["df['Normalized'] = df['Value'] / df['Value'].max()"] },
-            { world: "World 6: Data Cleaning Hero", lvlTitle: "Level 30: Clean Dataset Challenge", kidTitle: "🏆 Purified Database Crystal Medal", detail: "Sanitize complex real-world data logs using a clean, automated filtering pipeline.", code: ["pipeline_process(df_raw).to_csv('clean.csv')"] },
-            { world: "World 7: Statistics Adventure", lvlTitle: "Level 31: Mean", kidTitle: "⚖️ The Perfect Balance Point", detail: "Compute absolute sample arithmetic averages.", code: ["mean_metric = df['Scores'].mean()"] },
-            { world: "World 7: Statistics Adventure", lvlTitle: "Level 32: Median", kidTitle: "🏁 Middle-of-the-Road Tracker", detail: "Locate exact structural midpoint parameters within sorted collections.", code: ["median_metric = df['Scores'].median()"] },
-            { world: "World 7: Statistics Adventure", lvlTitle: "Level 33: Mode", kidTitle: "🔥 The Popularity Contest Winner", detail: "Extract the highest frequency repeat value entry from active data collections.", code: ["mode_metric = df['Scores'].mode()[0]"] },
-            { world: "World 7: Statistics Adventure", lvlTitle: "Level 34: Variance", kidTitle: "🌌 Scatter-Blast Visualizers", detail: "Calculate distribution dispersion metrics accurately across numerical groups.", code: ["variance_spread = df['Scores'].var()"] },
-            { world: "World 7: Statistics Adventure", lvlTitle: "Level 35: Statistics Challenge", kidTitle: "🧠 Grand Math Wizard Trials", detail: "Compute complete statistical descriptions including standard deviation fields seamlessly.", code: ["summary_stats = df.describe()"] },
-            { world: "World 8: Machine Learning Intro", lvlTitle: "Level 36: What is AI?", kidTitle: "🧠 Smart Brain Core Basics", detail: "Explore systems built on automated model execution layers.", code: ["# Conceptualizing computational brains", "ai_engine = initialize_core()"] },
-            { world: "World 8: Machine Learning Intro", lvlTitle: "Level 37: What is Machine Learning?", kidTitle: "🤖 Robot Teacher Engines", detail: "Study automated optimization driven via experience training data streams.", code: ["from sklearn.model_selection import train_test_split"] },
-            { world: "World 8: Machine Learning Intro", lvlTitle: "Level 38: Training Data", kidTitle: "📚 Robot Study Guidebooks", detail: "Partition parameter sets into isolated training and validation vectors.", code: ["X_train, X_test, y_train, y_test = train_test_split(X, y)"] },
-            { world: "World 8: Machine Learning Intro", lvlTitle: "Level 39: Predictions", kidTitle: "🔮 Fortune Teller Magic Blocks", detail: "Evaluate unmapped testing variables using running logic systems.", code: ["predicted_outputs = running_model.predict(X_test)"] },
-            { world: "World 8: Machine Learning Intro", lvlTitle: "Level 40: First ML Model", kidTitle: "👶 Birth of the Smart Construct", detail: "Instantiate and align a basic linear prediction construct successfully.", code: ["from sklearn.linear_model import LinearRegression", "model = LinearRegression().fit(X_train, y_train)"] },
-            { world: "World 9: ML Projects", lvlTitle: "Level 41: House Price Predictor", kidTitle: "🏡 Estate Evaluation Matrix", detail: "Map geometric property features directly to numerical target valuations.", code: ["house_model.fit(structural_features, actual_prices)"] },
-            { world: "World 9: ML Projects", lvlTitle: "Level 42: Student Marks Predictor", kidTitle: "📈 Grade Projection Estimators", detail: "Correlate study time metrics directly with predicted score levels.", code: ["predicted_grade = model.predict([[hours_spent]])"] },
-            { world: "World 9: ML Projects", lvlTitle: "Level 43: Movie Recommendation", kidTitle: "🎬 Media Choice Tailor Engine", detail: "Group preference vectors using cluster proximity comparisons.", code: ["from sklearn.neighbors import NearestNeighbors"] },
-            { world: "World 9: ML Projects", lvlTitle: "Level 44: Classification Model", kidTitle: "🏷️ Intelligent Category Labeler", detail: "Isolate unique entity tags using clear decision boundaries.", code: ["from sklearn.tree import DecisionTreeClassifier"] },
-            { world: "World 9: ML Projects", lvlTitle: "Level 45: ML Challenge", kidTitle: "🏆 Neural Core Evaluator Crown", detail: "Measure predictive validation errors using mean-squared error algorithms.", code: ["from sklearn.metrics import mean_squared_error", "err = mean_squared_error(y_test, predicted_outputs)"] },
-            { world: "World 10: Data Science Master", lvlTitle: "Level 46: Real Dataset Analysis", kidTitle: "🌍 Global Real-World Scavenger Hunts", detail: "Process large dataset logs seamlessly code-side.", code: ["df_global = pd.read_csv('global_poverty_data.csv')"] },
-            { world: "World 10: Data Science Master", lvlTitle: "Level 47: Dashboard Building", kidTitle: "🏪 Live Analysis Operations Window", detail: "Expose real-time parameter charts on an interactive dashboard panel.", code: ["import dash; import dash_core_components as dcc"] },
-            { world: "World 10: Data Science Master", lvlTitle: "Level 48: End-to-End Project", kidTitle: "🏭 Raw-Data-To-Insight Factory Pipeline", detail: "Construct a seamless pipeline parsing data from input to visualization.", code: ["clean_data(); train_models(); render_dashboard_metrics()"] },
-            { world: "World 10: Data Science Master", lvlTitle: "Level 49: Deploy ML Model", kidTitle: "🚀 Launching Your Smart Bot to the Web", detail: "Package prediction logic models behind lightweight API endpoints.", code: ["import pickle; pickle.dump(model, open('model.pkl', 'wb'))"] },
-            { world: "World 10: Data Science Master", lvlTitle: "Level 50: Become a Data Scientist", kidTitle: "👑 Grand Master Data Detective", detail: "Verify full analytics performance metrics to confirm accurate business predictions.", code: ["print('All analytical pipelines verified active. Status: Ascended Data Master.')"] },
-            { world: "🏆 Legendary Projects", lvlTitle: "Legendary: COVID Data Analysis", kidTitle: "🦠 Global Health Analytics Deck", detail: "Map viral spread progression vectors across geographic borders live.", code: ["df.groupby('Country')['Infections'].plot(kind='line')"] },
-            { world: "🏆 Legendary Projects", lvlTitle: "Legendary: Movie Recommendation System", kidTitle: "🎬 Predictive Entertainment Nexus", detail: "Build a movie recommendation layout driven by collaborative clustering formulas.", code: ["recommend_engine.get_neighbors(user_preference_vector)"] }
-        ];
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">5. Why Do We Need DSA?</h4>
+                    <p>Finding a name in a list of 10 is easy. Finding a name in a list of 1,000,000 is hard without structure. DSA gives us:</p>
+                    <ul class="list-check pl-5 space-y-1 text-slate-300">
+                        <li>🚀 <strong>Faster Programs:</strong> Run optimized code pathways.</li>
+                        <li>💾 <strong>Better Memory Usage:</strong> Use less computer memory.</li>
+                        <li>🧠 <strong>Better Problem Solving:</strong> Logical development thinking.</li>
+                    </ul>
 
-        // SUBJECT DATA PLATFORM REGISTRIES
-        const gameDatabase = { 
-            web: [], 
-            python: [], 
-            data: [], 
-            dsa: [], 
-            systems: [] 
-        };
-
-        // POPULATE WEB DEVELOPMENT REGISTRY
-        webMapOutline.forEach((item) => {
-            gameDatabase.web.push({
-                levelName: `${item.lvlTitle} (${item.kidTitle})`,
-                worldSection: item.world,
-                description: item.detail,
-                tutorial: `
-                    <p class="font-bold text-sky-400 text-sm uppercase tracking-wider"><i class="fas fa-globe"></i> ${item.world}</p>
-                    <p class="text-white font-bold text-base">${item.lvlTitle}</p>
-                    <p class="text-xs text-purple-400 arcade-font uppercase tracking-widest mt-0.5">Kid Codename: ${item.kidTitle}</p>
-                    <p class="text-gray-400 text-xs leading-relaxed mt-2">${item.detail}</p>
-                    <p class="text-xs text-sky-300 border-t border-gray-900 pt-2 mt-2"><strong>Quest objective:</strong> Sequence the technical blocks in correct operational order from top to bottom.</p>
-                `,
-                correctOrder: [...item.code]
-            });
-        });
-
-        // 🐍 POPULATE PYTHON REGISTRY DATA
-        pythonMapOutline.forEach((item) => {
-            gameDatabase.python.push({
-                levelName: `${item.lvlTitle} (${item.kidTitle})`,
-                worldSection: item.world,
-                description: item.detail,
-                tutorial: `
-                    <p class="font-bold text-emerald-400 text-sm uppercase tracking-wider"><i class="fab fa-python"></i> ${item.world}</p>
-                    <p class="text-white font-bold text-base">${item.lvlTitle}</p>
-                    <p class="text-xs text-emerald-400 arcade-font uppercase tracking-widest mt-0.5">Kid Codename: ${item.kidTitle}</p>
-                    <p class="text-gray-400 text-xs leading-relaxed mt-2">${item.detail}</p>
-                    <p class="text-xs text-emerald-300 border-t border-gray-900 pt-2 mt-2"><strong>Quest objective:</strong> Arrange python statements to form valid, operational execution files from top to bottom.</p>
-                `,
-                correctOrder: [...item.code]
-            });
-        });
-
-        // 📊 POPULATE DATA SCIENCE REGISTRY DATA
-        dataScienceMapOutline.forEach((item) => {
-            gameDatabase.data.push({
-                levelName: `${item.lvlTitle} (${item.kidTitle})`,
-                worldSection: item.world,
-                description: item.detail,
-                tutorial: `
-                    <p class="font-bold text-purple-400 text-sm uppercase tracking-wider"><i class="fas fa-chart-line"></i> ${item.world}</p>
-                    <p class="text-white font-bold text-base">${item.lvlTitle}</p>
-                    <p class="text-xs text-purple-400 arcade-font uppercase tracking-widest mt-0.5">Kid Codename: ${item.kidTitle}</p>
-                    <p class="text-gray-400 text-xs leading-relaxed mt-2">${item.detail}</p>
-                    <p class="text-xs text-purple-300 border-t border-gray-900 pt-2 mt-2"><strong>Quest objective:</strong> Arrange the statistical analysis blocks into the correct sequential pipeline order from top to bottom.</p>
-                `,
-                correctOrder: [...item.code]
-            });
-        });
-
-        // POPULATE DATA STRUCTURES & ALGORITHMS REGISTRY
-        const dsaMapOutline = [
-            { world: "World 1: Problem Solving Basics", lvlTitle: "Level 1: What is a Problem?", detail: "Learn to trace program goals and capture inputs.", code: ["let rawInput = readInput();", "let parameters = cleanData(rawInput);", "return parameters;"] },
-            { world: "World 1: Problem Solving Basics", lvlTitle: "Level 2: Steps to Solve a Problem", detail: "Break solutions down into logical blueprints.", code: ["createPseudocode();", "traceEdgeCases();", "writeActualCode();"] }
-        ];
-        dsaMapOutline.forEach((item) => {
-            gameDatabase.dsa.push({
-                levelName: item.lvlTitle,
-                worldSection: item.world,
-                description: item.detail,
-                tutorial: `
-                    <p class="font-bold text-rose-400 text-sm uppercase tracking-wider"><i class="fas fa-project-diagram"></i> ${item.world}</p>
-                    <p class="text-white font-bold text-base">${item.lvlTitle}</p>
-                    <p class="text-gray-400 text-xs leading-relaxed">${item.detail}</p>
-                    <p class="text-xs text-purple-300"><strong>Mission:</strong> Order the algorithmic tokens correctly to complete this layout pattern challenge.</p>
-                `,
-                correctOrder: [...item.code]
-            });
-        });
-
-        // POPULATE LOW-LEVEL SYSTEMS REGISTRY
-        const systemsMapOutline = [
-            { world: "World 1: Binary Logic", lvlTitle: "Level 1: Counting in Bits", detail: "Map baseline operations directly to base-2 binary switches.", code: ["let bitFlags = 0b1101;", "let parsedInt = 13;"] }
-        ];
-        systemsMapOutline.forEach((item) => {
-            gameDatabase.systems.push({
-                levelName: item.lvlTitle,
-                worldSection: item.world,
-                description: item.detail,
-                tutorial: `
-                    <p class="font-bold text-amber-400 text-sm uppercase tracking-wider"><i class="fas fa-microchip"></i> ${item.world}</p>
-                    <p class="text-white font-bold text-base">${item.lvlTitle}</p>
-                    <p class="text-gray-400 text-xs leading-relaxed">${item.detail}</p>
-                    <p class="text-xs text-amber-300"><strong>Hardware Objective:</strong> Organise instructions straight to the processor bus execution pipeline rules cleanly.</p>
-                `,
-                correctOrder: [...item.code]
-            });
-        });
-
-        function enterRealm(realmKey) {
-            currentSelectedRealm = realmKey;
-            document.getElementById('dashboard-view').classList.add('hidden');
-            const menuView = document.getElementById('level-menu-view');
-            menuView.classList.remove('hidden');
-            document.getElementById('menu-realm-title').innerText = `${realmKey.toUpperCase()} - Campaign Roadmap`;
-            renderLevelsMenuEntries();
-        }
-
-        function renderLevelsMenuEntries() {
-            const container = document.getElementById('levels-list-container');
-            container.innerHTML = "";
-            let lastWorldHeader = "";
-
-            gameDatabase[currentSelectedRealm].forEach((lvlObj, idx) => {
-                if (lvlObj.worldSection !== lastWorldHeader) {
-                    lastWorldHeader = lvlObj.worldSection;
-                    const headerDiv = document.createElement('div');
-                    headerDiv.className = "text-xs font-bold font-mono text-purple-400 uppercase tracking-widest mt-6 mb-2 border-b border-purple-900/30 pb-1 flex items-center gap-2";
-                    headerDiv.innerHTML = `<i class="fas fa-layer-group text-[10px]"></i> ${lastWorldHeader}`;
-                    container.appendChild(headerDiv);
-                }
-
-                const card = document.createElement('button');
-                card.onclick = () => launchActivePlayArena(idx);
-                card.className = "w-full bg-slate-900/90 hover:bg-purple-950/20 border border-gray-800/80 hover:border-purple-500/50 p-4 rounded-xl text-left flex justify-between items-center transition-all group";
-                card.innerHTML = `
-                    <div class="flex items-center gap-4">
-                        <span class="font-mono text-xs text-purple-400 bg-purple-950/40 border border-purple-900/50 px-2.5 py-1 rounded-md font-bold">${String(idx+1).padStart(2, '0')}</span>
-                        <div>
-                            <h4 class="text-gray-200 text-sm font-bold font-sans group-hover:text-purple-400 transition-colors">${lvlObj.levelName}</h4>
-                            <p class="text-[11px] text-gray-500 font-mono mt-0.5">${lvlObj.description}</p>
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">6. Types of Data Structures</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                            <h5 class="text-emerald-400 font-bold text-xs uppercase">Linear Data Structures</h5>
+                            <p class="text-xs text-slate-400 mt-1">Arranged sequentially in a straight line.</p>
+                            <p class="font-mono text-xs text-slate-500 mt-1">10 &rarr; 20 &rarr; 30 &rarr; 40</p>
+                            <span class="text-[11px] bg-slate-900 px-1.5 py-0.5 rounded text-slate-300">Arrays, Lists, Stacks, Queues</span>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded border border-slate-800">
+                            <h5 class="text-indigo-400 font-bold text-xs uppercase">Non-Linear Data Structures</h5>
+                            <p class="text-xs text-slate-400 mt-1">Data branches into multiple distinct paths.</p>
+                            <pre class="text-[10px] text-slate-500 leading-tight mt-1">    A
+   / \
+  B   C</pre>
+                            <span class="text-[11px] bg-slate-900 px-1.5 py-0.5 rounded text-slate-300">Trees, Graphs</span>
                         </div>
                     </div>
-                    <span class="text-[10px] bg-gray-950 border border-gray-800 px-3 py-1.5 rounded text-emerald-400 arcade-font font-bold group-hover:bg-emerald-500 group-hover:text-black transition-all">LAUNCH ▶</span>
-                `;
-                container.appendChild(card);
-            });
+
+                    <h4 class="text-white font-bold text-base pt-4 border-b border-slate-800 pb-1">7. Common Data Structures Broken Down</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><strong>Array:</strong> Stores multiple sequential values together. <code>[10, 20, 30, 40]</code> (e.g., student marks).</li>
+                        <li><strong>Linked List:</strong> Stores connected node elements via pointer paths.</li>
+                        <li><strong>Stack:</strong> Follows <strong>Last In First Out (LIFO)</strong> framework logic (like a stack of plates or undo buttons).</li>
+                        <li><strong>Queue:</strong> Follows <strong>First In First Out (FIFO)</strong> logic operations (like a movie ticket checkout line).</li>
+                        <li><strong>Tree:</strong> Represents hierarchical root structures (like local hard drive file systems).</li>
+                        <li><strong>Graph:</strong> Connects networks of relational data parameters (like global maps or social networks).</li>
+                    </ul>
+
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">8. Common Algorithms & Systems</h4>
+                    <ul class="list-disc pl-5 text-slate-300 space-y-1">
+                        <li><strong>Searching:</strong> Finding info inside matrices (Linear Search, Binary Search).</li>
+                        <li><strong>Sorting:</strong> Arranging records uniformly (Bubble Sort, Merge Sort, Quick Sort).</li>
+                        <li><strong>Path Finding:</strong> Locating optimized routes (e.g., Google Maps configurations).</li>
+                    </ul>
+
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">9. Important Glossary Terms</h4>
+                    <table class="w-full text-xs text-left border-collapse border border-slate-800 mt-2 bg-slate-950">
+                        <thead>
+                            <tr class="bg-slate-900 text-slate-400 border-b border-slate-800">
+                                <th class="p-2">Term</th><th class="p-2">Meaning</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-850">
+                            <tr><td class="p-2 font-bold text-indigo-400">Data</td><td class="p-2">Information storable by computers</td></tr>
+                            <tr><td class="p-2 font-bold text-indigo-400">Data Structure</td><td class="p-2">Organized configuration of records</td></tr>
+                            <tr><td class="p-2 font-bold text-indigo-400">Algorithm</td><td class="p-2">Step-by-step problem solution</td></tr>
+                            <tr><td class="p-2 font-bold text-indigo-400">Efficiency</td><td class="p-2">Speed and memory optimization combined</td></tr>
+                        </tbody>
+                    </table>
+                `,
+                quizzes: [
+                    { q: "What does the technical acronym DSA stand for?", o: ["Data System Analysis", "Data Structures and Algorithms", "Dynamic Storage Arrays", "Data Software Architecture"], a: "Data Structures and Algorithms" },
+                    { q: "What is the simplest basic definition of data?", o: ["Information", "An Algorithm", "A Program Runtime", "A Database Server"], a: "Information" },
+                    { q: "What is an algorithm?", o: ["A compiler language", "A step-by-step procedure to solve a problem", "An operating system daemon", "A web browser container"], a: "A step-by-step procedure to solve a problem" },
+                    { q: "Which of the following elements is classified explicitly as a Data Structure?", o: ["Array", "Google Chrome", "Windows OS", "Python Interpreter"], a: "Array" },
+                    { q: "Which processing memory structure strictly obeys First In First Out (FIFO) pipeline laws?", o: ["Stack", "Queue", "Tree", "Graph"], a: "Queue" }
+                ]
+            },
+            {
+                lvl: "Chapter 2",
+                world: "Algorithm Design",
+                chapterName: "Algorithms Deep Dive & Layouts",
+                notes: `
+                    <h4 class="text-white font-bold text-base border-b border-slate-800 pb-1">1. Introduction to Instructions</h4>
+                    <p>While data structures organize information, algorithms tell computers exactly how to execute solutions. Think of giving a sandwich recipe: <em>Take bread &rarr; add butter &rarr; place vegetables &rarr; close &rarr; consume.</em> Every system uses algorithms behind active views to convert structured inputs smoothly into concrete programmatic outputs.</p>
+                    
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">2. Core Characteristics of a Quality Algorithm</h4>
+                    <p>Not every list of steps is a good algorithm. A sound algorithm must satisfy these core operational properties:</p>
+                    <ul class="space-y-1.5 text-slate-300">
+                        <li>📥 <strong>Input:</strong> Must accept designated defined initial boundary parameters.</li>
+                        <li>📤 <strong>Output:</strong> Must deliver a verified computational final outcome.</li>
+                        <li>🎯 <strong>Definiteness:</strong> Each processing line rule must be clear and unambiguous. <em>(Bad: "Add some numbers". Good: "Add Variable A to Variable B".)</em></li>
+                        <li>⏳ <strong>Finiteness:</strong> The system lifecycle must stop after a fixed number of steps rather than looping forever.</li>
+                        <li>🛠️ <strong>Effectiveness:</strong> Operations must remain practical and locally executable on standard computer hardware architectures.</li>
+                    </ul>
+
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">3. Step-by-Step Computational Problem Solving</h4>
+                    <p>Professional engineers organize software deployment by traveling through these logical stepping phases:</p>
+                    <p class="text-xs text-slate-400 font-mono">Understand Problem &rarr; Isolate Inputs &rarr; Map Output Specifications &rarr; Draft Algorithm Framework &rarr; Write Code Implementation &rarr; Run Testing Suite Validation</p>
+
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">4. Pseudocode & Flowchart Blueprints</h4>
+                    <p>Before locking systems into concrete languages like Python or C++, programmers map tracking paths using abstract structures:</p>
+                    <p><strong>Pseudocode:</strong> Plain, unstructured language text descriptions detailing internal state transitions.</p>
+                    <pre class="bg-slate-950 p-2.5 rounded font-mono text-xs text-emerald-400">START
+  Read A, B
+  Sum = A + B
+  Print Sum
+END</pre>
+                    <p><strong>Flowcharts:</strong> Visual block diagrams charting decision flows, paths, loop returns, and termination blocks across processing lifecycles.</p>
+
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">5. Primary Algorithmic Families</h4>
+                    <ul class="list-disc pl-5 text-slate-300 space-y-1 text-xs">
+                        <li><strong>Searching Patterns:</strong> Locate assets instantly (Linear and Binary solutions).</li>
+                        <li><strong>Sorting Frameworks:</strong> Organize mixed blocks uniformly (Bubble, Merge, and Quick variations).</li>
+                        <li><strong>Recursive Processing:</strong> Self-calling logic statements designed to partition operations into smaller identical tracks (e.g., factorials or countdown routines).</li>
+                    </ul>
+                `,
+                quizzes: [
+                    { q: "What is an algorithm when broken down into simple programmatic terms?", o: ["A physical database server matrix", "An operating system container", "A step-by-step set of instructions used to solve a problem", "An automated browser toolset"], a: "A step-by-step set of instructions used to solve a problem" },
+                    { q: "Which core property rules that an algorithm must safely stop after a fixed count of steps?", o: ["Input Allocation", "Output Validation", "Finiteness", "Definiteness Checking"], a: "Finiteness" },
+                    { q: "What is pseudocode?", o: ["An encrypted compiler file", "A simple way of writing algorithms using plain English text rules", "A distributed cloud database layout", "A low-level assembly language layer"], a: "A simple way of writing algorithms using plain English text rules" },
+                    { q: "Which platforms heavily deploy recommendation algorithms to suggest matching commercial assets?", o: ["Amazon", "Keyboards", "Monitors", "Printers"], a: "Amazon" },
+                    { q: "Which engineering action stage should be executed immediately before entering raw code text lines?", o: ["Problem Understanding and Blueprinting", "Debugging Framework Runs", "Cloud Server Deployment Modules", "Production Unit Testing"], a: "Problem Understanding and Blueprinting" }
+                ]
+            },
+            {
+                lvl: "Chapter 3",
+                world: "Performance Metrics",
+                chapterName: "Time Complexity & Big O Notation",
+                notes: `
+                    <h4 class="text-white font-bold text-base border-b border-slate-800 pb-1">1. Introduction to Code Efficiency</h4>
+                    <p>Suppose two distinct code architectures solve the identical sorting problem. If Dataset Alpha contains 1,000,000 entries, Script A might resolve paths in milliseconds, while Script B loops recursively for hours. <strong>Time Complexity</strong> is our standard metric to analyze and track exactly how resource work scaling changes relative to shifting input size loads.</p>
+                    <blockquote class="border-l-4 border-amber-500 bg-slate-950 p-2.5 text-xs text-amber-400">⚠️ <strong>Critical Ground Rule:</strong> Time Complexity does NOT check raw clock ticks, minutes, or seconds (as hardware processor variations skew those values). Instead, it logs the <strong>growth rate of total internal computational operations</strong>.</blockquote>
+
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">2. Understanding the Input Variable (n)</h4>
+                    <p>In complexity formulas, the letter <code>n</code> represents the total volume of elements fed into the system pipeline: <code>n = 10 items</code>, <code>n = 1,000,000 database indexes</code>. As <code>n</code> expands towards infinity, our design goal is to keep execution routines highly optimized.</p>
+
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">3. Core Big O Notation Scalings Explained</h4>
+                    
+                    <h5 class="text-emerald-400 font-bold text-xs mt-2 uppercase">O(1) - Constant Time Complexity</h5>
+                    <p>The fastest performance state. The operation count remains fixed and constant regardless of size limits. Accessing a known index address in an array <code>print(numbers[2])</code> takes 1 operation step whether that list holds 4 records or 40,000,000.</p>
+                    
+                    <h5 class="text-teal-400 font-bold text-xs mt-2 uppercase">O(log n) - Logarithmic Complexity</h5>
+                    <p>Highly optimized scaling. The runtime logic divides the search space data parameters in half at every step. This mirrors running a <strong>Binary Search</strong> through a sorted physical dictionary book layout—flipping to the center page, throwing out the irrelevant half, and repeating.</p>
+                    
+                    <h5 class="text-amber-400 font-bold text-xs mt-2 uppercase">O(n) - Linear Complexity</h5>
+                    <p>Work growth tracks directly along with data volume. Iterating down a raw, unorganized list via a simple <code>for loop</code> to locate an entry means checking 10 times for 10 items, or 10,000 times for 10,000 items.</p>
+                    
+                    <h5 class="text-rose-400 font-bold text-xs mt-2 uppercase">O(n²) - Quadratic Complexity</h5>
+                    <p>Extremely resource heavy. Occurs when loops are nested inside other loops. If your input size is 1,000 items, the inner script evaluation runs 1,000 &times; 1,000 times, performing a massive 1,000,000 internal tracking operations.</p>
+
+                    <h4 class="text-white font-bold text-base pt-4 border-b border-slate-800 pb-1">4. Performance Reference Matrix</h4>
+                    <table class="w-full text-xs text-left border-collapse border border-slate-800 mt-2 bg-slate-950">
+                        <thead>
+                            <tr class="bg-slate-900 text-slate-400 border-b border-slate-800">
+                                <th class="p-2">Notation</th><th class="p-2">Speed Classification</th><th class="p-2">Behavior Trend</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-850">
+                            <tr class="text-emerald-400"><td class="p-2 font-mono">O(1)</td><td class="p-2">Excellent</td><td class="p-2">Fixed operational time</td></tr>
+                            <tr class="text-teal-400"><td class="p-2 font-mono">O(log n)</td><td class="p-2">Very Fast</td><td class="p-2">Repeatedly halves problem domain</td></tr>
+                            <tr class="text-amber-400"><td class="p-2 font-mono">O(n)</td><td class="p-2">Good / Fair</td><td class="p-2">Grows 1:1 with input scales</td></tr>
+                            <tr class="text-rose-500"><td class="p-2 font-mono">O(n²)</td><td class="p-2">Slow</td><td class="p-2">Nested loops compound work rates</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h4 class="text-white font-bold text-base pt-4 border-b border-slate-800 pb-1">5. Execution Case Horizons</h4>
+                    <p>Algorithms exhibit shifting runtime boundaries depending on data organization patterns:</p>
+                    <ul class="list-disc pl-5 text-slate-300 text-xs space-y-1">
+                        <li><strong>Best Case:</strong> The absolute fastest execution path (e.g., item sits at index 0).</li>
+                        <li><strong>Average Case:</strong> Typical realistic operational distribution across typical scenarios.</li>
+                        <li><strong>Worst Case:</strong> Maximum possible performance boundary wall (item sits on the absolute final index or does not exist). Engineers prioritize Worst-Case models to guarantee applications never freeze in production environments.</li>
+                    </ul>
+                `,
+                quizzes: [
+                    { q: "What does Time Complexity track within computer science analysis?", o: ["Network connection download cycles", "Algorithmic operational growth efficiency relative to input scales", "Total hardware bytes consumed", "Disk configuration indexing size"], a: "Algorithmic operational growth efficiency relative to input scales" },
+                    { q: "Which specific Big O notation runtime speed represents the most efficient, constant execution lifecycle?", o: ["O(n²)", "O(n)", "O(1)", "O(n³)"], a: "O(1)" },
+                    { q: "Which mathematical notation profile is commonly linked to an optimized Binary Search algorithm?", o: ["O(n)", "O(log n)", "O(n²)", "O(1)"], a: "O(log n)" },
+                    { q: "Which performance scaling profile usually occurs when standard iteration loops are nested inside other loop components?", o: ["O(1)", "O(log n)", "O(n²)", "O(n)"], a: "O(n²)" },
+                    { q: "What does the letter standard variable identifier 'n' represent in complexity equations?", o: ["The numerical total volume of inputs or database items", "Network routing latency times", "Memory caching partition size blocks", "The programming compiler identification tag"], a: "The numerical total volume of inputs or database items" }
+                ]
+            }
+        ];
+
+        const subjectDatabase = {
+            dsa: dsaMatrixData
+        };
+
+        function showDashboard() {
+            document.getElementById('lesson-view').classList.add('hidden');
+            document.getElementById('syllabus-view').classList.add('hidden');
+            document.getElementById('dashboard-view').classList.remove('hidden');
         }
 
-        function launchActivePlayArena(lvlIdx) {
-            currentSelectedLevelIndex = lvlIdx;
-            document.getElementById('level-menu-view').classList.add('hidden');
-            document.getElementById('arena-view').classList.remove('hidden');
-
-            const targetLevelData = gameDatabase[currentSelectedRealm][lvlIdx];
-            document.getElementById('arena-puzzle-title').innerText = targetLevelData.levelName;
-            document.getElementById('tutorial-content-zone').innerHTML = targetLevelData.tutorial;
+        function loadSubject(subjectKey) {
+            selectedSubjectKey = subjectKey;
+            document.getElementById('dashboard-view').classList.add('hidden');
             
-            const statusBox = document.getElementById('compiler-status-box');
-            statusBox.className = "text-xs font-mono text-gray-500";
-            statusBox.innerText = "System online. Organize the token list into active programmatic sequence blocks...";
-
-            runningActiveBlocks = [...targetLevelData.correctOrder].sort(() => Math.random() - 0.5);
-            renderWorkspacePlayBlocks();
+            const syllabusView = document.getElementById('syllabus-view');
+            syllabusView.classList.remove('hidden');
+            
+            const titleDisplay = document.getElementById('syllabus-title');
+            titleDisplay.innerText = "Data Structures & Algorithms Training Track Matrix";
+            
+            renderSyllabusIndex();
         }
 
-        function renderWorkspacePlayBlocks() {
-            const workspace = document.getElementById('blocks-workspace');
-            workspace.innerHTML = "";
+        function renderSyllabusIndex() {
+            const container = document.getElementById('chapters-container');
+            container.innerHTML = "";
             
-            runningActiveBlocks.forEach((codeText, index) => {
-                const itemBlock = document.createElement('div');
-                itemBlock.className = "puzzle-block flex justify-between items-center bg-gray-900/90 border border-gray-800 px-4 py-2.5 rounded-xl font-mono text-xs text-sky-400 shadow-md select-none";
-                itemBlock.innerHTML = `
-                    <span><code>${escapeHtmlSyntax(codeText)}</code></span>
-                    <div class="flex gap-1">
-                        ${index > 0 ? `<button onclick="shiftWorkspaceItem(${index}, -1)" class="p-1 bg-gray-950 hover:bg-purple-950 border border-gray-800 text-gray-400 hover:text-white rounded text-[10px] px-1.5"><i class="fas fa-chevron-up"></i></button>` : ''}
-                        ${index < runningActiveBlocks.length - 1 ? `<button onclick="shiftWorkspaceItem(${index}, 1)" class="p-1 bg-gray-950 hover:bg-purple-950 border border-gray-800 text-gray-400 hover:text-white rounded text-[10px] px-1.5"><i class="fas fa-chevron-down"></i></button>` : ''}
+            subjectDatabase[selectedSubjectKey].forEach((chapter, idx) => {
+                const itemRow = document.createElement('div');
+                itemRow.className = "w-full bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-slate-700 transition-all";
+                itemRow.innerHTML = `
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] uppercase tracking-wider font-extrabold text-indigo-400 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-900/40">${chapter.lvl}</span>
+                            <span class="text-xs text-slate-500 font-medium">${chapter.world}</span>
+                        </div>
+                        <h4 class="text-white font-bold text-base">${chapter.chapterName}</h4>
                     </div>
+                    <button onclick="openLessonPanel(${idx})" class="w-full sm:w-auto px-4 py-2 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-slate-950 font-bold text-xs rounded-lg transition-all uppercase tracking-wider">
+                        Open Chapter <i class="fas fa-book-open ml-1 text-[10px]"></i>
+                    </button>
                 `;
-                workspace.appendChild(itemBlock);
+                container.appendChild(itemRow);
             });
         }
 
-        function shiftWorkspaceItem(idx, velocity) {
-            const destinationIndex = idx + velocity;
-            if (destinationIndex >= 0 && destinationIndex < runningActiveBlocks.length) {
-                const placeholder = runningActiveBlocks[idx];
-                runningActiveBlocks[idx] = runningActiveBlocks[destinationIndex];
-                runningActiveBlocks[destinationIndex] = placeholder;
-                renderWorkspacePlayBlocks();
-            }
+        function showSyllabus() {
+            document.getElementById('lesson-view').classList.add('hidden');
+            document.getElementById('syllabus-view').classList.remove('hidden');
         }
 
-        function verifyPuzzleSolution() {
-            const targetData = gameDatabase[currentSelectedRealm][currentSelectedLevelIndex];
-            const statusBox = document.getElementById('compiler-status-box');
-            let isValidSequence = true;
+        function openLessonPanel(chapterIdx) {
+            selectedChapterIndex = chapterIdx;
+            userSelections = {}; // reset answers
+            document.getElementById('syllabus-view').classList.add('hidden');
+            document.getElementById('lesson-view').classList.remove('hidden');
 
-            for (let i = 0; i < targetData.correctOrder.length; i++) {
-                if (runningActiveBlocks[i] !== targetData.correctOrder[i]) {
-                    isValidSequence = false;
-                    break;
+            const targetData = subjectDatabase[selectedSubjectKey][chapterIdx];
+            
+            // Populate Notes Box
+            document.getElementById('notes-world-tag').innerText = `${targetData.lvl} • ${targetData.world}`;
+            document.getElementById('notes-chapter-title').innerText = targetData.chapterName;
+            document.getElementById('notes-body-content').innerHTML = targetData.notes;
+            
+            // Initialize Quiz Section with all questions inside chapter data
+            document.getElementById('quiz-feedback-box').className = "text-xs font-medium text-slate-500";
+            document.getElementById('quiz-feedback-box').innerText = "Answer all questions above to submit metrics...";
+            
+            const quizStack = document.getElementById('quiz-stack');
+            quizStack.innerHTML = "";
+            
+            targetData.quizzes.forEach((quizItem, qIdx) => {
+                const questionBlock = document.createElement('div');
+                questionBlock.className = "bg-slate-950 border border-slate-900 p-4 rounded-xl space-y-3";
+                
+                const questionTitle = document.createElement('p');
+                questionTitle.className = "text-sm font-medium text-slate-200 leading-relaxed";
+                questionTitle.innerHTML = `<span class="text-indigo-400 font-bold font-mono mr-1">Q${qIdx + 1}.</span> ${escapeHtml(quizItem.q)}`;
+                questionBlock.appendChild(questionTitle);
+                
+                const optionsGroup = document.createElement('div');
+                optionsGroup.className = "space-y-2";
+                
+                quizItem.o.forEach((option) => {
+                    const optBtn = document.createElement('button');
+                    optBtn.className = `quiz-node-q${qIdx} w-full text-left bg-slate-900 hover:bg-slate-800 border border-slate-800 p-2.5 rounded-lg text-xs transition-all flex items-center gap-3`;
+                    optBtn.innerHTML = `<span class="opt-bullet w-3.5 h-3.5 rounded-full border border-slate-600 flex items-center justify-center text-[8px] text-transparent bg-transparent">✓</span> <span class="text-slate-300">${escapeHtml(option)}</span>`;
+                    
+                    optBtn.onclick = () => {
+                        userSelections[qIdx] = option;
+                        // Clear siblings inside this question group
+                        questionBlock.querySelectorAll(`.quiz-node-q${qIdx}`).forEach(btn => {
+                            btn.className = `quiz-node-q${qIdx} w-full text-left bg-slate-900 hover:bg-slate-800 border border-slate-800 p-2.5 rounded-lg text-xs transition-all flex items-center gap-3`;
+                            btn.querySelector('.opt-bullet').className = "opt-bullet w-3.5 h-3.5 rounded-full border border-slate-600 flex items-center justify-center text-[8px] text-transparent bg-transparent";
+                        });
+                        // Highlight active select choice
+                        optBtn.className = `quiz-node-q${qIdx} w-full text-left bg-indigo-950/40 border border-indigo-500 p-2.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-3`;
+                        optBtn.querySelector('.opt-bullet').className = "opt-bullet w-3.5 h-3.5 rounded-full border border-indigo-500 bg-indigo-500 flex items-center justify-center text-[8px] font-bold text-slate-950";
+                    };
+                    
+                    optionsGroup.appendChild(optBtn);
+                });
+                
+                questionBlock.appendChild(optionsGroup);
+                quizStack.appendChild(questionBlock);
+            });
+        }
+
+        function evaluateEntireQuiz() {
+            const activeTarget = subjectDatabase[selectedSubjectKey][selectedChapterIndex];
+            const totalQuestions = activeTarget.quizzes.length;
+            const feedback = document.getElementById('quiz-feedback-box');
+            
+            // Validate completeness of answer sets
+            if (Object.keys(userSelections).length < totalQuestions) {
+                feedback.className = "text-xs font-bold text-amber-400";
+                feedback.innerText = "⚠️ Please select answers for all questions before submitting validation stack.";
+                return;
+            }
+
+            let correctCount = 0;
+            activeTarget.quizzes.forEach((quizItem, qIdx) => {
+                if (userSelections[qIdx] === quizItem.a) {
+                    correctCount++;
                 }
-            }
+            });
 
-            if (isValidSequence) {
-                statusBox.className = "text-xs font-mono text-emerald-400 font-bold animate-pulse";
-                statusBox.innerHTML = "🏆 COMPILATION CLEAN! Target logic patterns match verification specifications. +250 XP injected.";
-                playerXP += 250;
-                document.getElementById('global-xp').innerText = playerXP.toLocaleString('en-US', { minimumIntegerDigits: 5 });
+            if (correctCount === totalQuestions) {
+                feedback.className = "text-xs font-bold text-emerald-400 flex items-center gap-1.5";
+                feedback.innerHTML = `<i class="fas fa-check-circle"></i> Perfect! All ${correctCount}/${totalQuestions} metrics correct. +${totalQuestions * 100} Points earned!`;
+                currentScore += (totalQuestions * 100);
+                document.getElementById('global-score').innerText = `${currentScore} Points`;
             } else {
-                statusBox.className = "text-xs font-mono text-rose-400 font-bold";
-                statusBox.innerHTML = "❌ COMPILATION FAULT: Verification mismatch found. Check block dependencies.";
+                feedback.className = "text-xs font-bold text-rose-400 flex items-center gap-1.5";
+                feedback.innerHTML = `<i class="fas fa-times-circle"></i> Completed: ${correctCount}/${totalQuestions} correct. Re-read lesson definitions above to patch missing items.`;
             }
         }
 
-        function exitToDashboard() {
-            document.getElementById('level-menu-view').classList.add('hidden');
-            document.getElementById('dashboard-view').classList.remove('hidden');
-        }
-
-        function exitGameToDashboard() {
-            document.getElementById('arena-view').classList.add('hidden');
-            document.getElementById('level-menu-view').classList.add('hidden');
-            document.getElementById('dashboard-view').classList.remove('hidden');
-        }
-
-        function exitToLevelsMenu() {
-            document.getElementById('arena-view').classList.add('hidden');
-            document.getElementById('level-menu-view').classList.remove('hidden');
-        }
-
-        function escapeHtmlSyntax(text) {
+        function escapeHtml(text) {
             return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
         }
     </script>
