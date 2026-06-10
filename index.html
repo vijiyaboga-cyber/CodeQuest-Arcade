@@ -22,11 +22,24 @@
             transform-style: preserve-3d;
             transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
         }
-        .arcade-card:hover { transform: translateY(-12px) rotateX(4deg) rotateY(-2deg); }
+        .arcade-card:hover { transform: translateY(-8px) rotateX(3deg) rotateY(-1deg); }
 
-        /* Custom Dynamic Shaders */
+        /* Color Shaders Matrix */
         .glow-web { box-shadow: 0 0 20px rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.3); }
         .glow-web:hover { box-shadow: 0 0 35px rgba(56, 189, 248, 0.4); border-color: #38bdf8; }
+        
+        .glow-ai { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3); }
+        .glow-ai:hover { box-shadow: 0 0 35px rgba(16, 185, 129, 0.4); border-color: #10b981; }
+
+        .glow-enterprise { box-shadow: 0 0 20px rgba(168, 85, 247, 0.15); border-color: rgba(168, 85, 247, 0.3); }
+        .glow-enterprise:hover { box-shadow: 0 0 35px rgba(168, 85, 247, 0.4); border-color: #a855f7; }
+
+        .glow-system { box-shadow: 0 0 20px rgba(244, 63, 94, 0.15); border-color: rgba(244, 63, 94, 0.3); }
+        .glow-system:hover { box-shadow: 0 0 35px rgba(244, 63, 94, 0.4); border-color: #f43f5e; }
+
+        .glow-mobile { box-shadow: 0 0 20px rgba(234, 179, 8, 0.15); border-color: rgba(234, 179, 8, 0.3); }
+        .glow-mobile:hover { box-shadow: 0 0 35px rgba(234, 179, 8, 0.4); border-color: #eab308; }
+
         .glow-db { box-shadow: 0 0 20px rgba(20, 184, 166, 0.15); border-color: rgba(20, 184, 166, 0.3); }
         .glow-db:hover { box-shadow: 0 0 35px rgba(20, 184, 166, 0.4); border-color: #14b8a6; }
 
@@ -41,6 +54,7 @@
 </head>
 <body class="text-gray-200 min-h-screen flex flex-col scanlines selection:bg-purple-500 selection:text-black">
 
+    <!-- Top Navigation HUD -->
     <header class="w-full bg-slate-950/80 border-b-2 border-purple-500/20 backdrop-blur-md px-8 py-4 sticky top-0 z-50 flex flex-col sm:flex-row justify-between items-center gap-4">
         <div class="flex items-center gap-3">
             <button onclick="exitGameToDashboard()" class="relative group">
@@ -59,69 +73,136 @@
         </div>
     </header>
 
+    <!-- SECTION 1: Main Gateway 6-Sector Dashboard -->
     <main id="dashboard-view" class="flex-grow max-w-7xl w-full mx-auto p-6 space-y-8">
         <div class="bg-gradient-to-b from-purple-950/20 to-slate-950/50 border border-purple-500/10 rounded-2xl p-6 text-center max-w-3xl mx-auto space-y-2">
             <h1 class="arcade-font text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-purple-500 uppercase tracking-wider">Interactive Coding Realms</h1>
-            <p class="text-gray-400 text-sm">Select a sector path below. Read the guide modules carefully to pass structural compiler tests.</p>
+            <p class="text-gray-400 text-sm">Select an operational framework track below. Read intel guides to compile solutions.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto matrix-container">
-            <div class="arcade-card glow-web bg-slate-950/60 border rounded-2xl p-6 flex flex-col justify-between backdrop-blur-sm group">
-                <div class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 matrix-container">
+            
+            <!-- Sector 1: Web Frontend -->
+            <div class="arcade-card glow-web bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
+                <div class="space-y-3">
                     <div class="flex justify-between items-start">
-                        <div class="bg-sky-500/10 p-3 rounded-xl border border-sky-500/30 text-sky-400"><i class="fas fa-globe text-2xl"></i></div>
-                        <span class="text-[10px] font-mono font-bold tracking-widest text-sky-400 uppercase bg-sky-950/50 border border-sky-900 px-2 py-0.5 rounded">Sector 01</span>
+                        <div class="bg-sky-500/10 p-2.5 rounded-xl border border-sky-500/30 text-sky-400"><i class="fas fa-globe text-xl"></i></div>
+                        <span class="text-[9px] font-mono font-bold tracking-widest text-sky-400 uppercase bg-sky-950/50 border border-sky-900 px-2 py-0.5 rounded">Sector 01</span>
                     </div>
                     <div>
-                        <h2 class="arcade-font text-lg font-bold text-white tracking-wide">HTML Structural Core</h2>
-                        <p class="text-xs text-gray-400 mt-1">Master building headers, title layouts, and body tags safely.</p>
+                        <h2 class="arcade-font text-base font-bold text-white tracking-wide">Web & Front-End</h2>
+                        <p class="text-xs text-gray-400 mt-1">Master browser rendering, interface building tags, and actions.</p>
                     </div>
                 </div>
-                <button onclick="enterRealm('html')" class="w-full mt-6 py-2.5 bg-sky-600 hover:bg-sky-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Initialize Sector</button>
+                <button onclick="enterRealm('web')" class="w-full mt-4 py-2 bg-sky-600 hover:bg-sky-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Initialize Sector</button>
             </div>
 
-            <div class="arcade-card glow-db bg-slate-950/60 border rounded-2xl p-6 flex flex-col justify-between backdrop-blur-sm group">
-                <div class="space-y-4">
+            <!-- Sector 2: Data Science & AI -->
+            <div class="arcade-card glow-ai bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
+                <div class="space-y-3">
                     <div class="flex justify-between items-start">
-                        <div class="bg-teal-500/10 p-3 rounded-xl border border-teal-500/30 text-teal-400"><i class="fas fa-database text-2xl"></i></div>
-                        <span class="text-[10px] font-mono font-bold tracking-widest text-teal-400 uppercase bg-teal-950/50 border border-teal-900 px-2 py-0.5 rounded">Sector 02</span>
+                        <div class="bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/30 text-emerald-400"><i class="fas fa-brain text-xl"></i></div>
+                        <span class="text-[9px] font-mono font-bold tracking-widest text-emerald-400 uppercase bg-emerald-950/50 border border-emerald-900 px-2 py-0.5 rounded">Sector 02</span>
                     </div>
                     <div>
-                        <h2 class="arcade-font text-lg font-bold text-white tracking-wide">SQL Database Queries</h2>
-                        <p class="text-xs text-gray-400 mt-1">Learn to extract targeted relational profiles using data commands.</p>
+                        <h2 class="arcade-font text-base font-bold text-white tracking-wide">Data Science & AI</h2>
+                        <p class="text-xs text-gray-400 mt-1">Process algorithmic intelligence matrices and clean dataset arrays.</p>
                     </div>
                 </div>
-                <button onclick="enterRealm('sql')" class="w-full mt-6 py-2.5 bg-teal-600 hover:bg-teal-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Initialize Sector</button>
+                <button onclick="enterRealm('data')" class="w-full mt-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Initialize Sector</button>
             </div>
+
+            <!-- Sector 3: Enterprise Software -->
+            <div class="arcade-card glow-enterprise bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
+                <div class="space-y-3">
+                    <div class="flex justify-between items-start">
+                        <div class="bg-purple-500/10 p-2.5 rounded-xl border border-purple-500/30 text-purple-400"><i class="fas fa-building text-xl"></i></div>
+                        <span class="text-[9px] font-mono font-bold tracking-widest text-purple-400 uppercase bg-purple-950/50 border border-purple-900 px-2 py-0.5 rounded">Sector 03</span>
+                    </div>
+                    <div>
+                        <h2 class="arcade-font text-base font-bold text-white tracking-wide">Enterprise Logic</h2>
+                        <p class="text-xs text-gray-400 mt-1">Handle Object-Oriented codebases and enterprise backend pipelines.</p>
+                    </div>
+                </div>
+                <button onclick="enterRealm('enterprise')" class="w-full mt-4 py-2 bg-purple-600 hover:bg-purple-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Initialize Sector</button>
+            </div>
+
+            <!-- Sector 4: Systems Programming -->
+            <div class="arcade-card glow-system bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
+                <div class="space-y-3">
+                    <div class="flex justify-between items-start">
+                        <div class="bg-rose-500/10 p-2.5 rounded-xl border border-rose-500/30 text-rose-400"><i class="fas fa-microchip text-xl"></i></div>
+                        <span class="text-[9px] font-mono font-bold tracking-widest text-rose-400 uppercase bg-rose-950/50 border border-rose-900 px-2 py-0.5 rounded">Sector 04</span>
+                    </div>
+                    <div>
+                        <h2 class="arcade-font text-base font-bold text-white tracking-wide">Systems Architecture</h2>
+                        <p class="text-xs text-gray-400 mt-1">Manipulate low-level computer hardware memory variables securely.</p>
+                    </div>
+                </div>
+                <button onclick="enterRealm('systems')" class="w-full mt-4 py-2 bg-rose-600 hover:bg-rose-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Initialize Sector</button>
+            </div>
+
+            <!-- Sector 5: Mobile Apps -->
+            <div class="arcade-card glow-mobile bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
+                <div class="space-y-3">
+                    <div class="flex justify-between items-start">
+                        <div class="bg-yellow-500/10 p-2.5 rounded-xl border border-yellow-500/30 text-yellow-400"><i class="fas fa-mobile-alt text-xl"></i></div>
+                        <span class="text-[9px] font-mono font-bold tracking-widest text-yellow-400 uppercase bg-yellow-950/50 border border-yellow-900 px-2 py-0.5 rounded">Sector 05</span>
+                    </div>
+                    <div>
+                        <h2 class="arcade-font text-base font-bold text-white tracking-wide">Mobile Applications</h2>
+                        <p class="text-xs text-gray-400 mt-1">Design user views and compilation loops for handheld devices.</p>
+                    </div>
+                </div>
+                <button onclick="enterRealm('mobile')" class="w-full mt-4 py-2 bg-yellow-600 hover:bg-yellow-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Initialize Sector</button>
+            </div>
+
+            <!-- Sector 6: Databases -->
+            <div class="arcade-card glow-db bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
+                <div class="space-y-3">
+                    <div class="flex justify-between items-start">
+                        <div class="bg-teal-500/10 p-2.5 rounded-xl border border-teal-500/30 text-teal-400"><i class="fas fa-database text-xl"></i></div>
+                        <span class="text-[9px] font-mono font-bold tracking-widest text-teal-400 uppercase bg-teal-950/50 border border-teal-900 px-2 py-0.5 rounded">Sector 06</span>
+                    </div>
+                    <div>
+                        <h2 class="arcade-font text-base font-bold text-white tracking-wide">Databases & Shell</h2>
+                        <p class="text-xs text-gray-400 mt-1">Query high-volume storage files and write script automation commands.</p>
+                    </div>
+                </div>
+                <button onclick="enterRealm('database')" class="w-full mt-4 py-2 bg-teal-600 hover:bg-teal-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Initialize Sector</button>
+            </div>
+
         </div>
     </main>
 
+    <!-- SECTION 2: Level Selection Menu Matrix -->
     <main id="level-menu-view" class="flex-grow max-w-4xl w-full mx-auto p-6 hidden space-y-6">
         <div class="flex justify-between items-center bg-slate-950 border border-gray-800 p-4 rounded-xl">
             <h2 id="menu-realm-title" class="arcade-font text-xl font-bold text-white uppercase tracking-wide">Core Levels</h2>
             <button onclick="exitToDashboard()" class="text-xs font-mono text-gray-400 hover:text-white bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-lg">🔙 Main Menu</button>
         </div>
-        <div id="levels-list-container" class="space-y-4">
-            </div>
+        <div id="levels-list-container" class="space-y-4"></div>
     </main>
 
+    <!-- SECTION 3: Split-Pane Interactive View Arena -->
     <main id="arena-view" class="flex-grow max-w-7xl w-full mx-auto p-6 hidden">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             
+            <!-- LEFT PANEL: Dynamic Education Console -->
             <div class="lg:col-span-5 bg-slate-950 border border-purple-500/20 rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-xl">
                 <div class="space-y-4">
                     <div class="flex items-center gap-2 border-b border-gray-800 pb-3">
                         <span class="p-1.5 bg-purple-950 border border-purple-800 text-purple-400 rounded-lg text-xs"><i class="fas fa-book-open"></i></span>
                         <h3 class="arcade-font text-sm font-bold uppercase text-white tracking-wider">Holo-Academy Intel Module</h3>
                     </div>
-                    <div id="tutorial-content-zone" class="space-y-4 text-sm text-gray-300 leading-relaxed font-sans">
-                        </div>
+                    <div id="tutorial-content-zone" class="space-y-4 text-sm text-gray-300 leading-relaxed font-sans"></div>
                 </div>
                 <div class="bg-gray-900/50 border border-gray-800/60 p-3 rounded-xl text-center text-xs font-mono text-purple-400">
                     💡 Read everything above before moving blocks on the right!
                 </div>
             </div>
 
+            <!-- RIGHT PANEL: Dynamic Practice Puzzle Arena Layout -->
             <div class="lg:col-span-7 bg-slate-950 border border-gray-800 rounded-2xl p-6 flex flex-col justify-between space-y-6">
                 <div class="space-y-4">
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3">
@@ -131,11 +212,10 @@
                         </div>
                         <button onclick="exitToLevelsMenu()" class="text-xs font-mono text-rose-400 bg-gray-900 border border-gray-800 px-3 py-1 rounded-md hover:bg-rose-950/20">Abort</button>
                     </div>
-
-                    <div id="blocks-workspace" class="space-y-2 p-4 bg-gray-950 border border-gray-900 rounded-xl min-h-[220px] flex flex-col justify-center">
-                        </div>
+                    <div id="blocks-workspace" class="space-y-2 p-4 bg-gray-950 border border-gray-900 rounded-xl min-h-[220px] flex flex-col justify-center"></div>
                 </div>
 
+                <!-- Footer Console Verification Deck -->
                 <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-gray-900">
                     <div class="flex items-start gap-2 max-w-md">
                         <i class="fas fa-terminal text-gray-600 mt-1 text-xs"></i>
@@ -154,77 +234,114 @@
         CodeQuest Operational Framework Platform // Engine initialized successfully.
     </footer>
 
+    <!-- MULTI-LANGUAGE LEVEL DATA STOREHOUSE -->
     <script>
-        // Score Engine Tracking Variable
         let playerXP = 0;
         let currentSelectedRealm = "";
         let currentSelectedLevelIndex = 0;
         let runningActiveBlocks = [];
 
-        // Game Database Storehouse: Teaching Guides + Answers matched flawlessly
         const gameDatabase = {
-            html: [
+            web: [
                 {
-                    levelName: "Level 1: Document Scaffolding",
-                    description: "Learn how the structural base layout of every website works.",
+                    levelName: "HTML Level: Page Scaffolding",
+                    description: "Learn how the structural wrapper nodes of every website work.",
                     tutorial: `
-                        <p class="font-bold text-white text-base">How websites are structured:</p>
-                        <p>Think of web code like nested shipping containers. Everything must fit inside matching tags!</p>
-                        <ul class="list-disc pl-4 space-y-2 text-xs text-gray-400">
-                            <li><code>&lt;html&gt;</code> is always the master outside wrapper enclosing everything.</li>
-                            <li><code>&lt;head&gt;</code> stores metadata, invisible system settings, and page titles.</li>
-                            <li><code>&lt;title&gt;</code> lives inside the head, assigning the text on browser tabs.</li>
-                            <li><code>&lt;/head&gt;</code> closes the head segment cleanly before body parameters launch.</li>
+                        <p class="font-bold text-white text-sm"><i class="fab fa-html5 text-orange-500"></i> HTML Scaffolding Architecture:</p>
+                        <p>Think of web code like nested storage boxes. Everything must fit inside matching, orderly tags!</p>
+                        <ul class="list-disc pl-4 space-y-1 text-xs text-gray-400">
+                            <li><code>&lt;html&gt;</code> is the absolute main wrapper surrounding all code.</li>
+                            <li><code>&lt;head&gt;</code> holds non-visible configurations and parameters.</li>
+                            <li><code>&lt;title&gt;</code> defines the string on your browser tab.</li>
+                            <li><code>&lt;/head&gt;</code> cleanly closes the configurations zone.</li>
                         </ul>
-                        <p class="text-xs bg-sky-950/40 p-2.5 rounded border border-sky-800/40 text-sky-400">
-                            <strong>Your Mission:</strong> Arrange the scattered tags on the right so they open and close in correct structural hierarchy.
-                        </p>
                     `,
-                    correctOrder: ["<html>", "<head>", "<title>Space Arcade</title>", "</head>"]
+                    correctOrder: ["<html>", "<head>", "<title>My Game</title>", "</head>"]
                 },
                 {
-                    levelName: "Level 2: Content Text Injection",
-                    description: "Learn to display headings and paragraphs safely inside body tags.",
+                    levelName: "JavaScript Level: Event Logic",
+                    description: "Learn how to capture button clicks dynamically inside standard scripts.",
                     tutorial: `
-                        <p class="font-bold text-white text-base">Injecting Screen Text elements:</p>
-                        <p>Once your header setup is completed, visible page properties exist entirely inside body constraints.</p>
-                        <ul class="list-disc pl-4 space-y-2 text-xs text-gray-400">
-                            <li><code>&lt;body&gt;</code> starts the active visible canvas wrapper.</li>
-                            <li><code>&lt;h1&gt;</code> creates the primary, largest structural header text line.</li>
-                            <li><code>&lt;p&gt;</code> builds standard paragraph blocks for descriptive prose text blocks.</li>
-                            <li><code>&lt;/body&gt;</code> signals to compilers that visible assets terminate here.</li>
+                        <p class="font-bold text-white text-sm"><i class="fab fa-js text-yellow-400"></i> Action Listeners:</p>
+                        <p>JavaScript listens directly for user gestures inside the document layout mapping array.</p>
+                        <ul class="list-disc pl-4 space-y-1 text-xs text-gray-400">
+                            <li><code>const btn = document.querySelector('button');</code> grabs the button view asset.</li>
+                            <li><code>btn.addEventListener('click', () => {</code> begins watching for clicks.</li>
+                            <li><code>alert('Fired!');</code> runs your inside actions block.</li>
+                            <li><code>});</code> completely locks and wraps the method cleanly.</li>
                         </ul>
                     `,
-                    correctOrder: ["<body>", "<h1>Galaxy Hub</h1>", "<p>Welcome to outer orbit.</p>", "</body>"]
+                    correctOrder: ["const btn = document.querySelector('button');", "btn.addEventListener('click', () => {", "alert('Fired!');", "});"]
                 }
             ],
-            sql: [
+            data: [
                 {
-                    levelName: "Level 1: Core Data Extraction",
-                    description: "Learn Structured Query Language syntax arrays to query database files.",
+                    levelName: "Python Level: Matrix Iteration",
+                    description: "Learn how computer algorithms iterate lists cleanly using loops.",
                     tutorial: `
-                        <p class="font-bold text-white text-base">Extracting Database Rows:</p>
-                        <p>SQL acts like a filter system for data tables. You declare columns first, then pinpoint target sources.</p>
-                        <ul class="list-disc pl-4 space-y-2 text-xs text-gray-400">
-                            <li><code>SELECT username</code> specifies exactly which variable row columns you wish to retrieve.</li>
-                            <li><code>FROM players</code> instructs database search files which tracking table database file to load.</li>
-                            <li><code>WHERE score > 500;</code> filters outcomes, eliminating entries that miss metrics configurations.</li>
+                        <p class="font-bold text-white text-sm"><i class="fab fa-python text-blue-400"></i> For-In Array Iteration:</p>
+                        <p>Python reads like standard prose. Indentation blocks track lines that execute inside iterative loops.</p>
+                        <ul class="list-disc pl-4 space-y-1 text-xs text-gray-400">
+                            <li><code>items = ["data1", "data2"]</code> seeds your initial collection grid array.</li>
+                            <li><code>for x in items:</code> schedules a loop mechanism to touch every index.</li>
+                            <li>&nbsp;&nbsp;&nbsp;&nbsp;<code>print(x)</code> displays the item (Must remain indented!).</li>
                         </ul>
                     `,
-                    correctOrder: ["SELECT username", "FROM players", "WHERE score > 500;"]
+                    correctOrder: ["items = [\"data1\", \"data2\"]", "for x in items:", "    print(x)"]
+                }
+            ],
+            enterprise: [
+                {
+                    levelName: "Java Level: Object Definitions",
+                    description: "Learn class creation structures for corporate applications.",
+                    tutorial: `
+                        <p class="font-bold text-white text-sm"><i class="fab fa-java text-red-400"></i> Object Encapsulation structures:</p>
+                        <p>Java scopes all structural definitions strictly inside class modifiers blocks.</p>
+                    `,
+                    correctOrder: ["public class Player {", "    public String name;", "}"]
+                }
+            ],
+            systems: [
+                {
+                    levelName: "Rust Level: Variables Mapping",
+                    description: "Learn memory mutation assignment rules safely.",
+                    tutorial: `
+                        <p class="font-bold text-white text-sm"><i class="fas fa-cubes text-orange-400"></i> Immutable Default Assignments:</p>
+                        <p>Rust forces variables to stay unchangeable unless explicitly specified using the <code>mut</code> keyword modifier constraint.</p>
+                    `,
+                    correctOrder: ["let mut score = 100;", "score = 200;"]
+                }
+            ],
+            mobile: [
+                {
+                    levelName: "Swift Level: Layout States",
+                    description: "Declare UI modifications when reactive state changes.",
+                    tutorial: `
+                        <p class="font-bold text-white text-sm"><i class="fab fa-swift text-orange-500"></i> State Management:</p>
+                        <p>Swift UI rerenders layout components when structural tracking values shift states.</p>
+                    `,
+                    correctOrder: ["@State private var score = 0", "Text(\"\\(score)\")"]
+                }
+            ],
+            database: [
+                {
+                    levelName: "SQL Level: Filtering Records",
+                    description: "Isolate specific row datasets cleanly using selective operators.",
+                    tutorial: `
+                        <p class="font-bold text-white text-sm"><i class="fas fa-database text-teal-400"></i> Filtering rows via WHERE:</p>
+                        <p>SQL uses direct filtering parameters to fetch target data sets matching criteria loops.</p>
+                    `,
+                    correctOrder: ["SELECT *", "FROM users", "WHERE age >= 21;"]
                 }
             ]
         };
 
-        // Navigation Controllers Mapping Layer Pipeline Loop
         function enterRealm(realmKey) {
             currentSelectedRealm = realmKey;
             document.getElementById('dashboard-view').classList.add('hidden');
-            
             const menuView = document.getElementById('level-menu-view');
             menuView.classList.remove('hidden');
             document.getElementById('menu-realm-title').innerText = `${realmKey.toUpperCase()} Course Curriculum Map`;
-            
             renderLevelsMenuEntries();
         }
 
@@ -248,6 +365,8 @@
             const container = document.getElementById('levels-list-container');
             container.innerHTML = "";
             
+            if(!gameDatabase[currentSelectedRealm]) return;
+
             gameDatabase[currentSelectedRealm].forEach((lvlObj, idx) => {
                 const btn = document.createElement('button');
                 btn.onclick = () => launchActivePlayArena(idx);
@@ -269,17 +388,13 @@
             document.getElementById('arena-view').classList.remove('hidden');
 
             const targetLevelData = gameDatabase[currentSelectedRealm][lvlIdx];
-            
-            // Set educational material and title header assets
             document.getElementById('arena-puzzle-title').innerText = targetLevelData.levelName;
             document.getElementById('tutorial-content-zone').innerHTML = targetLevelData.tutorial;
             
-            // Re-initialize compiler status window text safely
             const statusBox = document.getElementById('compiler-status-box');
             statusBox.className = "text-xs font-mono text-gray-500";
             statusBox.innerText = "System ready. Reorder operational segments to proceed compilation parsing...";
 
-            // Scramble active code items randomly so users can solve it
             runningActiveBlocks = [...targetLevelData.correctOrder].sort(() => Math.random() - 0.5);
             renderWorkspacePlayBlocks();
         }
@@ -290,7 +405,7 @@
             
             runningActiveBlocks.forEach((codeText, index) => {
                 const itemBlock = document.createElement('div');
-                itemBlock.className = "puzzle-block flex justify-between items-center bg-gray-900 border border-gray-800/80 hover:border-purple-500/60 px-4 py-3 rounded-xl font-mono text-xs text-sky-400 shadow-inner select-none";
+                itemBlock.className = "puzzle-block flex justify-between items-center bg-gray-900 border border-gray-800/80 hover:border-purple-500/60 px-4 py-2 rounded-xl font-mono text-xs text-sky-400 shadow-inner select-none";
                 itemBlock.innerHTML = `
                     <span><code>${escapeHtmlSyntax(codeText)}</code></span>
                     <div class="flex gap-1.5">
@@ -327,7 +442,6 @@
             if (isValidSequence) {
                 statusBox.className = "text-xs font-mono text-emerald-400 font-bold";
                 statusBox.innerHTML = "✅ Compilation Successful! Syntax tree matched perfectly. +150 XP Earned.";
-                
                 playerXP += 150;
                 document.getElementById('global-xp').innerText = playerXP.toLocaleString('en-US', { minimumIntegerDigits: 5 });
             } else {
