@@ -64,7 +64,7 @@
                     </div>
                     <div>
                         <h2 class="heading-font text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">Data Structures & Algorithms</h2>
-                        <p class="text-sm text-slate-400 mt-2 leading-relaxed">Master the bedrock foundation of Computer Science. Learn how information is stored efficiently, how problems are cracked step-by-step, and how to analyze code performance via Time Complexity metrics.</p>
+                        <p class="text-sm text-slate-400 mt-2 leading-relaxed">Master the bedrock foundation of Computer Science. Learn how information is stored efficiently, how problems are cracked step-by-step, and how to analyze code performance via Space and Time Complexity metrics.</p>
                     </div>
                 </div>
                 <button onclick="loadSubject('dsa')" class="w-full mt-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-slate-950 font-bold text-sm rounded-xl transition-all tracking-wide shadow-lg shadow-indigo-900/20">Open DSA Course</button>
@@ -345,150 +345,30 @@ END</pre>
                     { q: "Which performance scaling profile usually occurs when standard iteration loops are nested inside other loop components?", o: ["O(1)", "O(log n)", "O(n²)", "O(n)"], a: "O(n²)" },
                     { q: "What does the letter standard variable identifier 'n' represent in complexity equations?", o: ["The numerical total volume of inputs or database items", "Network routing latency times", "Memory caching partition size blocks", "The programming compiler identification tag"], a: "The numerical total volume of inputs or database items" }
                 ]
-            }
-        ];
-
-        const subjectDatabase = {
-            dsa: dsaMatrixData
-        };
-
-        function showDashboard() {
-            document.getElementById('lesson-view').classList.add('hidden');
-            document.getElementById('syllabus-view').classList.add('hidden');
-            document.getElementById('dashboard-view').classList.remove('hidden');
-        }
-
-        function loadSubject(subjectKey) {
-            selectedSubjectKey = subjectKey;
-            document.getElementById('dashboard-view').classList.add('hidden');
-            
-            const syllabusView = document.getElementById('syllabus-view');
-            syllabusView.classList.remove('hidden');
-            
-            const titleDisplay = document.getElementById('syllabus-title');
-            titleDisplay.innerText = "Data Structures & Algorithms Training Track Matrix";
-            
-            renderSyllabusIndex();
-        }
-
-        function renderSyllabusIndex() {
-            const container = document.getElementById('chapters-container');
-            container.innerHTML = "";
-            
-            subjectDatabase[selectedSubjectKey].forEach((chapter, idx) => {
-                const itemRow = document.createElement('div');
-                itemRow.className = "w-full bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-slate-700 transition-all";
-                itemRow.innerHTML = `
-                    <div class="space-y-1">
-                        <div class="flex items-center gap-2">
-                            <span class="text-[10px] uppercase tracking-wider font-extrabold text-indigo-400 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-900/40">${chapter.lvl}</span>
-                            <span class="text-xs text-slate-500 font-medium">${chapter.world}</span>
-                        </div>
-                        <h4 class="text-white font-bold text-base">${chapter.chapterName}</h4>
-                    </div>
-                    <button onclick="openLessonPanel(${idx})" class="w-full sm:w-auto px-4 py-2 bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-slate-950 font-bold text-xs rounded-lg transition-all uppercase tracking-wider">
-                        Open Chapter <i class="fas fa-book-open ml-1 text-[10px]"></i>
-                    </button>
-                `;
-                container.appendChild(itemRow);
-            });
-        }
-
-        function showSyllabus() {
-            document.getElementById('lesson-view').classList.add('hidden');
-            document.getElementById('syllabus-view').classList.remove('hidden');
-        }
-
-        function openLessonPanel(chapterIdx) {
-            selectedChapterIndex = chapterIdx;
-            userSelections = {}; // reset answers
-            document.getElementById('syllabus-view').classList.add('hidden');
-            document.getElementById('lesson-view').classList.remove('hidden');
-
-            const targetData = subjectDatabase[selectedSubjectKey][chapterIdx];
-            
-            // Populate Notes Box
-            document.getElementById('notes-world-tag').innerText = `${targetData.lvl} • ${targetData.world}`;
-            document.getElementById('notes-chapter-title').innerText = targetData.chapterName;
-            document.getElementById('notes-body-content').innerHTML = targetData.notes;
-            
-            // Initialize Quiz Section with all questions inside chapter data
-            document.getElementById('quiz-feedback-box').className = "text-xs font-medium text-slate-500";
-            document.getElementById('quiz-feedback-box').innerText = "Answer all questions above to submit metrics...";
-            
-            const quizStack = document.getElementById('quiz-stack');
-            quizStack.innerHTML = "";
-            
-            targetData.quizzes.forEach((quizItem, qIdx) => {
-                const questionBlock = document.createElement('div');
-                questionBlock.className = "bg-slate-950 border border-slate-900 p-4 rounded-xl space-y-3";
-                
-                const questionTitle = document.createElement('p');
-                questionTitle.className = "text-sm font-medium text-slate-200 leading-relaxed";
-                questionTitle.innerHTML = `<span class="text-indigo-400 font-bold font-mono mr-1">Q${qIdx + 1}.</span> ${escapeHtml(quizItem.q)}`;
-                questionBlock.appendChild(questionTitle);
-                
-                const optionsGroup = document.createElement('div');
-                optionsGroup.className = "space-y-2";
-                
-                quizItem.o.forEach((option) => {
-                    const optBtn = document.createElement('button');
-                    optBtn.className = `quiz-node-q${qIdx} w-full text-left bg-slate-900 hover:bg-slate-800 border border-slate-800 p-2.5 rounded-lg text-xs transition-all flex items-center gap-3`;
-                    optBtn.innerHTML = `<span class="opt-bullet w-3.5 h-3.5 rounded-full border border-slate-600 flex items-center justify-center text-[8px] text-transparent bg-transparent">✓</span> <span class="text-slate-300">${escapeHtml(option)}</span>`;
+            },
+            {
+                lvl: "Chapter 4",
+                world: "Performance Metrics",
+                chapterName: "Space Complexity & Memory Bounds",
+                notes: `
+                    <h4 class="text-white font-bold text-base border-b border-slate-800 pb-1">1. Introduction to Space Complexity</h4>
+                    <p>Time is not the only physical limit. Imagine a device running with tight memory bounds (like 2 GB of RAM). If an application processes structures recklessly, the operating system triggers slow slowdowns, freezing spikes, or spontaneous crashes. <strong>Space Complexity</strong> helps us track and quantify how much memory allocation an algorithm demands during its execution lifecycle relative to input scaling changes.</p>
                     
-                    optBtn.onclick = () => {
-                        userSelections[qIdx] = option;
-                        // Clear siblings inside this question group
-                        questionBlock.querySelectorAll(`.quiz-node-q${qIdx}`).forEach(btn => {
-                            btn.className = `quiz-node-q${qIdx} w-full text-left bg-slate-900 hover:bg-slate-800 border border-slate-800 p-2.5 rounded-lg text-xs transition-all flex items-center gap-3`;
-                            btn.querySelector('.opt-bullet').className = "opt-bullet w-3.5 h-3.5 rounded-full border border-slate-600 flex items-center justify-center text-[8px] text-transparent bg-transparent";
-                        });
-                        // Highlight active select choice
-                        optBtn.className = `quiz-node-q${qIdx} w-full text-left bg-indigo-950/40 border border-indigo-500 p-2.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-3`;
-                        optBtn.querySelector('.opt-bullet').className = "opt-bullet w-3.5 h-3.5 rounded-full border border-indigo-500 bg-indigo-500 flex items-center justify-center text-[8px] font-bold text-slate-950";
-                    };
-                    
-                    optionsGroup.appendChild(optBtn);
-                });
-                
-                questionBlock.appendChild(optionsGroup);
-                quizStack.appendChild(questionBlock);
-            });
-        }
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">2. Structural Parts of Memory Usage</h4>
+                    <p>Total operational memory workspace space generally splits across two distinct architectural boundaries:</p>
+                    <ul class="space-y-2 text-xs">
+                        <li>🛠️ <strong>Fixed Space:</strong> Permanent memory that stays constant regardless of dataset size. This contains core program instruction bytes, system constants, and independent simple value variables (e.g., <code>a = 10; b = 20; sum = a + b</code>).</li>
+                        <li>📊 <strong>Variable Space:</strong> Dynamic memory components that expand as your input dataset scale scales upward. This includes tracking expanding array matrices, loaded strings, or system stack frames created via calling paths.</li>
+                    </ul>
+                    <p class="font-semibold text-indigo-400 text-xs">Auxiliary Space vs Total Space Complexity:</p>
+                    <p class="text-slate-400"><strong>Auxiliary Space</strong> specifically maps the <em>extra or temporary</em> workspace memory allocated by the algorithm inside logic blocks, ignoring the direct initial inputs. Algorithms that run directly on the source structure without allocating replacement helper containers are designated as <strong>In-Place Algorithms</strong> (e.g., standard in-place sorting routines like <code>numbers.sort()</code>).</p>
 
-        function evaluateEntireQuiz() {
-            const activeTarget = subjectDatabase[selectedSubjectKey][selectedChapterIndex];
-            const totalQuestions = activeTarget.quizzes.length;
-            const feedback = document.getElementById('quiz-feedback-box');
-            
-            // Validate completeness of answer sets
-            if (Object.keys(userSelections).length < totalQuestions) {
-                feedback.className = "text-xs font-bold text-amber-400";
-                feedback.innerText = "⚠️ Please select answers for all questions before submitting validation stack.";
-                return;
-            }
+                    <h4 class="text-white font-bold text-base pt-3 border-b border-slate-800 pb-1">3. Common Space Big O Growths</h4>
+                    <ul class="space-y-3 text-xs">
+                        <li><strong class="text-emerald-400">O(1) - Constant Space:</strong> Memory footprint size remains stable regardless of target scale counts. Creating a handful of scalar primitive calculation markers tracks here.</li>
+                        <li><strong class="text-amber-400">O(n) - Linear Space:</strong> Extra storage needs grow directly one-to-one along with input item volumes. Duplicating an original list into an auxiliary storage clone layout creates this scaling footprint.</li>
+                        <li><strong class="text-rose-400">O(n²) - Quadratic Space:</strong> Memory structures compound aggressively. This typically shows up when instantiating raw multi-dimensional matrix grid sheets or transactional connection network tables.</li>
+                    </ul>
 
-            let correctCount = 0;
-            activeTarget.quizzes.forEach((quizItem, qIdx) => {
-                if (userSelections[qIdx] === quizItem.a) {
-                    correctCount++;
-                }
-            });
-
-            if (correctCount === totalQuestions) {
-                feedback.className = "text-xs font-bold text-emerald-400 flex items-center gap-1.5";
-                feedback.innerHTML = `<i class="fas fa-check-circle"></i> Perfect! All ${correctCount}/${totalQuestions} metrics correct. +${totalQuestions * 100} Points earned!`;
-                currentScore += (totalQuestions * 100);
-                document.getElementById('global-score').innerText = `${currentScore} Points`;
-            } else {
-                feedback.className = "text-xs font-bold text-rose-400 flex items-center gap-1.5";
-                feedback.innerHTML = `<i class="fas fa-times-circle"></i> Completed: ${correctCount}/${totalQuestions} correct. Re-read lesson definitions above to patch missing items.`;
-            }
-        }
-
-        function escapeHtml(text) {
-            return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        }
-    </script>
-</body>
-</html>
+                    <h4 class="text-white font-bold text-base pt-3 border-b border-slate-800 pb-1">4. Complexity Spectrum Reference</h4>
+                    <table class="w-full text-xs text-left border-collapse border border-slate-800 mt-2 bg
