@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Matrix Learning Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0f172a;
+        }
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col">
+
+    <header class="w-full bg-slate-900 border-b border-slate-800 px-6 py-4 sticky top-0 z-50 flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="flex items-center gap-3">
+            <button onclick="showDashboard()" class="text-xl font-bold heading-font tracking-tight text-indigo-400 flex items-center gap-2">
+                <i class="fas fa-graduation-cap"></i> EDUQUEST MATRIX
+            </button>
+        </div>
+        <div class="flex items-center gap-4 text-sm">
+            <div class="bg-slate-800 border border-slate-700 px-4 py-1.5 rounded-lg flex items-center gap-2">
+                <i class="fas fa-award text-amber-400"></i>
+                <span class="text-slate-400 text-xs font-semibold uppercase tracking-wider">Score Tracker:</span>
+                <span id="global-score" class="font-bold text-emerald-400">0 Points</span>
+            </div>
+        </div>
+    </header>
+
+    <main id="dashboard-view" class="flex-grow max-w-6xl w-full mx-auto p-6 space-y-8">
+        <div class="text-center max-w-2xl mx-auto space-y-2 pt-4">
+            <h1 class="heading-font text-3xl font-bold text-white tracking-tight">Select Training Track</h1>
+            <p class="text-slate-400 text-sm">Choose a structured subject path below to access detailed chapter notes and interactive testing modules.</p>
+        </div>
+
+        <div class="max-w-md mx-auto pt-4">
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between hover:border-indigo-500/40 transition-all duration-300 shadow-xl group">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div class="bg-indigo-500/10 p-3 rounded-xl border border-indigo-500/20 text-indigo-400">
+                            <i class="fas fa-sitemap text-2xl"></i>
+                        </div>
+                        <span class="text-xs font-semibold text-indigo-400 bg-indigo-950/60 border border-indigo-900 px-2.5 py-1 rounded-full">Core Fundamentals</span>
+                    </div>
+                    <div>
+                        <h2 class="heading-font text-xl font-bold text-white group-hover:text-indigo-400 transition-colors">Data Structures & Algorithms</h2>
+                        <p class="text-sm text-slate-400 mt-2 leading-relaxed">Master the bedrock foundation of Computer Science. Learn how information is stored efficiently, how problems are cracked step-by-step, and how to analyze code performance via Space and Time Complexity metrics.</p>
+                    </div>
+                </div>
+                <button onclick="loadSubject('dsa')" class="w-full mt-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm rounded-xl transition-all tracking-wide shadow-lg shadow-indigo-900/20">Open DSA Course</button>
+            </div>
+        </div>
+    </main>
+
+    <main id="syllabus-view" class="flex-grow max-w-4xl w-full mx-auto p-6 hidden space-y-6">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-900 border border-slate-800 p-4 rounded-xl shadow-md">
+            <div>
+                <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">Course Syllabus</span>
+                <h2 id="syllabus-title" class="heading-font text-xl font-bold text-white">Course Map</h2>
+            </div>
+            <button onclick="showDashboard()" class="text-xs font-medium text-slate-400 hover:text-white bg-slate-800 border border-slate-700 px-4 py-2 rounded-lg transition-colors">
+                <i class="fas fa-arrow-left mr-1.5"></i> Back to Tracks
+            </button>
+        </div>
+        <div id="chapters-container" class="space-y-4 custom-scrollbar overflow-y-auto max-h-[72vh] pr-2"></div>
+    </main>
+
+    <main id="lesson-view" class="flex-grow max-w-6xl w-full mx-auto p-6 hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            
+            <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-xl">
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="p-2 bg-indigo-950/60 border border-indigo-900 text-indigo-400 rounded-lg text-sm"><i class="fas fa-book-open"></i></span>
+                            <div>
+                                <span id="notes-world-tag" class="text-[10px] uppercase font-bold text-indigo-400 tracking-wider block">CURRENT TRACK</span>
+                                <h3 id="notes-chapter-title" class="heading-font text-base font-bold text-white">Chapter Lesson Notes</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="notes-body-content" class="space-y-4 text-sm text-slate-300 leading-relaxed max-h-[58vh] overflow-y-auto pr-3 custom-scrollbar">
+                        </div>
+                </div>
+                <div class="bg-slate-950 border border-slate-800/60 p-3.5 rounded-xl text-xs text-slate-400 flex items-center gap-2.5">
+                    <i class="fas fa-info-circle text-indigo-400 text-sm"></i>
+                    <span>Read through the core concepts thoroughly before initiating the knowledge review check on the right.</span>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between space-y-6 shadow-xl">
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-4">
+                        <div>
+                            <span class="text-[10px] uppercase font-bold text-emerald-400 tracking-wider block">Assessment Portal</span>
+                            <h3 class="heading-font text-base font-bold text-white">Interactive Concept Quiz</h3>
+                        </div>
+                        <button onclick="showSyllabus()" class="text-xs font-medium text-rose-400 bg-rose-950/40 border border-rose-900/60 px-3 py-1.5 rounded-lg transition-colors">Exit Lesson</button>
+                    </div>
+                    
+                    <div id="quiz-stack" class="space-y-6 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+                        </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-slate-800">
+                    <div class="flex items-center gap-2">
+                        <i class="fas fa-poll-h text-slate-600 text-sm"></i>
+                        <p id="quiz-feedback-box" class="text-xs font-medium text-slate-500">Answer all questions above to submit metrics...</p>
+                    </div>
+                    <button id="quiz-action-btn" onclick="evaluateEntireQuiz()" class="w-full sm:w-auto px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm rounded-xl transition-all shadow-md">
+                        Submit Chapter Answers
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        let currentScore = 0;
+        let selectedSubjectKey = "";
+        let selectedChapterIndex = 0;
+        let userSelections = {};
+
+        // All 6 Chapters loaded cleanly into a robust, error-free array object
+        const dsaMatrixData = [
+            {
+                lvl: "Chapter 1",
+                world: "DSA Foundations",
+                chapterName: "Introduction to Data Structures & Algorithms",
+                notes: `
+                    <h4 class="text-white font-bold text-base border-b border-slate-800 pb-1">1. Introduction</h4>
+                    <p>Data Structures and Algorithms (DSA) work behind the scenes of every app you use. They help computers store information, find data quickly, and solve problems efficiently.</p>
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">2. What is a Data Structure?</h4>
+                    <p>A Data Structure is a way of organizing and storing data inside a computer so that it can be used efficiently, like organizing books neatly on a library shelf.</p>
+                    <h4 class="text-white font-bold text-base pt-2 border-b border-slate-800 pb-1">3. What is an Algorithm?</h4>
+                    <p>An Algorithm is a step-by-step set of instructions used to solve a problem. Think of it like a recipe for baking a cake or making tea.</p>
+                `,
+                quizzes: [
+                    { q: "What does DSA stand for?", o: ["Data System Analysis", "Data Structures and Algorithms", "Dynamic Storage Arrays"], a: "Data Structures and Algorithms" },
+                    { q: "What is an algorithm?", o: ["A programming language", "A step-by-step procedure to solve a problem", "An operating system"], a: "A step-by-step procedure to solve a problem" }
+                ]
+            },
+            {
+                lvl: "Chapter 2",
+                world: "Algorithm Design",
+                chapterName: "Algorithms & Logic Planning",
+                notes: `
+                    <h4 class="text-white font-bold text-base border-b border-slate-800 pb-1">1. Logic Design</h4>
+                    <p>Before writing code, developers plan using plain-English steps called Pseudocode or visual design diagrams called Flowcharts.</p>
+                `,
+                quizzes: [
+                    { q: "What is pseudocode?", o: ["A virus", "A simple way of writing algorithms in English", "A database engine"], a: "A simple way of writing algorithms in English" }
+                ]
+            },
+            {
+                lvl: "Chapter 3",
+                world: "Performance Metrics",
+                chapterName: "Time Complexity & Big O",
+                notes: `
+                    <h4 class="text-white font-bold text-base border-b border-slate-800 pb-1">1. Measuring Efficiency</h4>
+                    <p>Time Complexity measures how fast an algorithm runs as the dataset grows. We express this using Big O notation.</p>
+                `,
+                quizzes: [
+                    { q: "Which Big O complexity runs the fastest?", o: ["O(n²)", "O(n)", "O(1)"], a: "O(1)" }
+                ]
+            },
+            {
+                lvl: "Chapter 4",
+                world: "Performance Metrics",
+                chapterName: "Space Complexity",
+                notes: `
+                    <h4 class="text-white font-bold text-base border-b border-slate-800 pb-1">1. Memory Management</h4>
+                    <p>Space Complexity measures how much temporary and structural RAM memory an algorithm requires during execution.</p>
+                `,
+                quizzes: [
+                    { q: "What does Space Complexity measure?", o: ["Network latency", "Memory usage", "CPU temperature"], a: "Memory usage" }
+                ]
+            },
+            {
+                lvl: "Chapter 5",
+                world: "Linear Structures",
+                chapterName: "Arrays",
+                notes: `
+                    <h4 class="text-white font-bold text-base border-b border-slate-800 pb-1">1. Contiguous Arrays</h4>
+                    <p>An Array is a collection of elements stored sequentially in contiguous memory locations. Arrays use zero-based indexing (counting starts from 0).</p>
+                `,
+                quizzes: [
+                    { q: "What is the first index of an array?", o: ["1", "-1", "0"], a: "0" },
+                    { q: "What is the time complexity to access an element in an array directly?", o: ["O(n)", "O(1)", "O(log n)"], a: "O(1)" }
+                ]
+            },
+            {
+                lvl: "Chapter 6",
+                world: "Linear Structures",
+                chapterName: "Strings",
+                notes: `
+                    <h4 class="text-white font-bold text-base border-b border-slate-800 pb-1">1. Text Sequences</h4>
+                    <p>A String is an ordered sequence of characters. In most programming environments, strings are immutable, meaning they cannot be edited in place once created.</p>
+                `,
+                quizzes: [
+                    { q: "Are strings generally immutable?", o: ["Yes", "No"], a: "Yes" },
+                    { q: "Which operation connects two strings together?", o: ["Deletion", "Concatenation", "Slicing"], a: "Concatenation" }
+                ]
+            }
+        ];
+
+        function showDashboard() {
+            document.getElementById('lesson-view').classList.add('hidden');
+            document.getElementById('syllabus-view').classList.add('hidden');
+            document.getElementById('dashboard-view').classList.remove('hidden');
+        }
+
+        function loadSubject(subjectKey) {
+            selectedSubjectKey = subjectKey;
+            document.getElementById('dashboard-view').classList.add('hidden');
+            document.getElementById('syllabus-view').classList.remove('hidden');
+            
+            document.getElementById('syllabus-title').innerText = "Data Structures & Algorithms Course Map";
+            renderSyllabusIndex();
+        }
+
+        function renderSyllabusIndex() {
+            const container = document.getElementById('chapters-container');
+            container.innerHTML = "";
+            
+            dsaMatrixData.forEach((chapter, idx) => {
+                const itemRow = document.createElement('div');
+                itemRow.className = "w-full bg-slate-900 border border-slate-800 p-4 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-slate-700 transition-all";
+                itemRow.innerHTML = `
+                    <div class="space-y-1">
+                        <div class="flex items-center gap-2">
+                            <span class="text-[10px] uppercase tracking-wider font-extrabold text-indigo-400 bg-indigo-950/80 px-2 py-0.5 rounded border border-indigo-900/40">${chapter.lvl}</span>
+                            <span class="text-xs text-slate-500 font-medium">${chapter.world}</span>
+                        </div>
+                        <h4 class="text-white font-bold text-base">${chapter.chapterName}</h4>
+                    </div>
+                    <button onclick="openLessonPanel(${idx})" class="w-full sm:w-auto px-4 py-2 bg-slate-800 hover:bg-indigo-600 text-white font-bold text-xs rounded-lg transition-all uppercase tracking-wider">
+                        Open Chapter <i class="fas fa-book-open ml-1 text-[10px]"></i>
+                    </button>
+                `;
+                container.appendChild(itemRow);
+            });
+        }
+
+        function showSyllabus() {
+            document.getElementById('lesson-view').classList.add('hidden');
+            document.getElementById('syllabus-view').classList.remove('hidden');
+        }
+
+        function openLessonPanel(chapterIdx) {
+            selectedChapterIndex = chapterIdx;
+            userSelections = {};
+            document.getElementById('syllabus-view').classList.add('hidden');
+            document.getElementById('lesson-view').classList.remove('hidden');
+
+            const targetData = dsaMatrixData[chapterIdx];
+            
+            document.getElementById('notes-world-tag').innerText = `${targetData.lvl} • ${targetData.world}`;
+            document.getElementById('notes-chapter-title').innerText = targetData.chapterName;
+            document.getElementById('notes-body-content').innerHTML = targetData.notes;
+            
+            document.getElementById('quiz-feedback-box').className = "text-xs font-medium text-slate-500";
+            document.getElementById('quiz-feedback-box').innerText = "Answer all questions above to submit metrics...";
+            
+            const quizStack = document.getElementById('quiz-stack');
+            quizStack.innerHTML = "";
+            
+            targetData.quizzes.forEach((quizItem, qIdx) => {
+                const questionBlock = document.createElement('div');
+                questionBlock.className = "bg-slate-950 border border-slate-900 p-4 rounded-xl space-y-3";
+                
+                const questionTitle = document.createElement('p');
+                questionTitle.className = "text-sm font-medium text-slate-200 leading-relaxed";
+                questionTitle.innerHTML = `<span class="text-indigo-400 font-bold font-mono mr-1">Q${qIdx + 1}.</span> ${escapeHtml(quizItem.q)}`;
+                questionBlock.appendChild(questionTitle);
+                
+                const optionsGroup = document.createElement('div');
+                optionsGroup.className = "space-y-2";
+                
+                quizItem.o.forEach((option) => {
+                    const optBtn = document.createElement('button');
+                    optBtn.className = `quiz-node-q${qIdx} w-full text-left bg-slate-900 hover:bg-slate-800 border border-slate-800 p-2.5 rounded-lg text-xs transition-all flex items-center gap-3`;
+                    optBtn.innerHTML = `<span class="opt-bullet w-3.5 h-3.5 rounded-full border border-slate-600 flex items-center justify-center text-[8px] text-transparent bg-transparent">✓</span> <span class="text-slate-300">${escapeHtml(option)}</span>`;
+                    
+                    optBtn.onclick = () => {
+                        userSelections[qIdx] = option;
+                        questionBlock.querySelectorAll(`.quiz-node-q${qIdx}`).forEach(btn => {
+                            btn.className = `quiz-node-q${qIdx} w-full text-left bg-slate-900 hover:bg-slate-800 border border-slate-800 p-2.5 rounded-lg text-xs transition-all flex items-center gap-3`;
+                            btn.querySelector('.opt-bullet').className = "opt-bullet w-3.5 h-3.5 rounded-full border border-slate-600 flex items-center justify-center text-[8px] text-transparent bg-transparent";
+                        });
+                        optBtn.className = `quiz-node-q${qIdx} w-full text-left bg-indigo-950/40 border border-indigo-500 p-2.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-3`;
+                        optBtn.querySelector('.opt-bullet').className = "opt-bullet w-3.5 h-3.5 rounded-full border border-indigo-500 bg-indigo-500 flex items-center justify-center text-[8px] font-bold text-slate-950";
+                    };
+                    
+                    optionsGroup.appendChild(optBtn);
+                });
+                
+                questionBlock.appendChild(optionsGroup);
+                quizStack.appendChild(questionBlock);
+            });
+        }
+
+        function evaluateEntireQuiz() {
+            const activeTarget = dsaMatrixData[selectedChapterIndex];
+            const totalQuestions = activeTarget.quizzes.length;
+            const feedback = document.getElementById('quiz-feedback-box');
+            
+            if (Object.keys(userSelections).length < totalQuestions) {
+                feedback.className = "text-xs font-bold text-amber-400";
+                feedback.innerText = "⚠️ Please select answers for all questions before submitting.";
+                return;
+            }
+
+            let correctCount = 0;
+            activeTarget.quizzes.forEach((quizItem, qIdx) => {
+                if (userSelections[qIdx] === quizItem.a) {
+                    correctCount++;
+                }
+            });
+
+            if (correctCount === totalQuestions) {
+                feedback.className = "text-xs font-bold text-emerald-400 flex items-center gap-1.5";
+                feedback.innerHTML = `<i class="fas fa-check-circle"></i> Perfect! All ${correctCount}/${totalQuestions} correct. +100 Points!`;
+                currentScore += 100;
+                document.getElementById('global-score').innerText = `${currentScore} Points`;
+            } else {
+                feedback.className = "text-xs font-bold text-rose-400 flex items-center gap-1.5";
+                feedback.innerHTML = `<i class="fas fa-times-circle"></i> Completed: ${correctCount}/${totalQuestions} correct. Try again!`;
+            }
+        }
+
+        function escapeHtml(text) {
+            return text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+    </script>
+</body>
+</html>
