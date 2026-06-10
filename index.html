@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CodeQuest Arcade | Master Polyglot Academy Matrix</title>
+    <title>CodeQuest Arcade | Mega Curriculum Matrix</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,19 +24,17 @@
         }
         .arcade-card:hover { transform: translateY(-6px) rotateX(2deg); }
 
-        /* Color Custom Shaders */
+        /* Neon Subject Shaders */
         .glow-web { box-shadow: 0 0 20px rgba(56, 189, 248, 0.12); border-color: rgba(56, 189, 248, 0.25); }
         .glow-web:hover { box-shadow: 0 0 35px rgba(56, 189, 248, 0.35); border-color: #38bdf8; }
-        .glow-ai { box-shadow: 0 0 20px rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.25); }
-        .glow-ai:hover { box-shadow: 0 0 35px rgba(16, 185, 129, 0.35); border-color: #10b981; }
-        .glow-enterprise { box-shadow: 0 0 20px rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.25); }
-        .glow-enterprise:hover { box-shadow: 0 0 35px rgba(168, 85, 247, 0.35); border-color: #a855f7; }
-        .glow-system { box-shadow: 0 0 20px rgba(244, 63, 94, 0.12); border-color: rgba(244, 63, 94, 0.25); }
-        .glow-system:hover { box-shadow: 0 0 35px rgba(244, 63, 94, 0.35); border-color: #f43f5e; }
-        .glow-mobile { box-shadow: 0 0 20px rgba(234, 179, 8, 0.12); border-color: rgba(234, 179, 8, 0.25); }
-        .glow-mobile:hover { box-shadow: 0 0 35px rgba(234, 179, 8, 0.35); border-color: #eab308; }
-        .glow-db { box-shadow: 0 0 20px rgba(20, 184, 166, 0.12); border-color: rgba(20, 184, 166, 0.25); }
-        .glow-db:hover { box-shadow: 0 0 35px rgba(20, 184, 166, 0.35); border-color: #14b8a6; }
+        .glow-python { box-shadow: 0 0 20px rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.25); }
+        .glow-python:hover { box-shadow: 0 0 35px rgba(16, 185, 129, 0.35); border-color: #10b981; }
+        .glow-java { box-shadow: 0 0 20px rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.25); }
+        .glow-java:hover { box-shadow: 0 0 35px rgba(168, 85, 247, 0.35); border-color: #a855f7; }
+        .glow-dsa { box-shadow: 0 0 20px rgba(244, 63, 94, 0.12); border-color: rgba(244, 63, 94, 0.25); }
+        .glow-dsa:hover { box-shadow: 0 0 35px rgba(244, 63, 94, 0.35); border-color: #f43f5e; }
+        .glow-systems { box-shadow: 0 0 20px rgba(234, 179, 8, 0.12); border-color: rgba(234, 179, 8, 0.25); }
+        .glow-systems:hover { box-shadow: 0 0 35px rgba(234, 179, 8, 0.35); border-color: #eab308; }
 
         .scanlines {
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), 
@@ -69,64 +67,56 @@
 
     <main id="dashboard-view" class="flex-grow max-w-7xl w-full mx-auto p-6 space-y-8">
         <div class="bg-gradient-to-b from-purple-950/20 to-slate-950/50 border border-purple-500/10 rounded-2xl p-6 text-center max-w-3xl mx-auto space-y-2">
-            <h1 class="arcade-font text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-purple-500 uppercase tracking-wider">Master Polyglot Coding Matrix</h1>
-            <p class="text-gray-400 text-sm">Select a sector track. Each path contains exactly 25 comprehensive master levels.</p>
+            <h1 class="arcade-font text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-purple-500 uppercase tracking-wider">Quest Map Gateway</h1>
+            <p class="text-gray-400 text-sm">Select an active training sector. Advance through sequential levels, optimize variables, and conquer the leaderboard.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 matrix-container">
             <div class="arcade-card glow-web bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
                 <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-sky-500/10 p-2.5 rounded-xl border border-sky-500/30 text-sky-400"><i class="fas fa-globe text-xl"></i></div><span class="text-[9px] font-mono font-bold text-sky-400 uppercase bg-sky-950/50 px-2 py-0.5 rounded">25 Levels</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Web & Front-End</h2><p class="text-xs text-gray-400 mt-1">From HTML elements scaffolding to advanced interactive JavaScript runtime apps.</p></div>
+                    <div class="flex justify-between items-start"><div class="bg-sky-500/10 p-2.5 rounded-xl border border-sky-500/30 text-sky-400"><i class="fas fa-globe text-xl"></i></div><span class="text-[9px] font-mono font-bold text-sky-400 uppercase bg-sky-950/50 px-2 py-0.5 rounded">10 Worlds</span></div>
+                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Web Development</h2><p class="text-xs text-gray-400 mt-1">Journey across HTML structural logic, styling sheets, and interactive JavaScript engines.</p></div>
                 </div>
-                <button onclick="enterRealm('web')" class="w-full mt-4 py-2 bg-sky-600 hover:bg-sky-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Open Curriculum</button>
+                <button onclick="enterRealm('web')" class="w-full mt-4 py-2 bg-sky-600 hover:bg-sky-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Start Adventure</button>
             </div>
 
-            <div class="arcade-card glow-ai bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
+            <div class="arcade-card glow-python bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
                 <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/30 text-emerald-400"><i class="fas fa-brain text-xl"></i></div><span class="text-[9px] font-mono font-bold text-emerald-400 uppercase bg-emerald-950/50 px-2 py-0.5 rounded">25 Levels</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Data Science & AI</h2><p class="text-xs text-gray-400 mt-1">Python loops up through machine learning matrices and complex analytical calculations.</p></div>
+                    <div class="flex justify-between items-start"><div class="bg-emerald-500/10 p-2.5 rounded-xl border border-emerald-500/30 text-emerald-400"><i class="fab fa-python text-xl"></i></div><span class="text-[9px] font-mono font-bold text-emerald-400 uppercase bg-emerald-950/50 px-2 py-0.5 rounded">10 Worlds</span></div>
+                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Python & Data</h2><p class="text-xs text-gray-400 mt-1">Master computer variables, math formulas, decision flow, and collection maps logic.</p></div>
                 </div>
-                <button onclick="enterRealm('data')" class="w-full mt-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Open Curriculum</button>
+                <button onclick="enterRealm('python')" class="w-full mt-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Start Adventure</button>
             </div>
 
-            <div class="arcade-card glow-enterprise bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
+            <div class="arcade-card glow-java bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
                 <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-purple-500/10 p-2.5 rounded-xl border border-purple-500/30 text-purple-400"><i class="fas fa-building text-xl"></i></div><span class="text-[9px] font-mono font-bold text-purple-400 uppercase bg-purple-950/50 px-2 py-0.5 rounded">25 Levels</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Enterprise Logic</h2><p class="text-xs text-gray-400 mt-1">Java object structures, variable constraints, and large scale backend algorithms.</p></div>
+                    <div class="flex justify-between items-start"><div class="bg-purple-500/10 p-2.5 rounded-xl border border-purple-500/30 text-purple-400"><i class="fas fa-building text-xl"></i></div><span class="text-[9px] font-mono font-bold text-purple-400 uppercase bg-purple-950/50 px-2 py-0.5 rounded">10 Worlds</span></div>
+                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Java Enterprise</h2><p class="text-xs text-gray-400 mt-1">Explore rigid compilation types, methods object architecture rules, and classes blueprints.</p></div>
                 </div>
-                <button onclick="enterRealm('enterprise')" class="w-full mt-4 py-2 bg-purple-600 hover:bg-purple-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Open Curriculum</button>
+                <button onclick="enterRealm('java')" class="w-full mt-4 py-2 bg-purple-600 hover:bg-purple-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Start Adventure</button>
             </div>
 
-            <div class="arcade-card glow-system bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
+            <div class="arcade-card glow-dsa bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
                 <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-rose-500/10 p-2.5 rounded-xl border border-rose-500/30 text-rose-400"><i class="fas fa-microchip text-xl"></i></div><span class="text-[9px] font-mono font-bold text-rose-400 uppercase bg-rose-950/50 px-2 py-0.5 rounded">25 Levels</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Systems Architecture</h2><p class="text-xs text-gray-400 mt-1">Rust memory borrowing layouts and concurrent Google Go backend microservices.</p></div>
+                    <div class="flex justify-between items-start"><div class="bg-rose-500/10 p-2.5 rounded-xl border border-rose-500/30 text-rose-400"><i class="fas fa-sitemap text-xl"></i></div><span class="text-[9px] font-mono font-bold text-rose-400 uppercase bg-rose-950/50 px-2 py-0.5 rounded">50+ Levels</span></div>
+                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Data Structures & Algos</h2><p class="text-xs text-gray-400 mt-1">Master memory stack towers, sorting arrays, linked logic, nodes trees, and graphs.</p></div>
                 </div>
-                <button onclick="enterRealm('systems')" class="w-full mt-4 py-2 bg-rose-600 hover:bg-rose-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Open Curriculum</button>
+                <button onclick="enterRealm('dsa')" class="w-full mt-4 py-2 bg-rose-600 hover:bg-rose-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Launch DSA Quest</button>
             </div>
 
-            <div class="arcade-card glow-mobile bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
+            <div class="arcade-card glow-systems bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
                 <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-yellow-500/10 p-2.5 rounded-xl border border-yellow-500/30 text-yellow-400"><i class="fas fa-mobile-alt text-xl"></i></div><span class="text-[9px] font-mono font-bold text-yellow-400 uppercase bg-yellow-950/50 px-2 py-0.5 rounded">25 Levels</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Mobile Applications</h2><p class="text-xs text-gray-400 mt-1">Native Swift iOS views and Kotlin Android layout data state bindings.</p></div>
+                    <div class="flex justify-between items-start"><div class="bg-amber-500/10 p-2.5 rounded-xl border border-amber-500/30 text-amber-400"><i class="fas fa-microchip text-xl"></i></div><span class="text-[9px] font-mono font-bold text-amber-400 uppercase bg-amber-950/50 px-2 py-0.5 rounded">Systems Elite</span></div>
+                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Systems Architecture</h2><p class="text-xs text-gray-400 mt-1">Crack bitwise calculations, RAM addressing offsets, CPU register operations, and OS core processes.</p></div>
                 </div>
-                <button onclick="enterRealm('mobile')" class="w-full mt-4 py-2 bg-yellow-600 hover:bg-yellow-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Open Curriculum</button>
-            </div>
-
-            <div class="arcade-card glow-db bg-slate-950/60 border rounded-2xl p-5 flex flex-col justify-between backdrop-blur-sm group">
-                <div class="space-y-3">
-                    <div class="flex justify-between items-start"><div class="bg-teal-500/10 p-2.5 rounded-xl border border-teal-500/30 text-teal-400"><i class="fas fa-database text-xl"></i></div><span class="text-[9px] font-mono font-bold text-teal-400 uppercase bg-teal-950/50 px-2 py-0.5 rounded">25 Levels</span></div>
-                    <div><h2 class="arcade-font text-base font-bold text-white tracking-wide">Databases & Shell</h2><p class="text-xs text-gray-400 mt-1">Relational SQL queries, data filtering configurations, and system script automation.</p></div>
-                </div>
-                <button onclick="enterRealm('database')" class="w-full mt-4 py-2 bg-teal-600 hover:bg-teal-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Open Curriculum</button>
+                <button onclick="enterRealm('systems')" class="w-full mt-4 py-2 bg-amber-600 hover:bg-amber-500 text-black font-black uppercase text-xs tracking-widest rounded-xl transition-all">Master Systems</button>
             </div>
         </div>
     </main>
 
     <main id="level-menu-view" class="flex-grow max-w-4xl w-full mx-auto p-6 hidden space-y-6">
         <div class="flex justify-between items-center bg-slate-950 border border-gray-800 p-4 rounded-xl">
-            <h2 id="menu-realm-title" class="arcade-font text-lg font-bold text-white uppercase tracking-wide">Levels Matrix</h2>
+            <h2 id="menu-realm-title" class="arcade-font text-md font-bold text-white uppercase tracking-wide">Campaign Subject Roadmap Map</h2>
             <button onclick="exitToDashboard()" class="text-xs font-mono text-gray-400 hover:text-white bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-lg">🔙 Main Menu</button>
         </div>
         <div id="levels-list-container" class="space-y-3 overflow-y-auto max-h-[70vh] pr-2"></div>
@@ -144,7 +134,7 @@
                     <div id="tutorial-content-zone" class="space-y-4 text-xs md:text-sm text-gray-300 leading-relaxed font-sans max-y-[55vh] overflow-y-auto"></div>
                 </div>
                 <div class="bg-gray-900/50 border border-gray-800/60 p-3 rounded-xl text-center text-xs font-mono text-purple-400">
-                    💡 Master the detailed technical syntax above before matching blocks!
+                    💡 Master the mechanical computer science rules above before sorting tokens!
                 </div>
             </div>
 
@@ -153,7 +143,7 @@
                     <div class="flex justify-between items-center border-b border-gray-800 pb-3">
                         <div>
                             <h3 id="arena-puzzle-title" class="text-sm font-bold text-white font-mono">Sandbox Architecture Pipeline</h3>
-                            <p class="text-[11px] text-gray-500 font-mono mt-0.5">Shift variables chunks into valid vertical sequential flow:</p>
+                            <p class="text-[11px] text-gray-500 font-mono mt-0.5">Shift engineering tokens into valid vertical sequential execution order:</p>
                         </div>
                         <button onclick="exitToLevelsMenu()" class="text-xs font-mono text-rose-400 bg-gray-900 border border-gray-800 px-3 py-1 rounded-md">Abort</button>
                     </div>
@@ -180,62 +170,152 @@
         let currentSelectedLevelIndex = 0;
         let runningActiveBlocks = [];
 
-        // PROCEDURAL GENERATION ENGINE SCHEMA MATRIX
-        // This generates 25 highly distinct sequential levels per language dynamically!
-        const conceptsPool = [
-            { name: "Syntax Initialization", desc: "Setting up basic environment tokens.", code: ["// Init code", "let active = true;", "run();"] },
-            { name: "Variables Definition", desc: "Declaring and storing structural values.", code: ["let token = 5;", "token = token + 10;", "return token;"] },
-            { name: "Data Type Allocations", desc: "String mappings vs integers fields.", code: ["let str = 'Quest';", "let num = 2026;", "combine(str, num);"] },
-            { name: "Conditional Routing", desc: "Using standard branching expressions.", code: ["if (score > 10) {", "    grantReward();", "}"] },
-            { name: "Comparative Operators", desc: "Evaluating relational equity boundaries.", code: ["if (level === 25) {", "    unlockMastery();", "}"] },
-            { name: "Logical Intersection", desc: "Multi-layered conditional testing layers.", code: ["if (ready && active) {", "    launchCompiler();", "}"] },
-            { name: "Arrays Setup", desc: "Structuring indexed row grids lists.", code: ["let list = [1, 2, 3];", "let size = list.length;", "process(size);"] },
-            { name: "Loop Index Iteration", desc: "Running standard traversal execution counters.", code: ["for (let i=0; i<3; i++) {", "    executeMatrixStep(i);", "}"] },
-            { name: "While Loop Guards", desc: "Iterating dynamic boundary parameters checks.", code: ["while (energy > 0) {", "    consumeEnergyPulse();", "}"] },
-            { name: "Function Modifiers", desc: "Encapsulating reuse parameters blocks.", code: ["function process(x) {", "    return x * 2;", "}"] },
-            { name: "Return Signatures", desc: "Extracting processed functional payload values.", code: ["function check() {", "    return 'SUCCESS';", "}"] },
-            { name: "Objects Structuring", desc: "Mapping property pairs inside object records.", code: ["let user = {", "    id: 99,", "    rank: 'Alpha'", "};"] },
-            { name: "Method Invocation", desc: "Triggering operational inner-object behaviors.", code: ["let app = new Engine();", "app.initializeCore();", "app.boot();"] },
-            { name: "Exceptions Scope", desc: "Catching error execution exceptions securely.", code: ["try {", "    executeDangerousQuery();", "} catch(err) { log(err); }"] },
-            { name: "Event Handlers", desc: "Tracking browser system signal indicators.", code: ["window.on('load', () => {", "    bootArcadeCabinet();", "});"] },
-            { name: "Asynchronous Blocks", desc: "Handling network payload requests.", code: ["async function fetchLogs() {", "    await pullNetworkStream();", "}"] },
-            { name: "Promise Resolutions", desc: "Processing timeline variables sequences.", code: ["fetchData().then(res => {", "    renderGraphics(res);", "});"] },
-            { name: "Relational Queries", desc: "Extracting basic schema columns safely.", code: ["SELECT id, rank", "FROM players", "WHERE xp > 1000;"] },
-            { name: "Multi-Table Joins", desc: "Merging dataset layers using matching keys.", code: ["SELECT * FROM users", "JOIN permissions", "ON users.id = permissions.uid;"] },
-            { name: "Grouping Filters", desc: "Aggregating calculation counts systematically.", code: ["SELECT country, COUNT(id)", "FROM accounts", "GROUP BY country;"] },
-            { name: "Inheritance Classes", desc: "Extending logic variables onto child subclasses.", code: ["class Mage extends Hero {", "    public void castSpell() {}", "}"] },
-            { name: "Memory Pointers", desc: "Managing storage hardware address markers.", code: ["let mut box = 50;", "let ref_ptr = &mut box;", "*ref_ptr = 90;"] },
-            { name: "Concurrency Routines", desc: "Spinning parallel asynchronous processing threads.", code: ["go function() {", "    processNetworkTraffic();", "}( );"] },
-            { name: "Data Encryption Layer", desc: "Securing variable properties strings signatures.", code: ["let cipher = encrypt(raw);", "saveToSecureDatabase(cipher);", "clearBufferMemory();"] },
-            { name: "Production Pipeline App", desc: "Compiling a complete production execution model.", code: ["initializeSystemEnvironment();", "mountApplicationRoutes();", "listenOnPortServer(8080);"] }
+        const coreLanguageMap = [
+            { world: "World 1: Meet the Computer", lvlTitle: "🖥 Meet the Computer", detail: "What is a Computer, Coding, and how code reads files strings.", code: ["// Core initialized", "let operational = true;", "bootSystem();"] },
+            { world: "World 1: Meet the Computer", lvlTitle: "👋 Hello Coder", detail: "Printing strings text data out directly onto the standard console layout screen display wrapper.", code: ["console.log('Hello World!');", "flushTerminal();"] },
+            { world: "World 2: Variables & Data", lvlTitle: "📦 Magic Boxes (Variables)", detail: "Storing, updating, and parsing strings vs numeric fields contents securely inside names memory identifiers.", code: ["let dataBox = 'Guest';", "dataBox = 'Player1';", "return dataBox;"] },
+            { world: "World 3: Math Magic", lvlTitle: "➕ Number Wizard", detail: "Evaluating mathematical operations equations, scaling values arithmetic steps, adding variables elements components.", code: ["let sum = 20 + 5;", "let result = sum * 2;", "return result;"] },
+            { world: "World 4: Making Decisions", lvlTitle: "🤔 Smart Decisions", detail: "Logical structures conditions parsing parameters, executing blocks branches via clear conditional routing parameters.", code: ["if (lives === 0) {", "    triggerGameOver();", "} else { keepPlaying(); }"] },
+            { world: "World 5: Repeating Actions", lvlTitle: "🔄 Loop Machine", detail: "Configuring looping mechanisms to execute operational steps automatically multi-times indices trackers loops variables counters limits.", code: ["for (let i = 0; i < 5; i++) {", "    processLoopSequence(i);", "}"] },
+            { world: "World 6: Functions", lvlTitle: "🦸 Function Powers", detail: "Declaring clean functional wrappers scope architectures passing arguments inputs returning calculations elements properties modules blueprints.", code: ["function calculationNode(input) {", "    return input * 100;", "}"] },
+            { world: "World 7: Collections", lvlTitle: "📋 Collections", detail: "Structuring indexed row collections lists, pushing objects rows elements dynamically modifying array bounds limits maps fields counters layouts data.", code: ["let inventory = ['Apple'];", "inventory.push('Shield');", "evaluate(inventory.length);"] },
+            { world: "World 8: Web Basics", lvlTitle: "🌐 First Website", detail: "Constructing simple layout tag trees wrapping text document titles buttons interfaces views headers structures.", code: ["<html>", "  <body>", "    <button>Trigger Engine</button>", "  </body>", "</html>"] },
+            { world: "World 9 & 10: Master Control", lvlTitle: "🎨 Design Master", detail: "Injecting custom stylesheet theme variables variables hooks actions clicks signals interfaces rendering logic layout layouts templates scripts frameworks modules styles.", code: ["const target = document.querySelector('#ui');", "target.addEventListener('click', () => {", "    refreshLayoutGrid();", "});"] }
         ];
 
-        // Generation Loop: Multiplies concepts across all categories instantly
-        const realmsKeys = ['web', 'data', 'enterprise', 'systems', 'mobile', 'database'];
-        const gameDatabase = {};
+        // 🧠 DSA DATABASE COMPILATION
+        const dsaMapOutline = [
+            { world: "World 1: Problem Solving Basics", lvlTitle: "🧩 What is a Problem?", detail: "Deconstruct computational targets, defining programmatic tracking input nodes constraints logic models parameters layers templates properties syntax configurations tracks.", code: ["// Define Inputs", "let inputs = getSystemArgs();", "analyzeConstraints(inputs);"] },
+            { world: "World 1: Problem Solving Basics", lvlTitle: "🗺️ Steps to Solve a Problem", detail: "Design clear schematic pseudo-logic blueprints loops flows maps execution configurations sequences milestones benchmarks layers frameworks.", code: ["createAlgorithmPlan();", "validateLogicFlow();", "convertPlanToCode();"] },
+            { world: "World 1: Problem Solving Basics", lvlTitle: "🖥️ Thinking Like a Computer", detail: "Trace deterministic operational memory allocations limits sequential logic flows tracking indicators parameters registers nodes metrics rules counters.", code: ["initializeExecutionState();", "executeRowStepByStep();", "terminateProcessStream();"] },
+            { world: "World 1: Problem Solving Basics", lvlTitle: "✂️ Breaking Problems Down", detail: "Isolate complex overarching architectures into localized reusable sub-problems helper modules parameters methods algorithms routines bounds elements syntax configurations pipelines.", code: ["function solveSubTask() {", "    processMiniChunk();", "}"] },
+            { world: "World 1: Problem Solving Basics", lvlTitle: "🎮 Mini Puzzle Challenge", detail: "Verify analytical configuration models structural sequence parsing benchmarks elements counters rules handlers scopes tracks dashboards indicators.", code: ["let resolved = checkConstraints();", "if(resolved) proceedPipeline();"] },
+            { world: "World 2: Arrays (Magic Boxes)", lvlTitle: "📦 What is an Array?", detail: "Allocate sequential linear block arrays memory tracking items element index bounds arrays structures.", code: ["let memorySegment = new Array(5);", "verifyContiguousAllocation();"] },
+            { world: "World 2: Arrays (Magic Boxes)", lvlTitle: "📥 Storing Items", detail: "Insert variable data properties parameters rows indexes elements boundaries memory sets trackers maps frameworks templates logic.", code: ["let items = [];", "items[0] = 'Target Asset';", "items[1] = 'Data Token';"] },
+            { world: "World 2: Arrays (Magic Boxes)", lvlTitle: "🔍 Accessing Items", detail: "Read target arrays value locations instantaneously using constant numeric offsets keys identifiers parameters rules counters constraints properties frames components.", code: ["let collection = ['A', 'B', 'C'];", "let picked = collection[2];", "process(picked);"] },
+            { world: "World 2: Arrays (Magic Boxes)", lvlTitle: "🔄 Updating Items", detail: "Overwrite stored indices element payloads fields updating array matrices arrays parameters elements handlers bounds scripts pipelines systems model elements variables.", code: ["let cargo = ['Gold', 'Iron'];", "cargo[0] = 'Diamond Shard';", "return cargo;"] },
+            { world: "World 2: Arrays (Magic Boxes)", lvlTitle: "🧸 Build a Toy Inventory", detail: "Assemble working array tracking systems looping element indices entries frameworks tools schemas records applications designs structures dashboard grids configurations.", code: ["let inventory = [];", "function addToy(name) {", "    inventory.push(name);", "}"] },
+            { world: "World 3: Searching Adventures", lvlTitle: "🕵️ Find a Hidden Number", detail: "Isolate precise search key parameters inside sequential rows maps frameworks indicators logs variables setups parameters parameters rules templates metrics components pipelines.", code: ["let values = [4, 8, 15, 16];", "let match = locateValue(8);"] },
+            { world: "World 3: Searching Adventures", lvlTitle: "🚶 Linear Search Engine", detail: "Traverse array files elements index-by-index comparing data value signatures loops parameters tracks limits handlers structures algorithms pipelines controls.", code: ["for(let i=0; i<arr.length; i++) {", "    if(arr[i] === key) return i;", "}"] },
+            { world: "World 3: Searching Adventures", lvlTitle: "🏁 Search Race Challenge", detail: "Benchmark execution limits timing differences between tracking index queries setups rules criteria counters modules fields pipelines systems model arrays.", code: ["startTimer();", "runSearchMethod();", "stopTimerAndLog();"] },
+            { world: "World 3: Searching Adventures", lvlTitle: "⚡ Binary Search Intro", detail: "Divide and conquer sorting arrays parameters bisecting middle items midpoints variables conditions bounds branches algorithms modules definitions scopes frameworks structures structures rules.", code: ["let mid = Math.floor((low + high) / 2);", "if(arr[mid] === target) return mid;"] },
+            { world: "World 3: Searching Adventures", lvlTitle: "🏆 Search Master Challenge", detail: "Construct advanced multi-conditioned index retrieval filters evaluating boundary arrays parameters tracks counters modules layouts logic applications systems architectures.", code: ["let index = executeOptimalSearch();", "validateOutputRange(index);"] },
+            { world: "World 4: Sorting Kingdom", lvlTitle: "📊 Why Sort Things?", detail: "Analyze structural efficiency gains when datasets arrays parameters rest sorted cleanly schemas algorithms structures components metrics indicators rules fields trackers data frameworks.", code: ["let sorted = checkOrder(data);", "if(!sorted) initializeSort();"] },
+            { world: "World 4: Sorting Kingdom", lvlTitle: "🧼 Bubble Sort Algorithm", detail: "Compare adjacent layout data rows swapping items positions repeatedly layers variables loops counters conditions handlers boundaries elements structures lines tracking indexes loops models functions.", code: ["if(arr[i] > arr[i+1]) {", "    swapPositions(arr, i, i+1);", "}"] },
+            { world: "World 4: Sorting Kingdom", lvlTitle: "🎯 Selection Sort System", detail: "Locate minimal data element signatures inside target spans swapping them forward structures elements limits loops handlers scripts metrics rules setups dashboards structures variables functions.", code: ["let minIdx = findMinimumIndex(arr, start);", "swapPositions(arr, start, minIdx);"] },
+            { world: "World 4: Sorting Kingdom", lvlTitle: "🃏 Insertion Sort Engine", detail: "Shift variable data elements backward tracking sorted subsets inserting them cleanly fields loops parameters tracks handlers bounds templates applications code arrays structures rules.", code: ["while(j >= 0 && arr[j] > current) {", "    arr[j + 1] = arr[j];", "    j--;", "}"] },
+            { world: "World 4: Sorting Kingdom", lvlTitle: "🏁 Sorting Race Game", detail: "Profile execution parsing logs evaluating array swap cycles metrics parameters fields dashboards trackers frameworks tools systems designs architectures data layouts logic rules.", code: ["benchmarkSortRoutines();", "renderPerformanceChart();"] },
+            { world: "World 5: Stack Tower", lvlTitle: "🗼 What is a Stack?", detail: "Deconstruct Last-In First-Out (LIFO) stack layout tracking pointer caps parameters structures criteria rows elements.", code: ["let stackData = [];", "let topPointer = -1;"] },
+            { world: "World 5: Stack Tower", lvlTitle: "⬆️ Push Operation", detail: "Insert new element values onto top pointer index caps array limits layers variables parameters handlers metrics counters scripts schemas data layouts.", code: ["stackData.push(element);", "topPointer++;"] },
+            { world: "World 5: Stack Tower", lvlTitle: "⬇️ Pop Operation", detail: "Extract top array block elements lowering current top index markers fields conditions bounds elements functions metrics rules setups controllers modules pipelines frameworks.", code: ["let popped = stackData.pop();", "topPointer--;", "return popped;"] },
+            { world: "World 5: Stack Tower", lvlTitle: "🕵️ Undo Button Mystery", detail: "Track operations logs configurations sequences state modifications arrays histories parameters rules components loops trackers databases model applications systems rules.", code: ["function userAction(cmd) {", "    actionStack.push(cmd);", "}"] },
+            { world: "World 5: Stack Tower", lvlTitle: "🌐 Build Browser History", detail: "Model back tracking url maps tracking actions parameters structures loops layouts components variables dashboards lines handlers systems files workflows application architectures templates configurations data.", code: ["let historyStack = [];", "function visitPage(url) {", "    historyStack.push(url);", "}"] },
+            { world: "World 6: Queue Station", lvlTitle: "🚉 What is a Queue?", detail: "Understand First-In First-Out (FIFO) pipeline sequences trackers elements layers layout architectures constraints boundaries metrics criteria setups data loops metrics logic controls models structures.", code: ["let queueStorage = [];", "let headIndex = 0;"] },
+            { world: "World 6: Queue Station", lvlTitle: "👥 First In First Out", detail: "Process line row headers elements prioritizing entry points sequences indicators fields parameters templates components elements rules trackers files workflows.", code: ["let customer = queueStorage[headIndex];", "removeCustomerFromLine();"] },
+            { world: "World 6: Queue Station", lvlTitle: "🎟️ Ticket Counter Example", detail: "Enqueue new arrivals append indexes tail parameters structures items variables conditions handlers bounds scripts pipelines models applications frameworks frameworks rules modules.", code: ["queueStorage.push(newTicket);", "updateTailPointer();"] },
+            { world: "World 6: Queue Station", lvlTitle: "🖨️ Print Queue Challenge", detail: "Order documents sequences buffer processing execution files pipelines logs filters setups dashboards trackers components algorithms frameworks logic systems parameters.", code: ["function schedulePrintJob(doc) {", "    printQueue.push(doc);", "}"] },
+            { world: "World 6: Queue Station", lvlTitle: "📊 Build a Queue Simulator", detail: "Simulate service flow matrices evaluating wait delays calculations structures elements loops metrics tools dashboard grids models apps dashboards controls lines setups configurations frameworks.", code: ["while(printQueue.length > 0) {", "    processNextPrintDocument();", "}"] },
+            { world: "World 7: Linked List Train", lvlTitle: "🔗 What is a Linked List?", detail: "Connect nodes tracking references pointers skipping contiguous block memory limitations nodes pointers elements structures boundaries setup metrics configurations structures strings fields.", code: ["let node = { data: 5, next: null };"] },
+            { world: "World 7: Linked List Train", lvlTitle: "🚂 Connecting Wagons", detail: "Link node next properties onto sibling address footprints variables parameters conditions loops elements loops functions indicators trackers files databases structures logic.", code: ["nodeA.next = nodeB;", "nodeB.next = nodeC;"] },
+            { world: "World 7: Linked List Train", lvlTitle: "➕ Add a Wagon", detail: "Insert node markers modifying address paths references links maps parameters fields metrics trackers criteria components loops elements rules systems tools frameworks models.", code: ["let newNode = { data: 10, next: head };", "head = newNode;"] },
+            { world: "World 7: Linked List Train", lvlTitle: "➖ Remove a Wagon", detail: "Bypass node reference links updating parent properties straight forward setups boundaries functions parameters controllers modules pipelines systems model application tracking variables frameworks.", code: ["prevNode.next = currentNode.next;", "currentNode.next = null;"] },
+            { world: "World 7: Linked List Train", lvlTitle: "🛠️ Train Builder Challenge", detail: "Traverse complete chained references loops building unified custom layouts lines workflows dashboards tools records platforms designs architectures templates codes logic arrays.", code: ["let current = head;", "while(current !== null) {", "    current = current.next;", "}"] },
+            { world: "World 8: Trees & Family Maps", lvlTitle: "🌳 What is a Tree?", detail: "Deconstruct non-linear hierarchic root pointer models arrays structures boundaries logic components modules setups parameters fields metrics trackers loops elements rules setups codes frameworks models frameworks.", code: ["let rootNode = { value: 'CEO', left: null, right: null };"] },
+            { world: "World 8: Trees & Family Maps", lvlTitle: "🌿 Parent & Child Nodes", detail: "Map structural downward reference edges tracking connections boundaries variables parameters conditions elements loops handlers scripts metrics rules dashboards systems applications architectures pipelines.", code: ["parent.left = childA;", "parent.right = childB;"] },
+            { world: "World 8: Trees & Family Maps", lvlTitle: "🔱 Binary Trees Matrix", detail: "Enforce strict double node child bounds rules layouts components fields trackers loops filters functions data systems tools frameworks metrics layouts variables functions lines pipelines code syntax templates.", code: ["if(node.left && node.right) {", "    evaluateBinaryBranch(node);", "}"] },
+            { world: "World 8: Trees & Family Maps", lvlTitle: "🗺️ Tree Traversal Adventure", detail: "Execute Pre-order, In-order, or Post-order recursive traversal loops layers variables loops counters conditions handlers boundaries elements structures tracking indexes functions metrics structures tools setups files databases architectures code.", code: ["function traverseInOrder(node) {", "    if(node === null) return;", "    traverseInOrder(node.left);", "    print(node.value);", "    traverseInOrder(node.right);", "}"] },
+            { world: "World 8: Trees & Family Maps", lvlTitle: "👨‍👩‍👦 Family Tree Builder", detail: "Assemble structured ancestral metadata trees layouts text lines tools records apps dashboards configurations structures variables data models designs templates scripts rules modules pipelines platforms code.", code: ["let familyTree = instantiateTreeRoot();", "insertNodeDescendant(familyTree, 'Child');"] },
+            { world: "World 9: Graph Explorer", lvlTitle: "🕸️ What is a Graph?", detail: "Map interconnected mesh vertices networks using adjacency maps arrays structures boundaries setups indicators fields parameters components loops data fields metrics trackers lines elements frameworks logic architectures models modules.", code: ["let graph = new Map();", "graph.set('VertexA', []);"] },
+            { world: "World 9: Graph Explorer", lvlTitle: "🛣️ Cities and Roads", detail: "Build direction matrices edge weights tracking mesh maps variables parameters conditions loops components elements metrics rules trackers files workflows databases structures setups layout parameters metrics rules algorithms.", code: ["graph.get('CityA').push('CityB');", "graph.get('CityB').push('CityA');"] },
+            { world: "World 9: Graph Explorer", lvlTitle: "🌊 BFS Adventure", detail: "Traverse graph network loops using queue nodes structures layered search lines elements tracking fields conditions handlers bounds scripts pipelines models applications frameworks functions parameters controllers constraints criteria layouts variables scripts profiles.", code: ["let queue = [startNode];", "while(queue.length > 0) {", "    let current = queue.shift();", "    checkNeighbors(current);", "}"] },
+            { world: "World 9: Graph Explorer", lvlTitle: "🌋 DFS Adventure", detail: "Traverse deep pathway lines using tracking stack models or direct recursive structures fields loops metrics tools dashboards controls configurations frameworks data structures components systems lines pipelines code syntax controllers handlers modules applications templates.", code: ["function dfs(node, visited) {", "    visited.add(node);", "    dfs(neighbor, visited);", "}"] },
+            { world: "World 9: Graph Explorer", lvlTitle: "🏴‍☠️ Treasure Hunt Challenge", detail: "Isolate path routes evaluating grid intersections tools records apps dashboards setups tracking systems models designs templates scripts rules modules pipelines platforms architectures variables configurations data grids arrays structures rules components.", code: ["let shortestPath = findOptimalRoute(graph);", "executeMovementAlongPath(shortestPath);"] },
+            { world: "World 10: Algorithm Master", lvlTitle: "🪄 Recursion Magic", detail: "Configure self-calling functional loops tracking accurate stack base escape boundary targets parameters layers structures elements variables loops handlers boundaries functions metrics rules configurations.", code: ["function factorial(n) {", "    if (n <= 1) return 1;", "    return n * factorial(n - 1);", "}"] },
+            { world: "World 10: Algorithm Master", lvlTitle: "💰 Greedy Algorithms", detail: "Pick optimal instant localized reward variations maximizing path values arrays structures parameters conditions loops components metrics rules fields trackers systems files workflows applications frameworks benchmarks metrics variables indicators controls layouts architectures text.", code: ["coins.sort((a,b) => b-a);", "chooseLargestPossibleCoin();"] },
+            { world: "World 10: Algorithm Master", lvlTitle: "🧱 Dynamic Programming Basics", detail: "Store overlapping sub-problem arrays caching computation records via memoization tables fields loops metrics parameters trackers functions data systems tools frameworks metrics layouts variables functions lines pipelines code syntax configurations frameworks templates architectures.", code: ["let memo = {};", "if(memo[n]) return memo[n];", "memo[n] = computeValue(n);"] },
+            { world: "World 10: Algorithm Master", lvlTitle: "↩️ Backtracking Adventure", detail: "Revert path search choices when computational rules fail tracking matrices boards layouts components variables dashboards lines handlers systems files workflows application architectures templates configurations data fields metrics loops elements functions setup criteria.", code: ["placePiece();", "if(!validateBoard()) removePiece();"] },
+            { world: "World 10: Algorithm Master", lvlTitle: "👑 Become a DSA Master", detail: "Synthesize full algorithmic systems pipelines validating clean compile operations tools records dashboards structures arrays frameworks designs models scripts modules platforms layout templates codes metrics setups indicators lines rules components structures controls.", code: ["runFullSystemAudit();", "verifyAllUnitTestsPassed();"] },
+            { world: "👑 Boss Levels (Projects)", lvlTitle: "🎮 Project: Number Guessing Game", detail: "Assemble clean conditional evaluations loop conditions maps frameworks tools applications designs structures dashboard grids configurations models variables data scripts rules modules pipelines.", code: ["let hiddenNum = generateRandom();", "if(guess === hiddenNum) win();"] },
+            { world: "👑 Boss Levels (Projects)", lvlTitle: "📝 Project: To-Do List App System", detail: "Compile multi-layered index manipulation arrays tracking custom state items metrics fields trackers data frameworks rules components layouts variables functions lines pipelines code structures parameters constraints indicators setups.", code: ["let todoList = [];", "todoList.push({task: text, status: 'pending'});"] },
+            { world: "👑 Boss Levels (Projects)", lvlTitle: "📇 Project: Contact Book Indexer", detail: "Implement dictionary map structures locating contact keys properties maps functions handlers controllers modules pipelines frameworks tools systems designs architectures data layouts logic rules configurations metrics fields components.", code: ["let directory = new Map();", "directory.set(name, phoneNum);"] },
+            { world: "👑 Boss Levels (Projects)", lvlTitle: "📚 Project: Library Management System", detail: "Formulate object relations matrices updating item borrow matrices tracks logs variables setups parameters parameters rules templates metrics components pipelines systems model elements variables conditions handlers loops markers files architectures systems.", code: ["bookRecord.status = 'checked_out';", "appendBorrowerLog(userId);"] },
+            { world: "👑 Boss Levels (Projects)", lvlTitle: "🗂️ Project: Student Record Platform", detail: "Manage nested record arrays sorting entries systematically parameters fields dashboards trackers frameworks tools systems designs architectures data layouts logic rules configurations indicators elements loops components criteria.", code: ["students.sort((a,b) => b.gpa - a.gpa);"] },
+            { world: "👑 Boss Levels (Projects)", lvlTitle: "📦 Project: Inventory Tracker Core", detail: "Track resource capacities updating threshold flags loops parameters tracks handlers bounds templates applications code arrays structures rules components data lines setups configurations frameworks setups controllers metrics indicators log.", code: ["if(stockLevel < safetyThreshold) {", "    triggerReorderSignal();", "}"] },
+            { world: "👑 Boss Levels (Projects)", lvlTitle: "🗂️ Project: Maze Solver Engine", detail: "Trace grid vector parameters finding open exits elements boundaries lines tracking indexes loops models functions scripts parameters conditions loops elements loops functions indicators trackers databases fields structures rules.", code: ["while(!atExit()) {", "    exploreAdjacentCells();", "    backtrackIfDeadEnd();", "}"] },
+            { world: "👑 Boss Levels (Projects)", lvlTitle: "🗺️ Project: Path Finding Visualizer", detail: "Implement weighted tracking nodes updates arrays indicators fields dashboards trackers components algorithms frameworks logic systems parameters frameworks setups controllers metrics indicators log fields tracks workflows architectures templates analytics data values.", code: ["calculateNodeDistances();", "extractLowestWeightEdge();"] },
+            { world: "👑 Boss Levels (Projects)", lvlTitle: "👥 Project: Social Network Simulator", detail: "Connect person node reference maps modeling network friend relationships maps variables data models designs templates scripts rules modules pipelines platforms architectures variables configurations data grids arrays structures rules components elements parameters loops fields metrics.", code: ["userNode.connections.push(friendId);"] },
+            { world: "👑 Boss Levels (Projects)", lvlTitle: "🔎 Project: Search Engine Mini Project", detail: "Build inverted catalog arrays locating search text criteria strings layouts formatting metadata nodes linking custom designs grids models elements interfaces loops frameworks scripts modules styles components logic setups parameters metrics rules indicators frames layouts.", code: ["let indexTable = buildInvertedIndex();", "let queryResults = indexTable.get(keyword);"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "⏳ Time Complexity (Big O)", detail: "Calculate performance margins operations ratios configurations logs profiles analytics metrics trackers criteria components loops elements rules systems tools frameworks models.", code: ["// Time Analysis", "logger.log('O(N^2) Nested Loop Alert');"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "🔑 Hash Tables Core Architecture", detail: "Design hash collision index algorithms mappings setups boundaries functions parameters controllers modules pipelines systems model application tracking variables frameworks rules modules platforms layout templates structures metrics.", code: ["let bucketIdx = computeHash(key) % size;", "insertIntoChain(bucketIdx, data);"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "🏔️ Heaps (Priority Matrix)", detail: "Manage balanced binary heap vectors processing root parent nodes loops frameworks scripts modules platforms layout templates codes metrics setups indicators lines rules components structures controls structures arrays structures parameters criteria.", code: ["bubbleUpHeap(insertedIndex);"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "🌲 Trie Prefix Trees", detail: "Build nested character map dictionaries parsing words workflows dashboards tools records platforms designs architectures templates codes logic arrays tracks systems components metrics functions handlers loops metadata rules fields loops metrics.", code: ["let curr = root;", "curr = curr.children.get(char);"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "📐 Segment Tree Architecture", detail: "Maintain structural range arrays calculation matrices configurations structures components systems lines pipelines code syntax controllers handlers modules applications templates metrics systems fields dashboards profiles variables maps paths components.", code: ["let leftSum = queryTree(node.left);", "let rightSum = queryTree(node.right);"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "🪵 Fenwick Tree Systems", detail: "Manipulate bitwise logical limits processing index prefix sums systems frameworks pipelines rules frameworks architectures models applications templates scripts profiles variables indicators components structures metrics charts data values metrics fields arrays structures loops.", code: ["while (idx <= maxVal) {", "    tree[idx] += delta;", "    idx += (idx & -idx);", "}"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "🚀 Dijkstra Shorter Path Algo", detail: "Calculate shortest track miles through grid charts configurations structures variables data models designs templates scripts rules modules pipelines platforms code structures arrays frameworks designs models.", code: ["while(!priorityQueue.isEmpty()) {", "    relaxGraphEdges(currentNode);", "}"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "🌐 Floyd Warshall Framework", detail: "Compute multi-node matrix intersection distances maps elements structures variables functions lines pipelines code syntax templates layout tracking arrays fields data setups elements systems parameters frameworks profiles fields counters parameters loops.", code: ["matrix[i][j] = Math.min(", "    matrix[i][j],", "    matrix[i][k] + matrix[k][j]", ");"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "🪵 Minimum Spanning Tree (Kruskal)", detail: "Sort unique structural graph vectors unioning sets trackers maps frameworks templates logic applications systems architectures pipelines structures lines tracking indexes loops models functions scripts controllers constraints analytics dashboard grids configuration.", code: ["if(findSet(edge.u) !== findSet(edge.v)) {", "    unionDisjointSets(edge.u, edge.v);", "}"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "🧱 Advanced Dynamic Programming", detail: "Formulate advanced state transition algorithms profiles variables charts values fields filters loops dashboards tools records platforms designs architectures templates codes logic arrays tracks systems components metrics functions handlers loops metadata.", code: ["dp[i][j] = dp[i-1][j] + dp[i][j-cost];"] },
+            { world: "🎯 Elite Master Levels (Teen/College)", lvlTitle: "🏆 Competitive Programming Matrix", detail: "Run high-fidelity optimizations matching elite standard unit-tests structures arrays frameworks designs models scripts modules platforms layout templates codes metrics setups indicators lines rules components structures controls charts data setups elements parameters parameters constraints criteria.", code: ["ios_base::sync_with_stdio(false);", "cin.tie(NULL);", "solveProblemSetChallenge();"] }
+        ];
 
-        realmsKeys.forEach(realm => {
-            gameDatabase[realm] = [];
-            for (let i = 1; i <= 25; i++) {
-                const matrixConcept = conceptsPool[i - 1];
+        // ⚡ NEW SUBJECT: SYSTEMS ARCHITECTURE & LOW-LEVEL MASTER CORE DATABASE
+        const systemsMapOutline = [
+            { world: "World 1: Binary & Hardware Foundations", lvlTitle: "🔢 Level 1: Counting in Bits", detail: "Convert base-10 numerical data blocks directly into base-2 binary logical switches.", code: ["let binaryNum = 0b1010;", "let decimalVal = 10;"] },
+            { world: "World 1: Binary & Hardware Foundations", lvlTitle: "🎛️ Level 2: Logic Gates Maze", detail: "Route operations signals safely across structural AND, OR, and XOR software switches.", code: ["let output = (inputA & inputB) | inputC;", "return output;"] },
+            { world: "World 2: Memory & Addressing", lvlTitle: "📍 Level 3: Pointer Address Maps", detail: "Read raw Hexadecimal markers reference codes pointing directly to index slots inside physical RAM segments.", code: ["int value = 42;", "int* memoryAddress = &value;"] },
+            { world: "World 2: Memory & Addressing", lvlTitle: "🧱 Level 4: The Heap allocation vs Stack frame", detail: "Differentiate temporary execution scopes context memory flags from long-term runtime allocations objects dynamically.", code: ["void* dynamicBlock = malloc(1024);", "free(dynamicBlock);"] },
+            { world: "World 3: Operating System Interfacing", lvlTitle: "🚦 Level 5: Process Scheduler Engine", detail: "Manage context execution states between thread routines switching active compute cycles safely.", code: ["pid_t processId = fork();", "if (processId == 0) { executeChildTask(); }"] }
+        ];
+
+        const gameDatabase = { web: [], python: [], java: [], dsa: [], systems: [] };
+
+        // CORE GENERATOR ENGINE
+        ['web', 'python', 'java'].forEach(realm => {
+            coreLanguageMap.forEach((item) => {
                 gameDatabase[realm].push({
-                    levelName: `Level ${i}: ${matrixConcept.name}`,
-                    description: matrixConcept.desc,
+                    levelName: item.lvlTitle,
+                    worldSection: item.world,
+                    description: item.detail,
                     tutorial: `
-                        <p class="font-bold text-purple-400 text-sm uppercase tracking-wider"><i class="fas fa-graduation-cap"></i> Academic Intel Module Outline:</p>
-                        <p class="text-white font-medium">Core Objective Context: Mastering ${matrixConcept.name}</p>
-                        <p>To scale up your capabilities into high-end production engineering pipelines (building multi-million row website infrastructures or secure localized banking apps), you must grasp this exact logic sequence layout.</p>
-                        <div class="bg-slate-900 border border-gray-800 p-3 rounded-lg font-mono text-xs text-gray-400 space-y-1">
-                            <span class="text-emerald-400 font-bold">// Key Concept Blueprint Matrix:</span>
-                            <p>1. Every script parses rows chronologically from top to bottom limits.</p>
-                            <p>2. Variables fields initialization boundaries must evaluate cleanly before subsequent references pass compile checkpoints.</p>
-                            <p>3. Always enclose operational modifiers and logical sub-blocks inside orderly nested bounds syntax.</p>
-                        </div>
-                        <p class="text-xs text-purple-300"><strong>Mission Parameters:</strong> Reorder the scrambled programmatic logic components shown in the playground layout panel on the right until the compilation evaluation returns clean execution success strings.</p>
+                        <p class="font-bold text-emerald-400 text-sm uppercase tracking-wider"><i class="fas fa-map-signs"></i> ${item.world}</p>
+                        <p class="text-white font-bold text-base">${item.lvlTitle}</p>
+                        <p class="text-gray-300"><strong>Concept Theory Breakdown:</strong></p>
+                        <p class="text-gray-400 text-xs leading-relaxed">Mastering this core programming module scales your software engineering workflows cleanly. Sequential files handle parameters step-by-step arrays values configurations maps indicators rules limits controllers parameters hooks.</p>
+                        <p class="text-xs text-purple-300"><strong>Mission:</strong> Drag or shift puzzle block layers into the exact vertical code layout sequence required to match the logic model parameters safely.</p>
                     `,
-                    correctOrder: [...matrixConcept.code]
+                    correctOrder: [...item.code]
                 });
-            }
+            });
+        });
+
+        dsaMapOutline.forEach((item) => {
+            gameDatabase.dsa.push({
+                levelName: item.lvlTitle,
+                worldSection: item.world,
+                description: item.detail,
+                tutorial: `
+                    <p class="font-bold text-rose-400 text-sm uppercase tracking-wider"><i class="fas fa-project-diagram"></i> ${item.world}</p>
+                    <p class="text-white font-bold text-base">${item.lvlTitle}</p>
+                    <p class="text-gray-400 text-xs leading-relaxed">${item.detail} Optimizing memory usage structures scales massive web networks gracefully.</p>
+                    <p class="text-xs text-purple-300"><strong>Mission:</strong> Match standard data rules sequence to avoid structural sorting faults layers.</p>
+                `,
+                correctOrder: [...item.code]
+            });
+        });
+
+        systemsMapOutline.forEach((item) => {
+            gameDatabase.systems.push({
+                levelName: item.lvlTitle,
+                worldSection: item.world,
+                description: item.detail,
+                tutorial: `
+                    <p class="font-bold text-amber-400 text-sm uppercase tracking-wider"><i class="fas fa-microchip"></i> ${item.world}</p>
+                    <p class="text-white font-bold text-base">${item.lvlTitle}</p>
+                    <p class="text-gray-400 text-xs leading-relaxed">${item.detail} Coding directly inside chip structures unlocks execution speeds that standard languages can't match.</p>
+                    <p class="text-xs text-amber-300"><strong>Mission Parameters:</strong> Reorder hardware bus instruction sets into a standard executable compiled routine block.</p>
+                `,
+                correctOrder: [...item.code]
+            });
         });
 
         function enterRealm(realmKey) {
@@ -243,15 +323,24 @@
             document.getElementById('dashboard-view').classList.add('hidden');
             const menuView = document.getElementById('level-menu-view');
             menuView.classList.remove('hidden');
-            document.getElementById('menu-realm-title').innerText = `${realmKey.toUpperCase()} - Complete 25 Level Master Roadmap`;
+            document.getElementById('menu-realm-title').innerText = `${realmKey.toUpperCase()} - Campaign Subject Roadmap Map`;
             renderLevelsMenuEntries();
         }
 
         function renderLevelsMenuEntries() {
             const container = document.getElementById('levels-list-container');
             container.innerHTML = "";
-            
+            let lastWorldHeader = "";
+
             gameDatabase[currentSelectedRealm].forEach((lvlObj, idx) => {
+                if (lvlObj.worldSection !== lastWorldHeader) {
+                    lastWorldHeader = lvlObj.worldSection;
+                    const headerDiv = document.createElement('div');
+                    headerDiv.className = "text-xs font-bold font-mono text-purple-400 uppercase tracking-widest mt-6 mb-2 border-b border-purple-900/30 pb-1 flex items-center gap-2";
+                    headerDiv.innerHTML = `<i class="fas fa-layer-group text-[10px]"></i> ${lastWorldHeader}`;
+                    container.appendChild(headerDiv);
+                }
+
                 const card = document.createElement('button');
                 card.onclick = () => launchActivePlayArena(idx);
                 card.className = "w-full bg-slate-900/90 hover:bg-purple-950/20 border border-gray-800/80 hover:border-purple-500/50 p-4 rounded-xl text-left flex justify-between items-center transition-all group";
@@ -260,10 +349,10 @@
                         <span class="font-mono text-xs text-purple-400 bg-purple-950/40 border border-purple-900/50 px-2.5 py-1 rounded-md font-bold">${String(idx+1).padStart(2, '0')}</span>
                         <div>
                             <h4 class="text-gray-200 text-sm font-bold font-sans group-hover:text-purple-400 transition-colors">${lvlObj.levelName}</h4>
-                            <p class="text-[11px] text-gray-500 font-mono mt-0.5">${lvlObj.description}</p>
+                            <p class="text-[11px] text-gray-500 font-mono mt-0.5">${lvlObj.description.substring(0, 95)}...</p>
                         </div>
                     </div>
-                    <span class="text-[10px] bg-gray-950 border border-gray-800 px-3 py-1.5 rounded text-emerald-400 arcade-font font-bold group-hover:bg-emerald-500 group-hover:text-black transition-all">START ▶</span>
+                    <span class="text-[10px] bg-gray-950 border border-gray-800 px-3 py-1.5 rounded text-emerald-400 arcade-font font-bold group-hover:bg-emerald-500 group-hover:text-black transition-all">LAUNCH ▶</span>
                 `;
                 container.appendChild(card);
             });
@@ -333,7 +422,7 @@
                 document.getElementById('global-xp').innerText = playerXP.toLocaleString('en-US', { minimumIntegerDigits: 5 });
             } else {
                 statusBox.className = "text-xs font-mono text-rose-400 font-bold";
-                statusBox.innerHTML = "❌ COMPILATION FAULT: Structural token validation mismatch. Re-verify structural constraints criteria layout layers.";
+                statusBox.innerHTML = "❌ COMPILATION FAULT: Structural token validation mismatch. Re-verify layout sequence.";
             }
         }
 
